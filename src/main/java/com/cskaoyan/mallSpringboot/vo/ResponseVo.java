@@ -5,6 +5,15 @@ public class ResponseVo {
     Object data;
     String errmas;
 
+    public ResponseVo() {
+    }
+
+    public ResponseVo(int errno, Object data, String errmas) {
+        this.errno = errno;
+        this.data = data;
+        this.errmas = errmas;
+    }
+
     public int getErrno() {
         return errno;
     }
@@ -29,3 +38,4 @@ public class ResponseVo {
         this.errmas = errmas;
     }
 }
+

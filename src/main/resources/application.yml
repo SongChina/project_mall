@@ -2,3 +2,10 @@ server:
   servlet:
     context-path: /admin
   port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/project_mall?characterEncoding=utf8
+    username: root
+    password: 123456
