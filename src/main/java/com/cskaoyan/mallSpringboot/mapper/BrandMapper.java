@@ -2,8 +2,9 @@ package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Brand;
 import com.cskaoyan.mallSpringboot.bean.BrandExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BrandMapper {
     long countByExample(BrandExample example);
@@ -27,4 +28,10 @@ public interface BrandMapper {
     int updateByPrimaryKeySelective(Brand record);
 
     int updateByPrimaryKey(Brand record);
+
+    int queryBrandCount(@Param("id") String id, @Param("name") String name);
+
+    List<Brand> queryBrandList(@Param("id") String id, @Param("name")  String name);
+
+
 }

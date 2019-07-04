@@ -2,8 +2,10 @@ package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Grouponrules;
 import com.cskaoyan.mallSpringboot.bean.GrouponrulesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 
 public interface GrouponrulesMapper {
     long countByExample(GrouponrulesExample example);
@@ -27,4 +29,8 @@ public interface GrouponrulesMapper {
     int updateByPrimaryKeySelective(Grouponrules record);
 
     int updateByPrimaryKey(Grouponrules record);
+
+    //查
+    int queryCount(@Param("goodsId") String goodsId);
+    List<Grouponrules> queryList(@Param("sort") String sort,@Param("order") String order,@Param("goodsId") String goodsId);
 }
