@@ -1,5 +1,6 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class System {
@@ -11,9 +12,17 @@ public class System {
 
     private Date addTime;
 
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     private Boolean deleted;
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public Integer getId() {
         return id;
@@ -45,14 +54,6 @@ public class System {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public Boolean getDeleted() {
