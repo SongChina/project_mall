@@ -4,7 +4,9 @@ import com.cskaoyan.mallSpringboot.bean.Goods;
 import com.cskaoyan.mallSpringboot.bean.GoodsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface GoodsMapper {
     long countByExample(GoodsExample example);
 
@@ -33,4 +35,6 @@ public interface GoodsMapper {
     int updateByPrimaryKeyWithBLOBs(Goods record);
 
     int updateByPrimaryKey(Goods record);
+
+
 }

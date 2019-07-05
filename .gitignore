@@ -1,5 +1,5 @@
 HELP.md
-/target/
+target/
 !.mvn/wrapper/maven-wrapper.jar
 
 
@@ -28,3 +28,4 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/application.yml
