@@ -8,3 +8,17 @@ server:
   port: 80
   servlet:
     context-path: /admin
+
+  #json日期格式处理
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#debug: true
+#pageHelper配置，分页工具
+
+#pagehelper:
+#            helperDialect: mysql
+#            reasonable: true
+#            supportMethodsArguments: true
+#            params: count=countSql

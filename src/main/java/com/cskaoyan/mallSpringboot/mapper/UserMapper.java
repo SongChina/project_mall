@@ -3,7 +3,11 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.User;
 import com.cskaoyan.mallSpringboot.bean.UserExample;
 import java.util.List;
+
+import com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 public interface UserMapper {
     int queryUserCount(@Param("username") String username, @Param("mobile") String mobile);
@@ -30,4 +34,9 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<CustomerStatisticInfo> queryUserByAddTimeInGroup();
+
+
+
 }
