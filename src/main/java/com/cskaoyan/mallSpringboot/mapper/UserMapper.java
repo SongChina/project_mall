@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 public interface UserMapper {
+    int queryUserCount(@Param("username") String username, @Param("mobile") String mobile);
+    List<User> queryUserList(@Param("username") String username, @Param("mobile") String mobile);
+    //以上是新增的方法
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

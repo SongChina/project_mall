@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.RegionMapper">
+
+  <!--查询省份-->
+  <select id="queryProvince" resultType="com.cskaoyan.mallSpringboot.bean.Region">
+      SELECT id, `name`, `type`, `code` from cskaoyan_mall_region WHERE `type` = 1
+  </select>
+  <!--查询城市-->
+  <select id="queryCity" resultType="com.cskaoyan.mallSpringboot.bean.Region">
+    SELECT id, `name`, `type`, `code` from cskaoyan_mall_region WHERE `type` = 2 and code like #{code}
+  </select>
+  <!--查询地区-->
+  <select id="queryDistrict" resultType="com.cskaoyan.mallSpringboot.bean.Region">
+    SELECT id, `name`, `type`, `code` from cskaoyan_mall_region WHERE `type` = 3 and code like #{code}
+  </select>
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Region">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
