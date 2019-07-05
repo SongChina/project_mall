@@ -3,15 +3,15 @@ package com.cskaoyan.mallSpringboot.vo;
 public class ResponseVo {
     int errno;
     Object data;
-    String errmas;
+    String errmsg;
 
     public ResponseVo() {
     }
 
-    public ResponseVo(int errno, Object data, String errmas) {
+    public ResponseVo(int errno, Object data, String errmsg) {
         this.errno = errno;
         this.data = data;
-        this.errmas = errmas;
+        this.errmsg = errmsg;
     }
 
     public int getErrno() {
@@ -30,11 +30,11 @@ public class ResponseVo {
         this.data = data;
     }
 
-    public String getErrmas() {
-        return errmas;
+    public String getErrmsg() {
+        return errmsg;
     }
 
-    public void setErrmas(String errmas) {
-        this.errmas = errmas;
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
     }
 }

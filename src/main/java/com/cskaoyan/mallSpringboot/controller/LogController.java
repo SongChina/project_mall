@@ -19,7 +19,7 @@ public class LogController {
         ResponseVo responseVo = new ResponseVo();
         responseVo.setErrno(0);
         responseVo.setData("02514c8b-4124-4a95-b513-e77ef43403ba");
-        responseVo.setErrmas("成功");
+        responseVo.setErrmsg("成功");
         return responseVo;
     }
     @RequestMapping("auth/info")
@@ -32,7 +32,7 @@ public class LogController {
         para.put("name", "admin123");
         para.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         responseVo.setData(para);
-        responseVo.setErrmas("成功");
+        responseVo.setErrmsg("成功");
         return responseVo;
     }
 }

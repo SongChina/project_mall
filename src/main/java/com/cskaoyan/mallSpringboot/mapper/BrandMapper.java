@@ -33,4 +33,9 @@ public interface BrandMapper {
     List<Brand> queryBrandList(@Param("id") String id, @Param("name")  String name);
 
 
+    int brandInsert(Brand brand);
+
+    int brandDelete(Brand brand);
+
+    int brandUpdate(Brand brand);
 }

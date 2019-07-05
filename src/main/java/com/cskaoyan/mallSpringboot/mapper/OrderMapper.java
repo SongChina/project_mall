@@ -27,4 +27,8 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> queryOrderList(@Param("orderStatusArray") String[] orderStatusArray, @Param("orderSn") String orderSn, @Param("userId") String userId);
+
+    Order queryOrderDetail(String id);
 }

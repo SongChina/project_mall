@@ -2,6 +2,7 @@ package com.cskaoyan.mallSpringboot.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private Integer id;
@@ -55,6 +56,27 @@ public class Order {
     private Date updateTime;
 
     private Boolean deleted;
+
+    //新增User Ordergoods
+    private User user;
+
+    private List<Ordergoods> ordergoodsList;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Ordergoods> getOrdergoodsList() {
+        return ordergoodsList;
+    }
+
+    public void setOrdergoodsList(List<Ordergoods> ordergoodsList) {
+        this.ordergoodsList = ordergoodsList;
+    }
 
     public Integer getId() {
         return id;

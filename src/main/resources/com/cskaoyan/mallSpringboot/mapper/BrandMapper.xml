@@ -3,7 +3,7 @@
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.BrandMapper">
   <!--查询品牌总数-->
     <select id="queryBrandCount" resultType="Integer">
-    select count(*) from cskaoyan_mall_brand where deleted = false
+    select count(*) from cskaoyan_mall_brand where deleted = 0
     <if test="id != null">
       and id like #{id}
 
@@ -26,7 +26,7 @@
     update_time,
     deleted
     from cskaoyan_mall_brand
-    where deleted = false
+    where deleted = 0
       <if test="id != null">
           and id like #{id}
 
@@ -37,6 +37,17 @@
       </if>
   </select>
 
+  <!--创建品牌-->
+  <insert id="brandInsert" parameterType="com.cskaoyan.mallSpringboot.bean.Brand">
+    insert into cskaoyan_mall_brand
+    (`name`, `desc` , pic_url, sort_order, floor_price, add_time, update_time, deleted)
+    value (#{name}, #{desc}, #{picUrl}, #{sortOrder}, #{floorPrice}, #{addTime}, #{updateTime},false )
+  </insert>
+
+  <!--删除品牌(假删除)-->
+  <delete id="brandDelete" parameterType="com.cskaoyan.mallSpringboot.bean.Brand">
+    update cskaoyan_mall_brand set deleted = true, update_time = #{updateTime} where id = #{id}
+  </delete>
 
 
 
