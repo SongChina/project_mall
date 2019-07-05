@@ -3,16 +3,7 @@ package com.cskaoyan.mallSpringboot.vo;
 public class ResponseVo<T> {
     int errno;
     T  data;
-    String errmas;
-
-    public ResponseVo() {
-    }
-
-    public ResponseVo(int errno, Object data, String errmas) {
-        this.errno = errno;
-        this.data = data;
-        this.errmas = errmas;
-    }
+    String errmsg;
 
     public int getErrno() {
         return errno;
@@ -30,21 +21,20 @@ public class ResponseVo<T> {
         this.data = data;
     }
 
-    public String getErrmas() {
-        return errmas;
+    public String getErrmsg() {
+        return errmsg;
     }
 
-    public void setErrmas(String errmas) {
-        this.errmas = errmas;
-    }
-
-    public ResponseVo(int errno, T data, String errmas) {
-        this.errno = errno;
-        this.data = data;
-        this.errmas = errmas;
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
     }
 
     public ResponseVo() {
     }
-}
 
+    public ResponseVo(int errno, T data, String errmsg) {
+        this.errno = errno;
+        this.data = data;
+        this.errmsg = errmsg;
+    }
+}

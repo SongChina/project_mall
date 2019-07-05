@@ -27,4 +27,7 @@ public interface GoodsattributeMapper {
     int updateByPrimaryKeySelective(Goodsattribute record);
 
     int updateByPrimaryKey(Goodsattribute record);
+
+
+
 }

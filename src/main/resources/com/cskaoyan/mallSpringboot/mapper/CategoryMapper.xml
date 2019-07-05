@@ -322,4 +322,18 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--商品管理-->
+  <resultMap id="categoryListMap" type="com.cskaoyan.mallSpringboot.bean.CategoryData">
+    <result column="1id" property="value"/>
+    <result column="1name" property="label"/>
+
+    <collection property="children" ofType="com.cskaoyan.mallSpringboot.bean.CategoryData">
+      <result column="2id" property="value"/>
+      <result column="2name" property="label"/>
+    </collection>
+  </resultMap>
+  <select id="categoryList" resultMap="categoryListMap">
+    select c1.id 1id,c1.name 1name,c2.name 2name,c2.id 2id from (select * from cskaoyan_mall_category where level='L1') c1 left join
+           (select * from cskaoyan_mall_category where level='L2') c2 on c1.id = c2.pid
+  </select>
 </mapper>
