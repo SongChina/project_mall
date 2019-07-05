@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BrandMapper {
+
+    int queryBrandCount(@Param("id") String id, @Param("name") String name);
+    List<Brand> queryBrandList(@Param("id") String id, @Param("name")  String name);
+
+//    以上是新增的方法
     long countByExample(BrandExample example);
 
     int deleteByExample(BrandExample example);
@@ -28,9 +33,7 @@ public interface BrandMapper {
 
     int updateByPrimaryKey(Brand record);
 
-    int queryBrandCount(@Param("id") String id, @Param("name") String name);
 
-    List<Brand> queryBrandList(@Param("id") String id, @Param("name")  String name);
 
 
     int brandInsert(Brand brand);

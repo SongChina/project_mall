@@ -117,6 +117,29 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+
+  <select id="queryOrdersByAddTimeInGroup" resultType="com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo">
+     select  count(user_id)  as customers,
+	count(cskaoyan_mall_order.id) as orders,
+	  sum(cskaoyan_mall_order.actual_price) as amount,
+	sum(cskaoyan_mall_order.actual_price) / count(user_id)  as pcr,
+	date(cskaoyan_mall_order.add_time) as day
+    from cskaoyan_mall_order left join  cskaoyan_mall_user
+     on cskaoyan_mall_order.user_id = cskaoyan_mall_user.id
+     group by day
+  </select>
+
+  <select id="queryGoodsByAddTimeInGroup" resultType="com.cskaoyan.mallSpringboot.gss_vo.GoodsStatisticInfo">
+        select  count(user_id)  as customers,
+	count(cskaoyan_mall_order.id) as orders,
+	count(goods.id) as products,
+	  sum(cskaoyan_mall_order.actual_price) as amount,
+	date(cskaoyan_mall_order.add_time) as day
+    from cskaoyan_mall_order left join  cskaoyan_mall_order_goods as goods
+     on goods.order_id = cskaoyan_mall_order.id
+     group by day
+  </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
