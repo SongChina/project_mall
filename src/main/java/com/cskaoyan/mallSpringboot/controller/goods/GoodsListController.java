@@ -42,6 +42,6 @@ public class GoodsListController {
         return goodsListService.insertGoods(goodsInsertData);
     }
 
-    @RequestMapping("storage/create")
-    public ResponseVo storageCreate(File file){ return goodsListService.storageCreate(file); }
+    /*@RequestMapping("storage/create")
+    public ResponseVo storageCreate(File file){ return goodsListService.storageCreate(file); }*/
 }
