@@ -6,6 +6,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AddressMapper {
+    int queryAddressCount(@Param("userId") String userId, @Param("name") String name);
+    List<Address> queryAddressList(@Param("userId") String userId, @Param("name") String name);
+
     long countByExample(AddressExample example);
 
     int deleteByExample(AddressExample example);
