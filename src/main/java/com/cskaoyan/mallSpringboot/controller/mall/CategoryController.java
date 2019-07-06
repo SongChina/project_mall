@@ -27,6 +27,20 @@ public class CategoryController {
         return responseVo;
     }
 
+    //增加类目
+    @RequestMapping("category/create")
+    public ResponseVo categoryCreate(@RequestBody Category category){
+        ResponseVo responseVo = categoryService.categoryCreate(category);
+        return responseVo;
+    }
+
+    //修改条目
+    @RequestMapping("category/update")
+    public ResponseVo categoryUpdate(@RequestBody Category category){
+        ResponseVo responseVo = categoryService.categoryUpdate(category);
+        return responseVo;
+    }
+
     //删除
     @RequestMapping("category/delete")
     public ResponseVo categoryDelete(@RequestBody Category category){

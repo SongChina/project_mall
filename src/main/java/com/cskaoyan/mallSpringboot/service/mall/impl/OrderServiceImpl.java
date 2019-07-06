@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderGoods", order.getOrdergoodsList());
         map.put("user", order.getUser());
         map.put("order", order);
+
         return new ResponseVo(0, map, "成功");
     }
 }

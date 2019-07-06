@@ -1,5 +1,6 @@
 package com.cskaoyan.mallSpringboot.service.mall.impl;
 
+import com.cskaoyan.mallSpringboot.bean.Brand;
 import com.cskaoyan.mallSpringboot.bean.Category;
 import com.cskaoyan.mallSpringboot.mapper.CategoryMapper;
 import com.cskaoyan.mallSpringboot.service.mall.CategoryService;
@@ -53,6 +54,43 @@ public class CategoryServiceImpl implements CategoryService {
         int delete = categoryMapper.categoryDelete(category);
         if(delete == 1){
             responseVo.setErrno(0);
+            responseVo.setErrmsg("成功");
+        }else {
+            responseVo.setErrno(605);
+            responseVo.setErrmsg("失败");
+        }
+        return responseVo;
+    }
+
+    //新增
+    @Override
+    public ResponseVo categoryCreate(Category category) {
+        ResponseVo responseVo = new ResponseVo();
+        Date date = new Date();
+        category.setAddTime(date);
+        category.setUpdateTime(date);
+        int create = categoryMapper.categoryInsert(category);
+        Category category1 = categoryMapper.selectCategoryById(category.getId());
+        if(create == 1 && category1 != null){
+            responseVo.setErrno(0);
+            responseVo.setData(category1);
+            responseVo.setErrmsg("成功");
+        }else {
+            responseVo.setErrno(605);
+            responseVo.setErrmsg("失败");
+        }
+        return responseVo;
+    }
+
+    //修改
+    @Override
+    public ResponseVo categoryUpdate(Category category) {
+        ResponseVo responseVo = new ResponseVo();
+        int update = categoryMapper.categoryUpdate(category);
+        Category category1 = categoryMapper.selectCategoryById(category.getId());
+        if(update == 1 && category1 != null){
+            responseVo.setErrno(0);
+            responseVo.setData(category1);
             responseVo.setErrmsg("成功");
         }else {
             responseVo.setErrno(605);

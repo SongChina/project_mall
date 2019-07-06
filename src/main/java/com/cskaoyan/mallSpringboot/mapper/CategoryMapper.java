@@ -38,4 +38,9 @@ public interface CategoryMapper {
     //商品管理
     List<CategoryData> categoryList();
 
+    int categoryInsert(Category category);
+
+    Category selectCategoryById(Integer id);
+
+    int categoryUpdate(Category category);
 }

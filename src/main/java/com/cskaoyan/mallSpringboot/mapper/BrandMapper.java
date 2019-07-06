@@ -47,5 +47,9 @@ public interface BrandMapper {
 
     int brandDelete(Brand brand);
 
+
+
+    Brand selectBrandById(Integer id);
+
     int brandUpdate(Brand brand);
 }

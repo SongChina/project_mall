@@ -62,6 +62,16 @@ public class Order {
 
     private List<Ordergoods> ordergoodsList;
 
+    private List<Goodsproduct> goodsproductList;
+
+    public List<Goodsproduct> getGoodsproductList() {
+        return goodsproductList;
+    }
+
+    public void setGoodsproductList(List<Goodsproduct> goodsproductList) {
+        this.goodsproductList = goodsproductList;
+    }
+
     public User getUser() {
         return user;
     }

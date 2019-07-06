@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class BrandController {
 
@@ -36,8 +38,7 @@ public class BrandController {
     }
     //删除
     @RequestMapping("brand/delete")
-    public ResponseVo brandDelete(@RequestBody Brand brand){
-        ResponseVo responseVo = brandService.brandDelete(brand);
-        return responseVo;
+    public Map brandDelete(@RequestBody Brand brand){
+        return brandService.brandDelete(brand);
     }
 }
