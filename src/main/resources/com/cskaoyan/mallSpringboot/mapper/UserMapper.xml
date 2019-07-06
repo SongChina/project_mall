@@ -66,6 +66,10 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+
+  <select id="queryUserByAddTimeInGroup" resultType="com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo">
+    select count(*) as users , date(add_time) as day from cskaoyan_mall_user group by day
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

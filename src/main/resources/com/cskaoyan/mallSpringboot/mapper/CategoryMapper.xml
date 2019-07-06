@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.CategoryMapper">
+  <!--查询一级类目-->
+  <select id="selectCategory" resultMap="BaseResultMap">
+   select id,
+   `name`,
+   keywords,
+   `desc`,
+   pid,
+   icon_url,
+   pic_url,
+   `level`,
+   sort_order,
+   add_time,
+   update_time,
+   deleted
+   from cskaoyan_mall_category
+   where deleted = false and pid = #{pid}
+  </select>
+
+  <!--删除-->
+  <delete id="categoryDelete" parameterType="com.cskaoyan.mallSpringboot.bean.Category">
+    update cskaoyan_mall_category
+    set deleted = true, update_time = #{updateTime}
+    where id = #{id}
+  </delete>
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -322,4 +347,18 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--商品管理-->
+  <resultMap id="categoryListMap" type="com.cskaoyan.mallSpringboot.bean.CategoryData">
+    <result column="1id" property="value"/>
+    <result column="1name" property="label"/>
+
+    <collection property="children" ofType="com.cskaoyan.mallSpringboot.bean.CategoryData">
+      <result column="2id" property="value"/>
+      <result column="2name" property="label"/>
+    </collection>
+  </resultMap>
+  <select id="categoryList" resultMap="categoryListMap">
+    select c1.id 1id,c1.name 1name,c2.name 2name,c2.id 2id from (select * from cskaoyan_mall_category where level='L1') c1 left join
+           (select * from cskaoyan_mall_category where level='L2') c2 on c1.id = c2.pid
+  </select>
 </mapper>

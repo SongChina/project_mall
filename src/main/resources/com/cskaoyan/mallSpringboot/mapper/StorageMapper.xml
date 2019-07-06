@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.StorageMapper">
+    <!--插入数据-->
+    <insert id="storageInsert" parameterType="com.cskaoyan.mallSpringboot.bean.Storage">
+      insert into  cskaoyan_mall_storage
+      (`key`, `name`, `type`, `size`, url, add_time, update_time, deleted)
+      value (#{key}, #{name}, #{type}, #{size}, #{url}, #{addTime}, #{updateTime}, false)
+      <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+        SELECT  LAST_INSERT_ID()
+      </selectKey>
+    </insert>
+
+  <!--查询-->
+   <select id="selectStorageById" resultMap="BaseResultMap">
+     select
+     id, `key`, `name`, `type`, `size`, url, add_time, update_time, deleted
+     from cskaoyan_mall_storage
+     <where>
+       id = #{id}
+     </where>
+   </select>
+
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Storage">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="key" jdbcType="VARCHAR" property="key" />

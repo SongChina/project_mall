@@ -1,6 +1,7 @@
 package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Category;
+import com.cskaoyan.mallSpringboot.bean.CategoryData;
 import com.cskaoyan.mallSpringboot.bean.CategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -27,4 +28,14 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    //by wpm
+    List<Category> selectCategory(int pid);
+
+    int categoryDelete(Category category);
+    //
+
+    //商品管理
+    List<CategoryData> categoryList();
+
 }
