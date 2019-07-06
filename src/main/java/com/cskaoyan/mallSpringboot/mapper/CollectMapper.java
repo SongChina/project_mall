@@ -6,6 +6,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CollectMapper {
+
+    int queryCollectCount(@Param("userId") String userId, @Param("valueId") String valueId);
+    List<Collect> queryCollectList(@Param("userId") String userId, @Param("valueId") String valueId);
+
+    //以上是新增的方法
+
     long countByExample(CollectExample example);
 
     int deleteByExample(CollectExample example);
