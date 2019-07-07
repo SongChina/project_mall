@@ -3,7 +3,7 @@
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.BrandMapper">
   <!--查询品牌总数-->
     <select id="queryBrandCount" resultType="Integer">
-    select count(*) from cskaoyan_mall_brand where deleted = false
+    select count(*) from cskaoyan_mall_brand where deleted = 0
     <if test="id != null">
       and id like #{id}
 
@@ -14,6 +14,8 @@
     </if>
   </select>
 
+
+
   <!--查询所有品牌信息-->
   <select id="queryBrandList" resultMap="BaseResultMap">
     select
@@ -22,11 +24,12 @@
     `desc`,
     pic_url,
     sort_order,
+    floor_price,
     add_time,
     update_time,
     deleted
     from cskaoyan_mall_brand
-    where deleted = false
+    where deleted = 0
       <if test="id != null">
           and id like #{id}
 
@@ -37,6 +40,44 @@
       </if>
   </select>
 
+  <!--创建品牌-->
+  <insert id="brandInsert" parameterType="com.cskaoyan.mallSpringboot.bean.Brand" useGeneratedKeys="true" keyProperty="id">
+    insert into cskaoyan_mall_brand
+    (`name`, `desc` , pic_url, sort_order, floor_price, add_time, update_time, deleted)
+    value (#{name}, #{desc}, #{picUrl}, 0, #{floorPrice}, #{addTime}, #{updateTime},false )
+  </insert>
+
+  <!--通过Id查找单个品牌-->
+  <select id="selectBrandById" resultMap="BaseResultMap">
+     select
+    id,
+    `name`,
+    `desc`,
+    pic_url,
+    sort_order,
+    floor_price,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_brand
+    <where>
+      deleted = false
+      and id = #{id}
+    </where>
+  </select>
+
+  <!--修改-->
+  <update id="brandUpdate">
+    update cskaoyan_mall_brand
+    set `name` = #{name}, `desc` = #{desc}, pic_url = #{picUrl}, floor_price = #{floorPrice}
+    where id = #{id}
+  </update>
+
+
+  <!--删除品牌(假删除)-->
+  <delete id="brandDelete" parameterType="com.cskaoyan.mallSpringboot.bean.Brand">
+    update cskaoyan_mall_brand set deleted = true, update_time = #{updateTime} where id = #{id}
+  </delete>
 
 
 

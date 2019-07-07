@@ -31,6 +31,18 @@ public interface CategoryMapper {
 
     int updateByPrimaryKey(Category record);
 
+    //by wpm
+    List<Category> selectCategory(int pid);
+
+    int categoryDelete(Category category);
+    //
+
     //商品管理
     List<CategoryData> categoryList();
+
+    int categoryInsert(Category category);
+
+    Category selectCategoryById(Integer id);
+
+    int categoryUpdate(Category category);
 }

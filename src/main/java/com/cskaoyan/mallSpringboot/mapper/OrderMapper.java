@@ -32,7 +32,14 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
+    //by wpm
+    List<Order> queryOrderList(@Param("orderStatusArray") String[] orderStatusArray, @Param("orderSn") String orderSn, @Param("userId") String userId);
+
+    Order queryOrderDetail(String id);
+    //
+
     List<OrderStatisticInfo> queryOrdersByAddTimeInGroup();
 
     List<GoodsStatisticInfo> queryGoodsByAddTimeInGroup();
+
 }

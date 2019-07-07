@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.CategoryMapper">
+  <!--查询一级类目-->
+  <select id="selectCategory" resultMap="BaseResultMap">
+   select id,
+   `name`,
+   keywords,
+   `desc`,
+   pid,
+   icon_url,
+   pic_url,
+   `level`,
+   sort_order,
+   add_time,
+   update_time,
+   deleted
+   from cskaoyan_mall_category
+   where deleted = false and pid = #{pid}
+  </select>
+
+  <!--插入-->
+  <insert id="categoryInsert" useGeneratedKeys="true" keyProperty="id">
+    insert into cskaoyan_mall_category
+     (`name`, keywords, `desc`, pid, icon_url, pic_url, `level`, sort_order, add_time, update_time, deleted)
+     value (#{name}, #{keywords}, #{desc}, #{pid}, #{iconUrl}, #{picUrl}, #{level}, 0, #{addTime},  #{updateTime}, false )
+  </insert>
+
+  <!--通过Id查找单个类目-->
+  <select id="selectCategoryById" resultMap="BaseResultMap">
+     select
+     id,
+   `name`,
+   keywords,
+   `desc`,
+   pid,
+   icon_url,
+   pic_url,
+   `level`,
+   sort_order,
+   add_time,
+   update_time,
+   deleted
+  from cskaoyan_mall_category
+   where deleted = false and id = #{id}
+  </select>
+  
+  <!--修改-->
+  <update id="categoryUpdate">
+    update cskaoyan_mall_category
+    set `name` = #{name}, keywords = #{keywords}, `level` = #{level},
+    icon_url = #{iconUrl}, pic_url = #{picUrl}, `desc` = #{desc}
+    <if test="pid != null">
+      , pid = #{pid}
+    </if>
+    <where>
+      id = #{id}
+    </where>
+  </update>
+
+  <!--删除-->
+  <delete id="categoryDelete" parameterType="com.cskaoyan.mallSpringboot.bean.Category">
+    update cskaoyan_mall_category
+    set deleted = true, update_time = #{updateTime}
+    where id = #{id}
+  </delete>
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />

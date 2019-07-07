@@ -8,7 +8,6 @@ import com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo;
 import com.cskaoyan.mallSpringboot.mapper.GoodsInWebMapper;
 import com.cskaoyan.mallSpringboot.mapper.OrderMapper;
 import com.cskaoyan.mallSpringboot.mapper.UserMapper;
-import com.cskaoyan.mallSpringboot.security.MyPasswordEncoder;
 import com.cskaoyan.mallSpringboot.utils.MD5Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;

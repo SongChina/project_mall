@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SearchhistoryMapper {
+
+    int querySearchHistoryCount(@Param("userId") String userId,@Param("keyword") String keyword);
+    List<Searchhistory> querySearchHistoryList(@Param("userId") String userId,@Param("keyword") String keyword);
+
+//    以上是新增的
     long countByExample(SearchhistoryExample example);
 
     int deleteByExample(SearchhistoryExample example);
