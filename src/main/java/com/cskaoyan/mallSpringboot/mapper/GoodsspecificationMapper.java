@@ -4,7 +4,9 @@ import com.cskaoyan.mallSpringboot.bean.Goodsspecification;
 import com.cskaoyan.mallSpringboot.bean.GoodsspecificationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface GoodsspecificationMapper {
     long countByExample(GoodsspecificationExample example);
 

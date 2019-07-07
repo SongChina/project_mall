@@ -7,7 +7,9 @@ import java.util.List;
 
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface BrandMapper {
 
     int queryBrandCount(@Param("id") String id, @Param("name") String name);
