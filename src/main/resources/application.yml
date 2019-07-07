@@ -8,3 +8,21 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8&useSSL=false
+
+
+
+
+  #json日期格式处理
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#debug: true
+#pageHelper配置，分页工具
+
+#pagehelper:
+#            helperDialect: mysql
+#            reasonable: true
+#            supportMethodsArguments: true
+#            params: count=countSql
+

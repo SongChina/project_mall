@@ -23,6 +23,51 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+
+  <!--按条件查询，结果总数-->
+  <select id="queryCount" resultType="_int">
+    select count(*) from cskaoyan_mall_coupon where deleted = 0
+    <if test="name != '' and name != null">
+      and `name` like #{name}
+    </if>
+    <if test="type !='' and type != null">
+      and `type` = #{type}
+    </if>
+    <if test="status !='' and status != null">
+      and `status` = #{status}
+    </if>
+  </select>
+  <!--查询列表-->
+  <select id="queryList" resultMap="BaseResultMap">
+    select id, `name`, `desc`,
+    tag, total, discount,
+    `min`, `limit`, `type`,
+    `status`, goods_type, goods_value,
+    `code`, time_type, days,
+    start_time, end_time, add_time,
+    update_time, deleted
+    from cskaoyan_mall_coupon
+    where deleted = 0
+    <if test="name != '' and name != null">
+      and `name` like #{name}
+    </if>
+    <if test="type !='' and type != null">
+      and `type` = #{type}
+    </if>
+    <if test="status !='' and status != null">
+      and `status` = #{status}
+    </if>
+    order by ${sort} ${order}
+  </select>
+  <select id="lastInsertId" resultType="java.lang.Integer">
+        select LAST_INSERT_ID()
+    </select>
+  <update id="deleteBydeleted">
+    update cskaoyan_mall_coupon
+    set deleted = true ,update_time = #{updateTime}
+    where id = #{id}
+  </update>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -82,8 +127,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, desc, tag, total, discount, min, limit, type, status, goods_type, goods_value, 
-    code, time_type, days, start_time, end_time, add_time, update_time, deleted
+    id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value,
+    `code`, time_type, days, start_time, end_time, add_time, update_time, deleted
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.mallSpringboot.bean.CouponExample" resultMap="BaseResultMap">
     select
@@ -119,11 +164,11 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cskaoyan_mall_coupon (id, name, desc, 
+    insert into cskaoyan_mall_coupon (id, `name`, `desc`,
       tag, total, discount, 
-      min, limit, type, 
-      status, goods_type, goods_value, 
-      code, time_type, days, 
+      `min`, `limit`, `type`,
+      `status`, goods_type, goods_value,
+      `code`, time_type, days,
       start_time, end_time, add_time, 
       update_time, deleted)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
@@ -425,18 +470,18 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mallSpringboot.bean.Coupon">
     update cskaoyan_mall_coupon
-    set name = #{name,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
       tag = #{tag,jdbcType=VARCHAR},
       total = #{total,jdbcType=INTEGER},
       discount = #{discount,jdbcType=DECIMAL},
-      min = #{min,jdbcType=DECIMAL},
-      limit = #{limit,jdbcType=SMALLINT},
-      type = #{type,jdbcType=SMALLINT},
-      status = #{status,jdbcType=SMALLINT},
+      `min` = #{min,jdbcType=DECIMAL},
+      `limit` = #{limit,jdbcType=SMALLINT},
+      `type` = #{type,jdbcType=SMALLINT},
+      `status` = #{status,jdbcType=SMALLINT},
       goods_type = #{goodsType,jdbcType=SMALLINT},
       goods_value = #{goodsValue,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
+      `code` = #{code,jdbcType=VARCHAR},
       time_type = #{timeType,jdbcType=SMALLINT},
       days = #{days,jdbcType=SMALLINT},
       start_time = #{startTime,jdbcType=TIMESTAMP},

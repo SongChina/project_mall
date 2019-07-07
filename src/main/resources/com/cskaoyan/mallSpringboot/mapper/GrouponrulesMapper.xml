@@ -29,7 +29,7 @@
         <if test="goodsId !=''and goodsId !=null ">
             and goods_id = #{goodsId}
         </if>
-        order by #{sort} #{order}
+        order by  ${sort} ${order}
     </select>
 
 
@@ -118,10 +118,16 @@
         from cskaoyan_mall_groupon_rules
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <update id="deleteBydeleted">
+    update cskaoyan_mall_groupon_rules
+    set deleted = true ,update_time = #{updateTime}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_groupon_rules
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
     <delete id="deleteByExample" parameterType="com.cskaoyan.mallSpringboot.bean.GrouponrulesExample">
         delete from cskaoyan_mall_groupon_rules
         <if test="_parameter != null">
@@ -141,6 +147,9 @@
         #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP},
         #{deleted,jdbcType=BIT})
     </insert>
+    <select id="lastInsertId" resultType="java.lang.Integer">
+        select LAST_INSERT_ID()
+    </select>
     <insert id="insertSelective" parameterType="com.cskaoyan.mallSpringboot.bean.Grouponrules">
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()

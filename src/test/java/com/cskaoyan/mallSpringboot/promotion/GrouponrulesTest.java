@@ -29,8 +29,8 @@ public class GrouponrulesTest {
     @Test
     public void mytest2(){
         List<Grouponrules> list = grouponrulesMapper.queryList("add_time","desc","1109008");
-        //System.out.println(list);
-        //logger.info(i);
+        System.out.println(list);
+        //logger.info(i); ${"sdf"} #{sdf}
     }
     @Test
     public void mytest3(){

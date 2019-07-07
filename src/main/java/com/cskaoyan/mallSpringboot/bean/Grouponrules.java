@@ -24,6 +24,22 @@ public class Grouponrules {
 
     private Boolean deleted;//数据库中的0 --对应-- 查询语句的false
 
+    @Override
+    public String toString() {
+        return "Grouponrules{" +
+                "id=" + id +
+                ", goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", discount=" + discount +
+                ", discountMember=" + discountMember +
+                ", addTime=" + addTime +
+                ", updateTime=" + updateTime +
+                ", expireTime=" + expireTime +
+                ", deleted=" + deleted +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

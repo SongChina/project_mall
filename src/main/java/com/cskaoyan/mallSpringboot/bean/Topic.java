@@ -28,6 +28,24 @@ public class Topic {
 
     private String content;
 
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", price=" + price +
+                ", readCount='" + readCount + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", sortOrder=" + sortOrder +
+                ", goods='" + goods + '\'' +
+                ", addTime=" + addTime +
+                ", updateTime=" + updateTime +
+                ", deleted=" + deleted +
+                ", content='" + content + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

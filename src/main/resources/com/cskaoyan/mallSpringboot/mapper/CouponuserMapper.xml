@@ -14,6 +14,36 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+  <select id="selectByCouponId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_coupon_user
+    where deleted = 0
+    <if test="couponId !='' and couponId != null">
+      and coupon_id = #{couponId}
+    </if>
+    <if test="userId !='' and userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="status !='' and status != null">
+      and `status` = #{status}
+    </if>
+    order by ${sort} ${order}
+  </select>
+  <!--按条件查询，结果总数-->
+  <select id="queryCount" resultType="_int">
+    select count(*) from cskaoyan_mall_coupon_user where deleted = 0
+    <if test="couponId !='' and couponId != null">
+      and coupon_id = #{couponId}
+    </if>
+    <if test="userId !='' and userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="status !='' and status != null">
+      and `status` = #{status}
+    </if>
+  </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -73,7 +103,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, coupon_id, status, used_time, start_time, end_time, order_id, add_time, 
+    id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time,
     update_time, deleted
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.mallSpringboot.bean.CouponuserExample" resultMap="BaseResultMap">
