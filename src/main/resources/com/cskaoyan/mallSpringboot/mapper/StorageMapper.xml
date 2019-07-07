@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.StorageMapper">
+
+  <!--查询所有存储记录-->
+  <select id="selectStorageList" resultMap="BaseResultMap">
+    select
+    id, `key`, `name`, `type`, `size`, url, add_time, update_time, deleted
+    from cskaoyan_mall_storage
+    <where>
+      deleted = false
+      <if test="key != null">
+        and `key` like concat('%', #{key}, '%')
+      </if>
+      <if test="name != null">
+        and `name` like concat('%', #{name}, '%')
+      </if>
+    </where>
+  </select>
+
+
     <!--插入数据-->
     <insert id="storageInsert" parameterType="com.cskaoyan.mallSpringboot.bean.Storage">
       insert into  cskaoyan_mall_storage
@@ -11,7 +29,7 @@
       </selectKey>
     </insert>
 
-  <!--查询-->
+  <!--查询单条存储记录-->
    <select id="selectStorageById" resultMap="BaseResultMap">
      select
      id, `key`, `name`, `type`, `size`, url, add_time, update_time, deleted
@@ -20,6 +38,20 @@
        id = #{id}
      </where>
    </select>
+
+  <!--修改-->
+  <update id="storageUpdate">
+    update cskaoyan_mall_storage
+    set `name` = #{name}, update_time = #{updateTime}
+    where id = #{id}
+  </update>
+
+  <!--删除-->
+  <update id="storageDelete">
+    update cskaoyan_mall_storage
+    set deleted = true, update_time = #{updateTime}
+    where id = #{id}
+  </update>
 
 
 

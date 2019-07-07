@@ -31,4 +31,10 @@ public interface StorageMapper {
     int storageInsert(Storage storage);
 
     Storage selectStorageById(Integer id);
+
+    List<Storage> selectStorageList(@Param("key") String key, @Param("name") String name);
+
+    int storageUpdate(Storage storage);
+
+    int storageDelete(Storage storage);
 }
