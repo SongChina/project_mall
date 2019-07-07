@@ -3,6 +3,10 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Order;
 import com.cskaoyan.mallSpringboot.bean.OrderExample;
 import java.util.List;
+
+import com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo;
+import com.cskaoyan.mallSpringboot.gss_vo.GoodsStatisticInfo;
+import com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
@@ -27,4 +31,15 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    //by wpm
+    List<Order> queryOrderList(@Param("orderStatusArray") String[] orderStatusArray, @Param("orderSn") String orderSn, @Param("userId") String userId);
+
+    Order queryOrderDetail(String id);
+    //
+
+    List<OrderStatisticInfo> queryOrdersByAddTimeInGroup();
+
+    List<GoodsStatisticInfo> queryGoodsByAddTimeInGroup();
+
 }

@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface FootprintMapper {
+
+    int queryFootPrintCount(@Param("userId") String userId, @Param("goodsId") String goodsId);
+    List<Footprint> queryFootPrintList(@Param("userId") String userId, @Param("goodsId") String goodsId);
+
+//    以上是新增的
     long countByExample(FootprintExample example);
 
     int deleteByExample(FootprintExample example);

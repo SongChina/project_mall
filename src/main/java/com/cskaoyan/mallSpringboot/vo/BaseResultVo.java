@@ -4,7 +4,8 @@ import java.util.List;
 
 public class BaseResultVo<T> {
     private int total;
-    private List<T> info;
+
+    private List<T> items;
 
     public int getTotal() {
         return total;
@@ -14,11 +15,12 @@ public class BaseResultVo<T> {
         this.total = total;
     }
 
-    public List<T> getInfo() {
-        return info;
+
+    public List<T> getItems() {
+        return items;
     }
 
-    public void setInfo(List<T> info) {
-        this.info = info;
+    public void setItems(List<T> items) {
+        this.items = items;
     }
 }
