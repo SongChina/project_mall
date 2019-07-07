@@ -28,4 +28,5 @@ public class ResponseVo {
     public void setErrmas(String errmas) {
         this.errmas = errmas;
     }
+
 }
