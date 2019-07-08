@@ -35,4 +35,10 @@ public interface KeywordMapper {
     int keywordUpdate(Keyword keyword);
 
     int keywordDelete(Keyword keyword);
+
+    Keyword queryDefultKeyword();
+
+    List<Keyword> queryHotKeywordList();
+
+    String[] querySimpleKeyword(@Param("keyword") String keyword);
 }

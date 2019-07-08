@@ -10,6 +10,8 @@ import com.github.pagehelper.PageHelper;
 import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -109,6 +111,16 @@ public class GoodsListServiceImpl implements GoodsListService {
     @Override
     public ResponseVo storageCreate(File file) {
         return null;
+    }
+
+    //统计所有商品数量
+    @Override
+    public ResponseVo CountGoods() {
+        GoodsExample goodsExample = new GoodsExample();
+        int total = (int)goodsMapper.countByExample(goodsExample);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("goodsCount", total);
+        return new ResponseVo(0, map, "成功");
     }
 
 

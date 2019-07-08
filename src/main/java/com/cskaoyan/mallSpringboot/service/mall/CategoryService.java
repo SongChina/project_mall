@@ -13,4 +13,8 @@ public interface CategoryService {
     ResponseVo categoryCreate(Category category);
 
     ResponseVo categoryUpdate(Category category);
+
+    ResponseVo findAllCategory();
+
+    ResponseVo findCategory(String id);
 }

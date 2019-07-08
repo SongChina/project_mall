@@ -41,4 +41,10 @@ public class BrandController {
     public Map brandDelete(@RequestBody Brand brand){
         return brandService.brandDelete(brand);
     }
+
+    //品牌详情
+    @RequestMapping("brand/detail")
+    public ResponseVo brandDetail(String id){
+        return brandService.brandDetail(id);
+    }
 }

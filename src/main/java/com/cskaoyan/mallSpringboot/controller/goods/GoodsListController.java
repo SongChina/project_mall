@@ -41,6 +41,10 @@ public class GoodsListController {
     public ResponseVo insertGoods(@RequestBody GoodsInsertData goodsInsertData){
         return goodsListService.insertGoods(goodsInsertData);
     }
+    @RequestMapping("goods/count")
+    public ResponseVo CountGoods(){
+        return goodsListService.CountGoods();
+    }
 
     /*@RequestMapping("storage/create")
     public ResponseVo storageCreate(File file){ return goodsListService.storageCreate(file); }*/
