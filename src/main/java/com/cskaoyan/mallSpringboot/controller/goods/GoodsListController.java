@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/admin")
+
 public class GoodsListController {
     @Autowired
     GoodsListService goodsListService;
@@ -40,6 +40,10 @@ public class GoodsListController {
     @RequestMapping("goods/create")
     public ResponseVo insertGoods(@RequestBody GoodsInsertData goodsInsertData){
         return goodsListService.insertGoods(goodsInsertData);
+    }
+    @RequestMapping("goods/count")
+    public ResponseVo CountGoods(){
+        return goodsListService.CountGoods();
     }
 
     /*@RequestMapping("storage/create")

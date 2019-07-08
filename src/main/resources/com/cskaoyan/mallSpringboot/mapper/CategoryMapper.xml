@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.CategoryMapper">
   <!--查询一级类目-->
-  <select id="selectCategory" resultMap="BaseResultMap">
+  <select id="selectCategoryByPid" resultMap="BaseResultMap">
    select id,
    `name`,
    keywords,
@@ -17,6 +17,24 @@
    deleted
    from cskaoyan_mall_category
    where deleted = false and pid = #{pid}
+  </select>
+
+  <!--查询第一个一级类目-->
+  <select id="queryFirstCategory" resultMap="BaseResultMap">
+    select id,
+   `name`,
+   keywords,
+   `desc`,
+   pid,
+   icon_url,
+   pic_url,
+   `level`,
+   sort_order,
+   add_time,
+   update_time,
+   deleted
+   from cskaoyan_mall_category
+    limit 1
   </select>
 
   <!--插入-->

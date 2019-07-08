@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     public ResponseVo categoryLableOneList() {
        List<Map> mapList = new ArrayList<>();
         int pid = 0;
-        List<Category> l1 = categoryMapper.selectCategory(pid);
+        List<Category> l1 = categoryMapper.selectCategoryByPid(pid);
         for (Category category : l1) {
             HashMap<String, Object> map = new HashMap<>();
             map.put("value", category.getId());
@@ -36,10 +36,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseVo categoryList() {
         int pid = 0;
-        List<Category> l1 = categoryMapper.selectCategory(pid);
+        List<Category> l1 = categoryMapper.selectCategoryByPid(pid);
         for (Category category : l1) {
             int id = category.getId();
-            List<Category> categoryList = categoryMapper.selectCategory(id);
+            List<Category> categoryList = categoryMapper.selectCategoryByPid(id);
             category.setChildren(categoryList);
         }
         return new ResponseVo(0, l1, "成功");
@@ -97,6 +97,30 @@ public class CategoryServiceImpl implements CategoryService {
             responseVo.setErrmsg("失败");
         }
         return responseVo;
+    }
+
+    //微信前台查找所有分类详情
+    @Override
+    public ResponseVo findAllCategory() {
+        HashMap<String, Object> map = new HashMap<>();
+        Category category = categoryMapper.queryFirstCategory();
+        List<Category> categoryListLevel1 = categoryMapper.selectCategoryByPid(0);
+        List<Category> categoryListlevel2 = categoryMapper.selectCategoryByPid(category.getId());
+        map.put("currentCategory", category);
+        map.put("categoryList", categoryListLevel1);
+        map.put("currentSubCategory", categoryListlevel2);
+        return new ResponseVo(0, map, "成功");
+    }
+
+    //微信前台查找一级分类及其子分类
+    @Override
+    public ResponseVo findCategory(String id) {
+        Category category = categoryMapper.selectCategoryById(Integer.parseInt(id));
+        List<Category> categoryListlevel2 = categoryMapper.selectCategoryByPid(category.getId());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("currentCategory", category);
+        map.put("currentSubCategory", categoryListlevel2);
+        return new ResponseVo(0, map, "成功");
     }
 
 }

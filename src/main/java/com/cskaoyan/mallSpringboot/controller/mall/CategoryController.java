@@ -48,4 +48,16 @@ public class CategoryController {
         return responseVo;
     }
 
+    //查询前台首页
+    @RequestMapping("catalog/index")
+    public ResponseVo findAllCategory(){
+        ResponseVo responseVo = categoryService.findAllCategory();
+        return responseVo;
+    }
+    //查询前台一级类目及其二级类目
+    @RequestMapping("catalog/current")
+    public ResponseVo findCategory(String id){
+        ResponseVo responseVo = categoryService.findCategory(id);
+        return responseVo;
+    }
 }
