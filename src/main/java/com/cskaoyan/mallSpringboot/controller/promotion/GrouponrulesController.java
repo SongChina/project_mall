@@ -34,7 +34,7 @@ public class GrouponrulesController {
         try {
             Grouponrules data = grouponrulesService.createGrouponrule(grouponrules);
             responseVo.setErrno(0);
-            responseVo.setErrmas("成功");
+            responseVo.setErrmsg("成功");
             responseVo.setData(data);
             return responseVo;
         } catch (Exception e) {
