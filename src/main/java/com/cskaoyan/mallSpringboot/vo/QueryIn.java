@@ -3,8 +3,10 @@ package com.cskaoyan.mallSpringboot.vo;
 public class QueryIn {
     private int page;
     private int limit;
-    private String sort;
-    private String order;
+    private String sort;//add_time降序标准
+    private String order;//desc降序查找
+
+
 
     public int getPage() {
         return page;

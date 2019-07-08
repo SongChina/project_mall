@@ -38,4 +38,5 @@ public class ResponseVo<T> {
         this.data = data;
         this.errmsg = errmsg;
     }
+
 }

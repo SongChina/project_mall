@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mallSpringboot.mapper.ProductsInWebMapper">
+    <insert id="insert">
+        insert into cskaoyan_mall_goods_product (goods_id,specifications,price,`number`,url) values
+        (#{products.goodsId},#{products.specifications,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
+        #{products.price},#{products.number},#{products.url})
+    </insert>
+
+</mapper>

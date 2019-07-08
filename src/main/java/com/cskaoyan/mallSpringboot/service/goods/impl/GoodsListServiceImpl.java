@@ -7,7 +7,6 @@ import com.cskaoyan.mallSpringboot.vo.BaseResultVo;
 import com.cskaoyan.mallSpringboot.vo.RequestVo;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.github.pagehelper.PageHelper;
-import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,30 +17,34 @@ import java.util.List;
 public class GoodsListServiceImpl implements GoodsListService {
     @Autowired
     GoodsMapper goodsMapper;
-
     @Autowired
     BrandMapper brandMapper;
-
     @Autowired
     CategoryMapper categoryMapper;
-
     @Autowired
     GoodsattributeMapper goodsattributeMapper;
-
     @Autowired
     GoodsproductMapper goodsproductMapper;
-
     @Autowired
     GoodsspecificationMapper goodsspecificationMapper;
+    @Autowired
+    GoodsInWebMapper goodsInWebMapper;
+    @Autowired
+    ProductsInWebMapper productsInWebMapper;
+    @Autowired
+    AttributeInWebMapper attributeInWebMapper;
+    @Autowired
+    SpecificationInWebMapper specificationInWebMapper;
+
 
 
     @Override
     public ResponseVo getALLGoodsList(RequestVo requestVo, Integer goodsSn, String name) {
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        if (goodsSn != null){
-            criteria.andIdEqualTo(goodsSn);
-        }else if (name != null){
+        if (goodsSn != null && goodsSn != 0){
+            criteria.andGoodsSnEqualTo(goodsSn);
+        }else if (name != null && name!= ""){
             criteria.andNameLike("%"+name+"%");
         }else {
             criteria.getAllCriteria();
@@ -105,13 +108,38 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     @Override
     public ResponseVo insertGoods(GoodsInsertData goodsInsertData) {
-        return null;
+      String goodsSn = goodsInsertData.getGoods().getGoodsSn();
+        int goodsId = Integer.valueOf(goodsSn).intValue();
+        List<AttributeInWeb> attributes = goodsInsertData.getAttributes();
+        for (AttributeInWeb attributeInWeb:attributes) {
+            attributeInWeb.setGoodsId(goodsId);
+            attributeInWebMapper.insert(attributeInWeb);
+        }
+
+        GoodsInWeb goods = goodsInsertData.getGoods();
+        goodsInWebMapper.insert(goods);
+
+        List<ProductsInWeb> products = goodsInsertData.getProducts();
+        for (ProductsInWeb productsInWeb:products) {
+            productsInWeb.setGoodsId(goodsId);
+            productsInWebMapper.insert(productsInWeb);
+        }
+
+        List<SpecificationsInWeb> specifications = goodsInsertData.getSpecifications();
+        for (SpecificationsInWeb specificationsInWeb:specifications) {
+            specificationsInWeb.setGoodsId(goodsId);
+            specificationInWebMapper.insert(specificationsInWeb);
+        }
+        return new ResponseVo(0,"","成功");
+
+
+
     }
 
-    @Override
+    /*@Override
     public ResponseVo storageCreate(File file) {
         return null;
-    }
+    }*/
 
     //统计所有商品数量
     @Override
