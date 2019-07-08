@@ -32,11 +32,11 @@
         </dependency>
 
         <!--会根据ConfigurationProperties中的prefix以及成员变量名进行提示-->
-       <!-- <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
-        </dependency>-->
+        </dependency>
 
         <!--对mybatis的支持-->
         <dependency>
@@ -51,11 +51,11 @@
             <version>2.1.4.RELEASE</version>
         </dependency>
         <!--feeemarker模板-->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
             <version>2.1.4.RELEASE</version>
-        </dependency>-->
+        </dependency>
         <!--数据库-->
         <dependency>
             <groupId>mysql</groupId>
@@ -65,18 +65,18 @@
         </dependency>
 
         <!--数据源-->
-       <!-- <dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.12</version>
-        </dependency>-->
+        </dependency>
 
-        <!--mybatis-->
-      <!--  <dependency>
+        <!-- mybatis-->
+        <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.5.1</version>
-        </dependency>-->
+        </dependency>
         <!--逆向工程-->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
@@ -123,11 +123,11 @@
         </dependency>-->
 
         <!--缓存ehcache-->
-      <!--  <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>2.8.1</version>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>net.sf.ehcache</groupId>
+              <artifactId>ehcache</artifactId>
+              <version>2.8.1</version>
+          </dependency>-->
 
 
         <!-- 配置gson将String转换为Map -->
@@ -142,6 +142,7 @@
             <artifactId>commons-codec</artifactId>
             <version>1.9</version>
         </dependency>
+        <!--分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>

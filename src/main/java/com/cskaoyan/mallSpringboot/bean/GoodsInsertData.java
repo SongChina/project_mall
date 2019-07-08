@@ -1,52 +1,44 @@
 package com.cskaoyan.mallSpringboot.bean;
 
-import java.util.Arrays;
+
+import java.util.List;
 
 public class GoodsInsertData {
-    private Goods goods;
-    private Goodsattribute[] attributes;
-    private Goodsproduct[] products;
-    private Goodsspecification[] specifications;
+    private GoodsInWeb goods;
+    private List<AttributeInWeb>  attributes;
+    private List<ProductsInWeb> products;
+    private List<SpecificationsInWeb> specifications;
 
-    public Goods getGoods() {
+    public GoodsInWeb getGoods() {
         return goods;
     }
 
-    public void setGoods(Goods goods) {
+    public void setGoods(GoodsInWeb goods) {
         this.goods = goods;
     }
 
-    public Goodsattribute[] getAttributes() {
+    public List<AttributeInWeb> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Goodsattribute[] attributes) {
+    public void setAttributes(List<AttributeInWeb> attributes) {
         this.attributes = attributes;
     }
 
-    public Goodsproduct[] getProducts() {
+    public List<ProductsInWeb> getProducts() {
         return products;
     }
 
-    public void setProducts(Goodsproduct[] products) {
+    public void setProducts(List<ProductsInWeb> products) {
         this.products = products;
     }
 
-    public Goodsspecification[] getSpecifications() {
+
+    public List<SpecificationsInWeb> getSpecifications() {
         return specifications;
     }
 
-    public void setSpecifications(Goodsspecification[] specifications) {
+    public void setSpecifications(List<SpecificationsInWeb> specifications) {
         this.specifications = specifications;
-    }
-
-    @Override
-    public String toString() {
-        return "GoodsInsertData{" +
-                "goods=" + goods +
-                ", attributes=" + Arrays.toString(attributes) +
-                ", products=" + Arrays.toString(products) +
-                ", specifications=" + Arrays.toString(specifications) +
-                '}';
     }
 }

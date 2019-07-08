@@ -176,7 +176,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSnEqualTo(String value) {
+        public Criteria andGoodsSnEqualTo(Integer value) {
             addCriterion("goods_sn =", value, "goodsSn");
             return (Criteria) this;
         }

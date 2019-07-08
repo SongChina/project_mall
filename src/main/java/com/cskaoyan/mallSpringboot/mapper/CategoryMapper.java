@@ -5,7 +5,9 @@ import com.cskaoyan.mallSpringboot.bean.CategoryData;
 import com.cskaoyan.mallSpringboot.bean.CategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface CategoryMapper {
     long countByExample(CategoryExample example);
 

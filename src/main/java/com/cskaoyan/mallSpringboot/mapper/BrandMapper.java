@@ -6,8 +6,10 @@ import com.cskaoyan.mallSpringboot.bean.BrandExample;
 import java.util.List;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.apache.ibatis.annotations.Param;
-
+import org.springframework.stereotype.Component;
 import java.util.List;
+@Component
+
 
 public interface BrandMapper {
 
