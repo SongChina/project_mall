@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -32,16 +33,11 @@ public class BrandServiceImpl implements BrandService {
         int total = brandMapper.queryBrandCount(id, name);
 
         map.put("total", total);
-        /*if(total % queryIn.getLimit() ==0){
-            map.put("pages", total/queryIn.getLimit());
-        }else {
-            map.put("pages", total/queryIn.getLimit() + 1);
-        }
-        map.put("page", queryIn.getPage());
-        map.put("limit", queryIn.getLimit());*/
+        map.put("totalPages", total);
         PageHelper.startPage(queryIn.getPage(), queryIn.getLimit());
         List<Brand> brandList = brandMapper.queryBrandList(id, name);
         map.put("items", brandList);
+        map.put("brandList", brandList);
         return new ResponseVo(0, map, "成功");
     }
 
@@ -53,22 +49,10 @@ public class BrandServiceImpl implements BrandService {
         brand.setAddTime(date);
         brand.setUpdateTime(date);
         int create = brandMapper.brandInsert(brand);
-        if(create == 1){
+        Brand brand1 = brandMapper.selectBrandById(brand.getId());
+        if(create == 1 && brand1 != null){
             responseVo.setErrno(0);
-            responseVo.setErrmsg("成功");
-        }else {
-            responseVo.setErrno(605);
-            responseVo.setErrmsg("失败");
-        }
-        return responseVo;
-    }
-    //删除
-    @Override
-    public ResponseVo brandDelete(Brand brand) {
-        ResponseVo responseVo = new ResponseVo();
-        int delete = brandMapper.brandDelete(brand);
-        if(delete == 1){
-            responseVo.setErrno(0);
+            responseVo.setData(brand1);
             responseVo.setErrmsg("成功");
         }else {
             responseVo.setErrno(605);
@@ -77,18 +61,44 @@ public class BrandServiceImpl implements BrandService {
         return responseVo;
     }
 
+    //删除
+    @Override
+    public Map brandDelete(Brand brand) {
+        HashMap<String, Object> map = new HashMap<>();
+        int delete = brandMapper.brandDelete(brand);
+        if(delete == 1){
+            map.put("errno", 0);
+            map.put("errmsg", "成功");
+        }else {
+            map.put("errno", 605);
+            map.put("errmsg", "失败");
+        }
+        return map;
+    }
+
     //修改
     @Override
     public ResponseVo brandUpdate(Brand brand) {
         ResponseVo responseVo = new ResponseVo();
         int update = brandMapper.brandUpdate(brand);
-        if(update == 1){
+        Brand brand1 = brandMapper.selectBrandById(brand.getId());
+        if(update == 1 && brand1 != null){
             responseVo.setErrno(0);
+            responseVo.setData(brand1);
             responseVo.setErrmsg("成功");
         }else {
             responseVo.setErrno(605);
             responseVo.setErrmsg("失败");
         }
         return responseVo;
+    }
+
+    //品牌详情
+    @Override
+    public ResponseVo brandDetail(String id) {
+        Brand brand = brandMapper.selectBrandById(Integer.parseInt(id));
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("brand", brand);
+        return new ResponseVo(0, map, "成功");
     }
 }

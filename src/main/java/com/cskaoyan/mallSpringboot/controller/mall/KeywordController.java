@@ -45,4 +45,17 @@ public class KeywordController {
         return responseVo;
     }
 
+    //前台首页搜索
+    @RequestMapping("search/index")
+    public ResponseVo findIndexSearchMessage(){
+        ResponseVo responseVo = keywordService.findIndexSearchMessage();
+        return responseVo;
+    }
+    //前台首页模糊搜索显示下拉框
+    @RequestMapping("search/helper")
+    public ResponseVo searchHelper(String keyword){
+        ResponseVo responseVo = keywordService.searchHelper(keyword);
+        return responseVo;
+    }
+
 }

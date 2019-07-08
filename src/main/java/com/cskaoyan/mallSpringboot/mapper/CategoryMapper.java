@@ -5,7 +5,9 @@ import com.cskaoyan.mallSpringboot.bean.CategoryData;
 import com.cskaoyan.mallSpringboot.bean.CategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface CategoryMapper {
     long countByExample(CategoryExample example);
 
@@ -30,12 +32,20 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     //by wpm
-    List<Category> selectCategory(int pid);
+    List<Category> selectCategoryByPid(int pid);
 
     int categoryDelete(Category category);
     //
 
     //商品管理
     List<CategoryData> categoryList();
+
+    int categoryInsert(Category category);
+
+    Category selectCategoryById(Integer id);
+
+    int categoryUpdate(Category category);
+
+    Category queryFirstCategory();
 
 }

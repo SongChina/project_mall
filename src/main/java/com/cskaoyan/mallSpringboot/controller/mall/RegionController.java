@@ -13,8 +13,8 @@ public class RegionController {
     RegionService regionService;
 
     @RequestMapping("region/list")
-    public ResponseVo region(){
-        ResponseVo responseVo = regionService.getAllRegion();
+    public ResponseVo region(String pid){
+        ResponseVo responseVo = regionService.getAllRegion(pid);
         return responseVo;
     }
 

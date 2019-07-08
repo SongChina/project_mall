@@ -12,17 +12,33 @@ public class Grouponrules {
 
     private String picUrl;
 
-    private BigDecimal discount;
+    private BigDecimal discount;//团购折扣
 
-    private Integer discountMember;
+    private Integer discountMember;//团购人数要求
 
-    private Date addTime;
+    private Date addTime;//开始时间
 
     private Date updateTime;
 
-    private Date expireTime;
+    private Date expireTime;//结束时间
 
-    private Boolean deleted;
+    private Boolean deleted;//数据库中的0 --对应-- 查询语句的false
+
+    @Override
+    public String toString() {
+        return "Grouponrules{" +
+                "id=" + id +
+                ", goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", discount=" + discount +
+                ", discountMember=" + discountMember +
+                ", addTime=" + addTime +
+                ", updateTime=" + updateTime +
+                ", expireTime=" + expireTime +
+                ", deleted=" + deleted +
+                '}';
+    }
 
     public Integer getId() {
         return id;

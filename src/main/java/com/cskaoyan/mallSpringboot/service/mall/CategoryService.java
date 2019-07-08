@@ -9,4 +9,12 @@ public interface CategoryService {
     ResponseVo categoryLableOneList();
 
     ResponseVo categoryDelete(Category category);
+
+    ResponseVo categoryCreate(Category category);
+
+    ResponseVo categoryUpdate(Category category);
+
+    ResponseVo findAllCategory();
+
+    ResponseVo findCategory(String id);
 }

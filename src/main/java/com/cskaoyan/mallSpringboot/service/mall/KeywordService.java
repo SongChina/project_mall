@@ -12,4 +12,8 @@ public interface KeywordService {
     ResponseVo keywordUpdate(Keyword keyword);
 
     ResponseVo keywordDelete(Keyword keyword);
+
+    ResponseVo findIndexSearchMessage();
+
+    ResponseVo searchHelper(String keyword);
 }

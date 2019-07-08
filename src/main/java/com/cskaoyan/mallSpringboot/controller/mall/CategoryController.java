@@ -27,6 +27,20 @@ public class CategoryController {
         return responseVo;
     }
 
+    //增加类目
+    @RequestMapping("category/create")
+    public ResponseVo categoryCreate(@RequestBody Category category){
+        ResponseVo responseVo = categoryService.categoryCreate(category);
+        return responseVo;
+    }
+
+    //修改条目
+    @RequestMapping("category/update")
+    public ResponseVo categoryUpdate(@RequestBody Category category){
+        ResponseVo responseVo = categoryService.categoryUpdate(category);
+        return responseVo;
+    }
+
     //删除
     @RequestMapping("category/delete")
     public ResponseVo categoryDelete(@RequestBody Category category){
@@ -34,4 +48,16 @@ public class CategoryController {
         return responseVo;
     }
 
+    //查询前台首页
+    @RequestMapping("catalog/index")
+    public ResponseVo findAllCategory(){
+        ResponseVo responseVo = categoryService.findAllCategory();
+        return responseVo;
+    }
+    //查询前台一级类目及其二级类目
+    @RequestMapping("catalog/current")
+    public ResponseVo findCategory(String id){
+        ResponseVo responseVo = categoryService.findCategory(id);
+        return responseVo;
+    }
 }

@@ -1,11 +1,11 @@
 package com.cskaoyan.mallSpringboot.controller.goods;
 
 import com.cskaoyan.mallSpringboot.bean.Goods;
+import com.cskaoyan.mallSpringboot.bean.GoodsInWeb;
 import com.cskaoyan.mallSpringboot.bean.GoodsInsertData;
 import com.cskaoyan.mallSpringboot.service.goods.GoodsListService;
 import com.cskaoyan.mallSpringboot.vo.RequestVo;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
-import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +40,10 @@ public class GoodsListController {
     @RequestMapping("goods/create")
     public ResponseVo insertGoods(@RequestBody GoodsInsertData goodsInsertData){
         return goodsListService.insertGoods(goodsInsertData);
+    }
+    @RequestMapping("goods/count")
+    public ResponseVo CountGoods(){
+        return goodsListService.CountGoods();
     }
 
     /*@RequestMapping("storage/create")

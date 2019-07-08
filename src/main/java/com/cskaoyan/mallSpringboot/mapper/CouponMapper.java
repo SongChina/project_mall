@@ -2,8 +2,10 @@ package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Coupon;
 import com.cskaoyan.mallSpringboot.bean.CouponExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
 
 public interface CouponMapper {
     long countByExample(CouponExample example);
@@ -12,7 +14,6 @@ public interface CouponMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Coupon record);
 
     int insertSelective(Coupon record);
 
@@ -26,5 +27,13 @@ public interface CouponMapper {
 
     int updateByPrimaryKeySelective(Coupon record);
 
-    int updateByPrimaryKey(Coupon record);
+
+    int insert(Coupon record);//增
+    Integer lastInsertId();
+    int updateByPrimaryKey(Coupon coupon);//改
+    int deleteBydeleted(@Param("id") Integer id, @Param("updateTime") Date updateTime);//删
+    int queryCount(@Param("name") String name, @Param("type") String type, @Param("status") String status);//查
+    List<Coupon> queryList(@Param("name") String name, @Param("type") String type, @Param("status") String status, @Param("sort") String sort, @Param("order") String order);
+
+
 }

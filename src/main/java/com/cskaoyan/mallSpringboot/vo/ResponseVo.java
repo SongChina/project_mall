@@ -37,4 +37,5 @@ package com.cskaoyan.mallSpringboot.vo;
         this.data = data;
         this.errmsg = errmsg;
     }
+
 }

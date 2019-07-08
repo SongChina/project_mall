@@ -5,10 +5,14 @@ import com.cskaoyan.mallSpringboot.service.mall.BrandService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 public class BrandController {
@@ -36,8 +40,13 @@ public class BrandController {
     }
     //删除
     @RequestMapping("brand/delete")
-    public ResponseVo brandDelete(@RequestBody Brand brand){
-        ResponseVo responseVo = brandService.brandDelete(brand);
-        return responseVo;
+    public Map brandDelete(@RequestBody Brand brand){
+        return brandService.brandDelete(brand);
+    }
+
+    //品牌详情
+    @RequestMapping("brand/detail")
+    public ResponseVo brandDetail(String id){
+        return brandService.brandDetail(id);
     }
 }

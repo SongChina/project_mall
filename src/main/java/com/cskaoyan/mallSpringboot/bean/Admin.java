@@ -1,5 +1,6 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Admin {
@@ -21,7 +22,25 @@ public class Admin {
 
     private Boolean deleted;
 
-    private String roleIds;
+    private int[] roleIds;
+
+    public Admin() {
+    }
+
+    public Admin(Integer id, String username, String password,String avatar, int[] roleIds) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.avatar = avatar;
+        this.roleIds = roleIds;
+    }
+
+    public Admin(String username, String password, String avatar,  int[] roleIds) {
+        this.username = username;
+        this.password = password;
+        this.avatar = avatar;
+        this.roleIds = roleIds;
+    }
 
     public Integer getId() {
         return id;
@@ -95,11 +114,14 @@ public class Admin {
         this.deleted = deleted;
     }
 
-    public String getRoleIds() {
+    public int[] getRoleIds() {
         return roleIds;
     }
 
-    public void setRoleIds(String roleIds) {
-        this.roleIds = roleIds == null ? null : roleIds.trim();
+    public void setRoleIds(int[] roleIds) {
+        this.roleIds = roleIds;
     }
+
+
+
 }
