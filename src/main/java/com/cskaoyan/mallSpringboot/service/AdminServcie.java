@@ -1,8 +1,6 @@
 package com.cskaoyan.mallSpringboot.service;
 
 import com.cskaoyan.mallSpringboot.bean.Admin;
-import com.cskaoyan.mallSpringboot.bean.AdminInWeb;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,7 +9,7 @@ public interface AdminServcie {
     List<Admin> queryAllAdmins();
 
     //增加管理员
-    int insertAdmin(AdminInWeb adminInWeb);
+    int insertAdmin(Admin admin);
 
     //编辑管理员
     int updateAdmin(Admin admin);

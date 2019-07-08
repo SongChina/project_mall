@@ -1,8 +1,6 @@
 package com.cskaoyan.mallSpringboot.service;
 
 import com.cskaoyan.mallSpringboot.bean.Admin;
-import com.cskaoyan.mallSpringboot.bean.AdminInWeb;
-import com.cskaoyan.mallSpringboot.mapper.AdminInWebMapper;
 import com.cskaoyan.mallSpringboot.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +14,14 @@ public class AdminServcieImpl implements AdminServcie {
     @Autowired
     AdminMapper adminMapper;
 
-    @Autowired
-    AdminInWebMapper adminInWebMapper;
-
     @Override
     public List<Admin> queryAllAdmins() {
         return adminMapper.queryAllAdmins();
     }
 
     @Override
-    public int insertAdmin(AdminInWeb adminInWeb) {
-        return adminInWebMapper.insertAdmin(adminInWeb);
+    public int insertAdmin(Admin admin) {
+        return adminMapper.insertAdmin(admin);
     }
 
     @Override

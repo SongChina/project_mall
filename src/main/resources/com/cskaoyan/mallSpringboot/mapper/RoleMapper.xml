@@ -29,28 +29,39 @@
     from cskaoyan_mall_role
   </select>
 
+  <!--根据名称模糊查询-->
+  <select id="queryByName" resultMap="BaseResultMap">
+    select
+    <include refid="baseColumns"/>
+    from cskaoyan_mall_role
+    where `name`=#{name}
+  </select>
+
   <!--增加角色-->
-  <insert id="insertRole">
+  <insert id="insertRole" parameterType="com.cskaoyan.mallSpringboot.bean.Role" useGeneratedKeys="true" keyProperty="id">
     insert into cskaoyan_mall_role(
     `name`,
     `desc`
     )values(
-    #{role.name},
-    #{role.desc}
+    #{name},
+    #{desc}
     )
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
 
   </insert>
 
   <!--编辑角色-->
-  <update id="updateRole">
+  <update id="updateRole" parameterType="com.cskaoyan.mallSpringboot.bean.Role">
     update cskaoyan_mall_role set
-    `name`=#{role.name},
-    `desc`=#{role.desc}
-    where id=#{role.id}
+    `name`=#{name},
+    `desc`=#{desc}
+    where id=#{id}
   </update>
 
   <!--删除角色-->
-  <delete id="deleteRole">
+  <delete id="deleteRole" parameterType="com.cskaoyan.mallSpringboot.bean.Role">
     delete from cskaoyan_mall_role
     where id=#{id}
   </delete>

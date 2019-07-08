@@ -43,32 +43,30 @@
   </select>
 
   <!--增加管理员-->
-  <insert id="insertAdmin" parameterType="com.cskaoyan.mallSpringboot.bean.Admin">
-    insert into cskaoyan_mall_admin(
-    <include refid="baseColumns"/>)
-    value(
-    #{username},
-    #{password},
-    #{lastLoginIp}
-    #{lastLoginTime}
-    #{avatar},
-    #{addTime},
-    #{updateTime},
-    #{deleted},
-    #{roleIds,typeHandler=com.cskaoyan.mallSpringboot.mybatis.IntArrayTypeHandler}
-    )
+  <insert id="insertAdmin" parameterType="com.cskaoyan.mallSpringboot.bean.Admin" useGeneratedKeys="true" keyProperty="id">
+     insert into cskaoyan_mall_admin(
+        username,
+        password,
+        avatar,
+        role_ids)
+        values (
+        #{username},
+        #{password},
+        #{avatar},
+        #{roleIds , typeHandler=com.cskaoyan.mallSpringboot.mybatis.IntArrayTypeHandler}
+        )
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
   </insert>
+
 
   <!--更新管理员-->
   <update id="updateAdmin" parameterType="com.cskaoyan.mallSpringboot.bean.Admin">
     update cskaoyan_mall_admin set
       username = #{username},
       password = #{password},
-      last_login_ip = #{lastLoginIp}
-      last_login_time= #{lastLoginTime}
       avatar   = #{avatar},
-      add_time = #{addTime},
-      update_time =  #{updateTime}
       deleted = #{deleted},
       role_ids = #{roleIds,typeHandler=com.cskaoyan.mallSpringboot.mybatis.IntArrayTypeHandler}
     where id = #{id}

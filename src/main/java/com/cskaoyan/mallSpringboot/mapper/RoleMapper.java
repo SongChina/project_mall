@@ -35,9 +35,9 @@ public interface RoleMapper {
 
     List<Role> queryAllRole();
 
-    int insertRole(@Param("role")Role role);
+    int insertRole(Role role);
 
-    int updateRole(@Param("role")Role role,@Param("id")Integer id);
+    int updateRole(Role role);
 
     int deleteRole(@Param("id")Integer id);
 
