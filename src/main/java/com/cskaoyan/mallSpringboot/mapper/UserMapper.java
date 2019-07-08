@@ -15,6 +15,7 @@ public interface UserMapper {
     //查询列表
     List<User> queryUserList(@Param("username") String username, @Param("mobile") String mobile);
 
+    //    List<User> selectByUserId(@Param("id") String id ,@Param("userId") String userId);
     //以上是新增的方法
     long countByExample(UserExample example);
 

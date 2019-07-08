@@ -24,5 +24,13 @@ public class UserController {
         ResponseVo responseVo = userService.queryUserList(queryIn, username, mobile);
         return responseVo;
     }
+
+     /*   //微信用户界面
+    @RequestMapping("user/index")
+    public ResponseVo selectByUserId() {
+        ResponseVo userVo = userService.selectByUserId();
+        return userVo;
+    }
+*/
 }
 

@@ -1,7 +1,6 @@
 package com.cskaoyan.mallSpringboot.controller.goods;
 
 import com.cskaoyan.mallSpringboot.bean.Goods;
-import com.cskaoyan.mallSpringboot.bean.GoodsInWeb;
 import com.cskaoyan.mallSpringboot.bean.GoodsInsertData;
 import com.cskaoyan.mallSpringboot.service.goods.GoodsListService;
 import com.cskaoyan.mallSpringboot.vo.RequestVo;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
 public class GoodsListController {
     @Autowired
     GoodsListService goodsListService;
@@ -48,4 +48,6 @@ public class GoodsListController {
 
     /*@RequestMapping("storage/create")
     public ResponseVo storageCreate(File file){ return goodsListService.storageCreate(file); }*/
+    //微信小程序
+
 }
