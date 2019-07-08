@@ -48,4 +48,8 @@ public interface CategoryMapper {
 
     Category queryFirstCategory();
 
+    List<Category> selectIndexCategoryByPid(@Param("pid") int pid);
+
+    List<Category> queryIndexFloorCategory();
+
 }
