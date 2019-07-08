@@ -36,6 +36,7 @@ public interface KeywordMapper {
 
     int keywordDelete(Keyword keyword);
 
+
     Keyword queryDefultKeyword();
 
     List<Keyword> queryHotKeywordList();
