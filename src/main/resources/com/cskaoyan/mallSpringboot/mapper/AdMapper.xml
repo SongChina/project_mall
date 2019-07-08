@@ -15,6 +15,42 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+  <!--按条件查询，结果总数-->
+  <select id="queryCount" resultType="_int">
+    select count(*) from cskaoyan_mall_ad where deleted = 0
+    <if test="name != '' and name !=null">
+      and `name` like #{name}
+    </if>
+    <if test="content != '' and content !=null">
+      and content like #{content}
+    </if>
+  </select>
+  <!--查询列表-->
+  <select id="queryList" resultMap="BaseResultMap">
+    select id, `name`, link,
+    url, `position`, content,
+    start_time, end_time, enabled,
+    add_time, update_time, deleted
+    from cskaoyan_mall_ad
+    where deleted = 0
+    <if test="name != '' and name !=null">
+      and `name` like #{name}
+    </if>
+    <if test="content != '' and content !=null">
+      and content like #{content}
+    </if>
+    order by ${sort} ${order}
+  </select>
+
+  <update id="deleteBydeleted">
+    update cskaoyan_mall_ad
+    set deleted = true ,update_time = #{updateTime}
+    where id = #{id}
+  </update>
+  <select id="lastInsertId" resultType="java.lang.Integer">
+        select LAST_INSERT_ID()
+    </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

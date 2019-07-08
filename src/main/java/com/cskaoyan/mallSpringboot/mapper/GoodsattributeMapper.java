@@ -4,7 +4,9 @@ import com.cskaoyan.mallSpringboot.bean.Goodsattribute;
 import com.cskaoyan.mallSpringboot.bean.GoodsattributeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface GoodsattributeMapper {
     long countByExample(GoodsattributeExample example);
 
@@ -27,4 +29,10 @@ public interface GoodsattributeMapper {
     int updateByPrimaryKeySelective(Goodsattribute record);
 
     int updateByPrimaryKey(Goodsattribute record);
+
+
+
+
+
+
 }

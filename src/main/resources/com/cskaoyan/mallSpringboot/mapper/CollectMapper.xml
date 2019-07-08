@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.CollectMapper">
+
+  <!--查询用户总数,``英文模式下Esc下面那个键-->
+  <select id="queryCollectCount" resultType="Integer">
+    select count(*) from cskaoyan_mall_collect where deleted = false
+    <if test="userId != null">
+      and user_id like #{userId}
+
+    </if>
+    <if test="valueId != null">
+      and value_id like #{valueId}
+
+    </if>
+  </select>
+
+  <!--查询所有会员收藏信息 tinyint，date，int，datetime不需要用``-->
+  <select id="queryCollectList" resultMap="BaseResultMap">
+    select
+    id,
+    user_id,
+    value_id,
+    type,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_collect
+    where deleted = false
+    <if test="userId != null">
+      and user_id like #{userId}
+
+    </if>
+    <if test="valueId != null">
+      and value_Id like #{valueId}
+
+    </if>
+  </select>
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Collect">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />

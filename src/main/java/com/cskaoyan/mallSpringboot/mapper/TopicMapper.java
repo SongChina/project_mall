@@ -2,8 +2,10 @@ package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Topic;
 import com.cskaoyan.mallSpringboot.bean.TopicExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
 
 public interface TopicMapper {
     long countByExample(TopicExample example);
@@ -11,8 +13,6 @@ public interface TopicMapper {
     int deleteByExample(TopicExample example);
 
     int deleteByPrimaryKey(Integer id);
-
-    int insert(Topic record);
 
     int insertSelective(Topic record);
 
@@ -31,6 +31,10 @@ public interface TopicMapper {
     int updateByPrimaryKeySelective(Topic record);
 
     int updateByPrimaryKeyWithBLOBs(Topic record);
-
-    int updateByPrimaryKey(Topic record);
+    int insert(Topic record);//增
+    Integer lastInsertId();
+    int updateByPrimaryKey(Topic record);//改
+    int deleteBydeleted(@Param("id") Integer id, @Param("updateTime") Date updateTime);//删
+    int queryCount(@Param("title") String title, @Param("subtitle") String subtitle);//查
+    List<Topic> queryList(@Param("title") String title, @Param("subtitle")  String subtitle,@Param("sort") String sort,@Param("order") String order);
 }

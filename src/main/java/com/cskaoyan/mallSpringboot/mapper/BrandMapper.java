@@ -1,11 +1,22 @@
 package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Brand;
+import com.cskaoyan.mallSpringboot.bean.BrandData;
 import com.cskaoyan.mallSpringboot.bean.BrandExample;
 import java.util.List;
+import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import java.util.List;
+@Component
+
 
 public interface BrandMapper {
+
+    int queryBrandCount(@Param("id") String id, @Param("name") String name);
+    List<Brand> queryBrandList(@Param("id") String id, @Param("name")  String name);
+
+//    以上是新增的方法
     long countByExample(BrandExample example);
 
     int deleteByExample(BrandExample example);
@@ -27,4 +38,21 @@ public interface BrandMapper {
     int updateByPrimaryKeySelective(Brand record);
 
     int updateByPrimaryKey(Brand record);
+
+
+    //商品管理
+    List<BrandData> brandList();
+
+
+
+
+    int brandInsert(Brand brand);
+
+    int brandDelete(Brand brand);
+
+
+
+    Brand selectBrandById(Integer id);
+
+    int brandUpdate(Brand brand);
 }

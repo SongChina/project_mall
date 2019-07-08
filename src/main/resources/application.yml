@@ -24,3 +24,25 @@ pagehelper:
   params: count=countSql
 
 
+
+
+
+  #json日期格式处理
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+myoss:
+  bucket: wpm
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  access-key: LTAIZZ8enay6EMyn
+  secret: 1sC6XmkJdusTmhNyox5pgDYrAd9aIM
+
+#debug: true
+#pageHelper配置，分页工具
+
+#pagehelper:
+#            helperDialect: mysql
+#            reasonable: true
+#            supportMethodsArguments: true
+#            params: count=countSql
+

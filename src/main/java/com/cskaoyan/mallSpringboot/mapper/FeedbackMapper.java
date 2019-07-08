@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface FeedbackMapper {
+
+    int queryFeedBackCount(@Param("id") String id, @Param("username") String username);
+    List<Feedback> queryFeedBackList(@Param("id") String id, @Param("username") String username);
+
+    //以上是新增的
     long countByExample(FeedbackExample example);
 
     int deleteByExample(FeedbackExample example);
@@ -27,4 +32,6 @@ public interface FeedbackMapper {
     int updateByPrimaryKeySelective(Feedback record);
 
     int updateByPrimaryKey(Feedback record);
+
+
 }
