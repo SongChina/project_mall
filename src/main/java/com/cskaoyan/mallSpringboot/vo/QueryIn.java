@@ -1,7 +1,11 @@
 package com.cskaoyan.mallSpringboot.vo;
 
 public class QueryIn {
-    private int page;
+
+
+    public void setOrder(String order) {
+        this.order = order;
+    }  private int page;
     private int limit;
     private String sort;
     private String order;
@@ -32,9 +36,5 @@ public class QueryIn {
 
     public String getOrder() {
         return order;
-    }
-
-    public void setOrder(String order) {
-        this.order = order;
     }
 }
