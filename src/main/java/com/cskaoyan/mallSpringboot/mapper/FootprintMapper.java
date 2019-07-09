@@ -1,10 +1,13 @@
 package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Footprint;
+import com.cskaoyan.mallSpringboot.bean.FootprintData;
 import com.cskaoyan.mallSpringboot.bean.FootprintExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface FootprintMapper {
 
     int queryFootPrintCount(@Param("userId") String userId, @Param("goodsId") String goodsId);
@@ -32,4 +35,10 @@ public interface FootprintMapper {
     int updateByPrimaryKeySelective(Footprint record);
 
     int updateByPrimaryKey(Footprint record);
+
+    //个人中心/我的足迹
+
+    List<FootprintData> footprintList();
+
+
 }

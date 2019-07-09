@@ -4,7 +4,9 @@ import com.cskaoyan.mallSpringboot.bean.Collect;
 import com.cskaoyan.mallSpringboot.bean.CollectExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface CollectMapper {
 
     int queryCollectCount(@Param("userId") String userId, @Param("valueId") String valueId);
@@ -33,4 +35,6 @@ public interface CollectMapper {
     int updateByPrimaryKeySelective(Collect record);
 
     int updateByPrimaryKey(Collect record);
+
+
 }

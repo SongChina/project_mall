@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-@RestController
-@RequestMapping("wx")
+/*@RestController
+@RequestMapping("wx")*/
 public class LoginController {
 
     @RequestMapping("auth/login")

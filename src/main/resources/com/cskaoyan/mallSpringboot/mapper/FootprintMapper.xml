@@ -265,4 +265,19 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--个人中心我的足迹-->
+<resultMap id="footprintListMap" type="com.cskaoyan.mallSpringboot.bean.FootprintData">
+  <result property="id" column="id"/>
+  <result property="goodsId" column="goods_id"/>
+  <result property="addTime" column="add_time"/>
+  <result property="name" column="name"/>
+  <result property="brief" column="brief"/>
+  <result property="picUrl" column="pic_url"/>
+  <result property="retailPrice" column="retail_price"/>
+</resultMap>
+  <select id="footprintList" resultMap="footprintListMap">
+    select c1.id,c1.goods_id,c1.add_time,c2.`name`,c2.brief,c2.pic_url,c2.retail_price
+    from cskaoyan_mall_footprint  c1 left join cskaoyan_mall_goods  c2
+    on c1.goods_id=c2.goods_sn
+  </select>
 </mapper>

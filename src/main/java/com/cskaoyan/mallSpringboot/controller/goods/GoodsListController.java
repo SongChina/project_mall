@@ -16,38 +16,36 @@ public class GoodsListController {
     @Autowired
     GoodsListService goodsListService;
 
-    @RequestMapping("goods/list")
+    @RequestMapping("admin/goods/list")
     public ResponseVo getALLGoodsList(RequestVo requestVo, Integer goodsSn, String name) {
         ResponseVo goodsList = goodsListService.getALLGoodsList(requestVo, goodsSn, name);
         return goodsList;
     }
 
-    @RequestMapping("goods/detail")
+    @RequestMapping("admin/goods/detail")
     public ResponseVo getGoodsDetail(int id){
         return goodsListService.getGoodsDetail(id);
     }
 
-    @RequestMapping("goods/catAndBrand")
+    @RequestMapping("admin/goods/catAndBrand")
     public ResponseVo catAndBrand(){
         return goodsListService.catAndBrand();
     }
 
-    @RequestMapping("goods/delete")
+    @RequestMapping("admin/goods/delete")
     public ResponseVo delete(@RequestBody Goods goods){
         return goodsListService.deletById(goods);
     }
 
-    @RequestMapping("goods/create")
+    @RequestMapping("admin/goods/create")
     public ResponseVo insertGoods(@RequestBody GoodsInsertData goodsInsertData){
         return goodsListService.insertGoods(goodsInsertData);
     }
-    @RequestMapping("goods/count")
+    @RequestMapping("admin/goods/count")
     public ResponseVo CountGoods(){
         return goodsListService.CountGoods();
     }
 
-    /*@RequestMapping("storage/create")
-    public ResponseVo storageCreate(File file){ return goodsListService.storageCreate(file); }*/
-    //微信小程序
+
 
 }
