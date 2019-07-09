@@ -3,7 +3,6 @@ server:
     port: 80
     context-path: /wx
 
-
 spring:
   datasource:
     username: root
