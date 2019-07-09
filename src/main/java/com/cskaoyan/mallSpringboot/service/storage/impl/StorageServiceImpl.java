@@ -89,6 +89,24 @@ public class StorageServiceImpl implements StorageService {
     }
 
 
-
+    //微信存储记录
+    @Override
+    public ResponseVo storageUpload(Storage storage) {
+        Date date = new Date();
+        ResponseVo responseVo = new ResponseVo();
+        storage.setAddTime(date);
+        storage.setUpdateTime(date);
+        int i = storageMapper.storageInsert(storage);
+        Storage storage1 = storageMapper.selectStorageById(storage.getId());
+        if(i == 1 && storage1 != null){
+            responseVo.setErrno(0);
+            responseVo.setData(storage1);
+            responseVo.setErrmsg("成功");
+        }else {
+            responseVo.setErrno(605);
+            responseVo.setErrmsg("失败");
+        }
+        return responseVo;
+    }
 
 }

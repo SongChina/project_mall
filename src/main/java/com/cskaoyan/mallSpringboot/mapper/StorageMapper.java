@@ -3,9 +3,24 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Storage;
 import com.cskaoyan.mallSpringboot.bean.StorageExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface StorageMapper {
+
+    int storageInsert(Storage storage);
+
+    Storage selectStorageById(Integer id);
+
+    List<Storage> selectStorageList(@Param("key") String key, @Param("name") String name);
+
+    int storageUpdate(Storage storage);
+
+    int storageDelete(Storage storage);
+
+//    int storageUpload(Storage storage);
+
+    //以上是新增的
     long countByExample(StorageExample example);
 
     int deleteByExample(StorageExample example);
@@ -28,13 +43,5 @@ public interface StorageMapper {
 
     int updateByPrimaryKey(Storage record);
 
-    int storageInsert(Storage storage);
 
-    Storage selectStorageById(Integer id);
-
-    List<Storage> selectStorageList(@Param("key") String key, @Param("name") String name);
-
-    int storageUpdate(Storage storage);
-
-    int storageDelete(Storage storage);
 }
