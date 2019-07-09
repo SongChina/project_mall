@@ -1,4 +1,4 @@
-package com.cskaoyan.mallSpringboot.service;
+package com.cskaoyan.mallSpringboot.service.admin;
 
 import com.cskaoyan.mallSpringboot.bean.Admin;
 import com.cskaoyan.mallSpringboot.mapper.AdminMapper;

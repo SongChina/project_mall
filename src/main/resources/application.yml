@@ -2,12 +2,17 @@ server:
   port: 8081
   servlet:
     context-path: /
+<<<<<<< HEAD
+=======
+  port: 8080
+>>>>>>> f2e7cee981cfcbda2298b1a4a3ce96bae5f7e516
 
 spring:
   datasource:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+<<<<<<< HEAD
     url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8&useSSL=false
 
 admin:
@@ -19,14 +24,14 @@ admin:
       name: "admin123"
       perms: ["*"]
       roles: ["超级管理员"]
+=======
+    url: jdbc:mysql://localhost:3306/j14_project_mall?characterEncoding=utf8
+>>>>>>> f2e7cee981cfcbda2298b1a4a3ce96bae5f7e516
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
-
-
 
 
   #json日期格式处理

@@ -1,10 +1,7 @@
 package com.cskaoyan.mallSpringboot;
 
-import com.cskaoyan.mallSpringboot.bean.GoodsInWeb;
-import com.cskaoyan.mallSpringboot.bean.User;
-import com.cskaoyan.mallSpringboot.bean.UserExample;
-import com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo;
-import com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo;
+import com.cskaoyan.mallSpringboot.mapper.GoodsMapper;
+
 import com.cskaoyan.mallSpringboot.mapper.GoodsInWebMapper;
 import com.cskaoyan.mallSpringboot.mapper.OrderMapper;
 import com.cskaoyan.mallSpringboot.mapper.UserMapper;
@@ -16,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+import java.io.IOException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,26 +26,17 @@ public class TestBySong {
     OrderMapper orderMapper;
 
     @Autowired
+    GoodsMapper goodsMapper;
+
     GoodsInWebMapper goodsInWebMapper;
     @Test
-    public void mapperTest() {
+    public void mapperTest() throws IOException {
 
-/*        List<OrderStatisticInfo> orderStatisticInfos = orderMapper.queryOrdersByAddTimeInGroup();
-        System.out.println(orderStatisticInfos);*/
-        //mapper.queryUserByAddTimeInGroup()
-
-        //System.out.println(customerStatisticInfos);
-/*        MyPasswordEncoder myPasswordEncoder = new MyPasswordEncoder();
-        Object o = new Object();
-        String s = myPasswordEncoder.encodePassword("123456", new Object());
-        boolean passwordValid = myPasswordEncoder.isPasswordValid(s, "123456", new Object());
-        System.out.println(passwordValid);*/
-        GoodsInWeb goodsInWeb = new GoodsInWeb();
-        //goodsInWeb.setId(99999999);
-        goodsInWeb.setGallery(new String[]{"111","222"});
-        goodsInWeb.setGoodsSn("32344");
-        goodsInWeb.setName("43434");
-
-        goodsInWebMapper.insert(goodsInWeb);
+        //File file = new File("src/main/resources/data.json");
+        //String content = FileUtils.readFileToString(file);
+        //(ResponseVo) new JsonParser().parse(content);
+        //System.out.println(jsonObject);
+        String encode = MD5Util.encode("123");
+        System.out.println(encode);
     }
 }

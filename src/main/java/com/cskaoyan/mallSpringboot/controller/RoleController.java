@@ -2,8 +2,9 @@ package com.cskaoyan.mallSpringboot.controller;
 
 import com.cskaoyan.mallSpringboot.bean.Role;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
-import com.cskaoyan.mallSpringboot.service.RoleService;
+import com.cskaoyan.mallSpringboot.service.admin.RoleService;
 
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class RoleController {
 
     ResponseVo responseVo;
 
+    public static final JsonObject jsonObject = new JsonObject();
+
+
     @RequestMapping("admin/role/options")
     public ResponseVo queryOption(){
         responseVo=new ResponseVo();
@@ -25,9 +29,9 @@ public class RoleController {
     }
 
     @RequestMapping("admin/role/list")
-    public ResponseVo queryList(int page,int limit,String name){
+    public ResponseVo queryList(int page,int limit,String name, String sort, String order){
         responseVo=new ResponseVo();
-        responseVo=roleService.queryList(page,limit,name);
+        responseVo=roleService.queryList(page,limit,name,sort, order);
         return responseVo;
     }
 
@@ -52,6 +56,10 @@ public class RoleController {
         return responseVo;
     }
 
+   /* @RequestMapping("role/permissions")
+    public JsonObject getAll(){
+        return init();
+    }*/
 
 
 

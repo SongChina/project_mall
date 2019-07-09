@@ -3,7 +3,7 @@ package com.cskaoyan.mallSpringboot.controller;
 import com.cskaoyan.mallSpringboot.bean.Admin;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResultVo;
-import com.cskaoyan.mallSpringboot.service.AdminServcie;
+import com.cskaoyan.mallSpringboot.service.admin.AdminServcie;
 
 
 import com.cskaoyan.mallSpringboot.utils.MD5Util;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
+
 @RestController
+@RequestMapping("admin/")
 public class AdminController {
 
     @Autowired

@@ -16,38 +16,62 @@ public class GoodsListController {
     @Autowired
     GoodsListService goodsListService;
 
-    @RequestMapping("goods/list")
+    @RequestMapping("admin/goods/list")
     public ResponseVo getALLGoodsList(RequestVo requestVo, Integer goodsSn, String name) {
         ResponseVo goodsList = goodsListService.getALLGoodsList(requestVo, goodsSn, name);
         return goodsList;
     }
 
-    @RequestMapping("goods/detail")
+    @RequestMapping("admin/goods/detail")
     public ResponseVo getGoodsDetail(int id){
         return goodsListService.getGoodsDetail(id);
     }
 
-    @RequestMapping("goods/catAndBrand")
+    @RequestMapping("admin/goods/catAndBrand")
     public ResponseVo catAndBrand(){
         return goodsListService.catAndBrand();
     }
 
-    @RequestMapping("goods/delete")
+    @RequestMapping("admin/goods/delete")
     public ResponseVo delete(@RequestBody Goods goods){
         return goodsListService.deletById(goods);
     }
 
-    @RequestMapping("goods/create")
+    @RequestMapping("admin/goods/create")
     public ResponseVo insertGoods(@RequestBody GoodsInsertData goodsInsertData){
         return goodsListService.insertGoods(goodsInsertData);
     }
-    @RequestMapping("goods/count")
+    @RequestMapping("admin/goods/count")
     public ResponseVo CountGoods(){
         return goodsListService.CountGoods();
     }
 
-    /*@RequestMapping("storage/create")
-    public ResponseVo storageCreate(File file){ return goodsListService.storageCreate(file); }*/
+
+    //以下属于微信前台内容
     //微信小程序
+
+    @RequestMapping("wx/goods/count")
+    public ResponseVo WXCountGoods(){
+
+        return goodsListService.CountGoods();
+    }
+
+    @RequestMapping("wx/goods/category")
+    public ResponseVo getGoodsCategory(String id){
+        ResponseVo responseVo = goodsListService.findGoodsCategory(id);
+        return responseVo;
+    }
+    //查询商品分类
+    @RequestMapping("wx/goods/list")
+    public ResponseVo getGoodsList(String categoryId, String page, String size) {
+        ResponseVo goodsList = goodsListService.getGoodsList(categoryId, page, size);
+        return goodsList;
+    }
+    //查询前台商品详情
+    @RequestMapping("wx/goods/detail")
+    public ResponseVo getWxGoodsDetail(int id) {
+        ResponseVo responseVo = goodsListService.getWxGoodsDetail(id);
+        return responseVo;
+    }
 
 }

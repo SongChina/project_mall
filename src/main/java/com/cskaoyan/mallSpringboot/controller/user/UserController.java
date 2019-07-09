@@ -3,6 +3,7 @@ package com.cskaoyan.mallSpringboot.controller.user;
 import com.cskaoyan.mallSpringboot.service.user.UserService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,8 @@ public class UserController {
     UserService userService;
 
     //会员管理分类查询
-    @RequestMapping("user/list")
+    @RequestMapping("admin/user/list")
+    @RequiresRoles(value = {"超级管理员"})
     public ResponseVo userList(QueryIn queryIn, String username, String mobile) {
         ResponseVo responseVo = userService.queryUserList(queryIn, username, mobile);
         return responseVo;
