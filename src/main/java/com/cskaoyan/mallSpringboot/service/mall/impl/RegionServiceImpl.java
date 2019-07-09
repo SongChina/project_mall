@@ -17,20 +17,26 @@ public class RegionServiceImpl implements RegionService {
     RegionMapper regionMapper;
 
     @Override
-    public ResponseVo getAllRegion() {
-        List<Region> provinces = regionMapper.queryProvince();
-        for (int i = 0; i < provinces.size(); i++) {
-            Region province = provinces.get(i);
-            int code = province.getCode();
-            List<Region> cities = regionMapper.queryCity(code+"%");
-            for (int j = 0; j < cities.size(); j++) {
-                Region city = cities.get(j);
-                int code1 = city.getCode();
-                List<Region> districts = regionMapper.queryDistrict(code1+"%");
-                city.setChildren(districts);
+    public ResponseVo getAllRegion(String pid) {
+        if(pid == null){
+            List<Region> provinces = regionMapper.queryProvince();
+            for (int i = 0; i < provinces.size(); i++) {
+                Region province = provinces.get(i);
+                int code = province.getCode();
+                List<Region> cities = regionMapper.queryCity(code+"%");
+                for (int j = 0; j < cities.size(); j++) {
+                    Region city = cities.get(j);
+                    int code1 = city.getCode();
+                    List<Region> districts = regionMapper.queryDistrict(code1+"%");
+                    city.setChildren(districts);
+                }
+                province.setChildren(cities);
             }
-            province.setChildren(cities);
+            return new ResponseVo(0, provinces, "成功");
+        }else {
+            List<Region> regionList = regionMapper.queryByPid(pid);
+            return new ResponseVo(0, regionList, "成功");
         }
-        return new ResponseVo(0, provinces, "成功");
+
     }
 }

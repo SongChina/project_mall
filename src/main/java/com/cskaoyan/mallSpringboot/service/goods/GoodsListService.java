@@ -20,6 +20,8 @@ public interface GoodsListService {
     //ResponseVo storageCreate(File file);
 
 
+    ResponseVo CountGoods();
 
+    ResponseVo getHomeIndexMessage();
 
 }

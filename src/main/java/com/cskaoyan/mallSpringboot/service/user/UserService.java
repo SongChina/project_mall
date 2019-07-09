@@ -9,4 +9,7 @@ import com.cskaoyan.mallSpringboot.vo.ResponseVo;
  */
 public interface UserService {
     ResponseVo queryUserList(QueryIn queryIn, String username, String mobile);
+
+    //    ResponseVo selectByUserId();
+
 }

@@ -1,13 +1,15 @@
 server:
-  port: 80
   servlet:
+    port: 80
     context-path: /wx
+
+
 spring:
   datasource:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cskaoyanmall?serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/project3?characterEncoding=utf8
 admin:
   login:
     errmsg: "成功"

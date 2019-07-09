@@ -35,4 +35,6 @@ public interface AdMapper {
     int queryCount(@Param("name") String name, @Param("content") String content);//查
     List<Ad> queryList(@Param("name") String name, @Param("content")  String content, @Param("sort") String sort, @Param("order") String order);
 
+    List<Ad> queryAllAd();
+
 }
