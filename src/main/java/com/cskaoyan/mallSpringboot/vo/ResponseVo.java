@@ -1,9 +1,9 @@
 package com.cskaoyan.mallSpringboot.vo;
 
-    public class ResponseVo<T> {
-        int errno;
-        Object data;
-        String errmsg;
+public class ResponseVo<T> {
+    int errno;
+    Object data;
+    String errmsg;
 
     public ResponseVo() {
     }
