@@ -5,6 +5,21 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 public class User {
+
+      /*  private Integer userId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }*/
+
+    //上是新增订单id
+
+
+
     private Integer id;
 
     private String username;

@@ -35,4 +35,7 @@ public interface GrouponrulesMapper {
     //查
     int queryCount(@Param("goodsId") String goodsId);
     List<Grouponrules> queryList(@Param("sort") String sort,@Param("order") String order,@Param("goodsId") String goodsId);
+
+    List<Grouponrules> selectAllGrouponRules();
+
 }

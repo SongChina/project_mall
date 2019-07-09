@@ -26,15 +26,10 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
+@RequestMapping("admin")
 public class LogController {
 
     private static LoginUser loginUser2 = new LoginUser();
-
-
-    @RequestMapping("test")
-    public String test(){
-        return "This is test";
-    }
 
     @RequestMapping("auth/login")
     @ResponseBody

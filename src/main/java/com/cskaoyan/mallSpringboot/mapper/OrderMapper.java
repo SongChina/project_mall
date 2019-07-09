@@ -10,6 +10,13 @@ import com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
+
+    int queryOrderwxCount(@Param("uncomment") String uncomment, @Param("unpaid") String unpaid, @Param("unrecv") String unrecv, @Param("unship") String unship);
+    List<Order> queryOrderwxList(@Param("uncomment") String uncomment,@Param("unpaid") String unpaid,@Param("unrecv") String unrecv,@Param("unship")String unship);
+
+
+
+    //以上是新增的
     long countByExample(OrderExample example);
 
     int deleteByExample(OrderExample example);

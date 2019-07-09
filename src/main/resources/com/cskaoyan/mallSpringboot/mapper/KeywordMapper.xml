@@ -23,6 +23,46 @@
     </if>
   </select>
 
+  <!--查询默认搜索关键词-->
+  <select id="queryDefultKeyword" resultMap="BaseResultMap">
+  select
+    id,
+    keyword,
+    url,
+    is_hot,
+    is_default,
+    sort_order,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_keyword
+    where is_default = 1
+	LIMIT 1
+  </select>
+  <!--查询热门搜索关键词-->
+  <select id="queryHotKeywordList" resultMap="BaseResultMap">
+  select
+    id,
+    keyword,
+    url,
+    is_hot,
+    is_default,
+    sort_order,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_keyword
+    where is_hot = 1
+	LIMIT 10
+  </select>
+
+  <!--只查询keyword一个字段-->
+  <select id="querySimpleKeyword" resultType="String">
+    select keyword
+    from cskaoyan_mall_keyword
+    where keyword like concat('%', #{keyword}, '%')
+  </select>
+
   <!--新增-->
   <insert id="keywordInsert" parameterType="com.cskaoyan.mallSpringboot.bean.Keyword">
     insert into cskaoyan_mall_keyword

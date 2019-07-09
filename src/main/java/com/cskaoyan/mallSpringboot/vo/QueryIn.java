@@ -1,7 +1,11 @@
 package com.cskaoyan.mallSpringboot.vo;
 
 public class QueryIn {
-    private int page;
+
+
+    public void setOrder(String order) {
+        this.order = order;
+    }  private int page;
     private int limit;
     private String sort;//add_time降序标准
     private String order;//desc降序查找
@@ -34,9 +38,5 @@ public class QueryIn {
 
     public String getOrder() {
         return order;
-    }
-
-    public void setOrder(String order) {
-        this.order = order;
     }
 }

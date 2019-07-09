@@ -50,5 +50,7 @@ public class TestBySong {
         //String content = FileUtils.readFileToString(file);
         //(ResponseVo) new JsonParser().parse(content);
         //System.out.println(jsonObject);
+        String encode = MD5Util.encode("123");
+        System.out.println(encode);
     }
 }

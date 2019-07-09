@@ -15,7 +15,7 @@ import java.util.HashMap;
  * Created by little Stone
  * Date 2019/7/6 Time 11:28
  */
-@Configuration
+/*@Configuration*/
 public class ShiroConfig {
 
 	@Bean

@@ -33,9 +33,11 @@ public class BrandServiceImpl implements BrandService {
         int total = brandMapper.queryBrandCount(id, name);
 
         map.put("total", total);
+        map.put("totalPages", total);
         PageHelper.startPage(queryIn.getPage(), queryIn.getLimit());
         List<Brand> brandList = brandMapper.queryBrandList(id, name);
         map.put("items", brandList);
+        map.put("brandList", brandList);
         return new ResponseVo(0, map, "成功");
     }
 
@@ -89,5 +91,14 @@ public class BrandServiceImpl implements BrandService {
             responseVo.setErrmsg("失败");
         }
         return responseVo;
+    }
+
+    //品牌详情
+    @Override
+    public ResponseVo brandDetail(String id) {
+        Brand brand = brandMapper.selectBrandById(Integer.parseInt(id));
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("brand", brand);
+        return new ResponseVo(0, map, "成功");
     }
 }

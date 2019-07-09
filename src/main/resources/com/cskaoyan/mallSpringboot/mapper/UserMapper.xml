@@ -16,7 +16,8 @@
   </select>
 
 
-  <!--查询所有会员信息-->
+  <!--查询所有会员信息 -->
+  <!--少注册了一个user_id，为了能运行，我给删了-->
   <select id="queryUserList" resultMap="BaseResultMap">
     select
     id,

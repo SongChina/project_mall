@@ -39,4 +39,6 @@ public interface RegionMapper {
     List<Region> queryCity(String code);
 
     List<Region> queryDistrict(String code);
+
+    List<Region> queryByPid(@Param("pid") String pid);
 }
