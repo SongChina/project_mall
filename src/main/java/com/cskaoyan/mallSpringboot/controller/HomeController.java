@@ -13,7 +13,7 @@ public class HomeController {
     GoodsListService goodsListService;
 
     //获取微信首页所有信息
-    @RequestMapping("home/index")
+    @RequestMapping("wx/home/index")
     public ResponseVo getHomeIndexMessage(){
         ResponseVo responseVo = goodsListService.getHomeIndexMessage();
         return responseVo;

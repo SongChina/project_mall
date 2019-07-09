@@ -7,6 +7,7 @@ import com.cskaoyan.mallSpringboot.vo.BaseResultVo;
 import com.cskaoyan.mallSpringboot.vo.RequestVo;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,22 +42,22 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     @Override
     public ResponseVo getALLGoodsList(RequestVo requestVo, Integer goodsSn, String name) {
-        GoodsExample goodsExample = new GoodsExample();
-        GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        if (goodsSn != null && goodsSn != 0){
-            criteria.andGoodsSnEqualTo(goodsSn);
-        }else if (name != null && name!= ""){
-            criteria.andNameLike("%"+name+"%");
-        }else {
-            criteria.getAllCriteria();
-        }
-        PageHelper.startPage(requestVo.getPage(),requestVo.getLimit());
-        List<Goods> goodsList = goodsMapper.selectByExample(goodsExample);
-        BaseResultVo<Goods> baseResultVo = new BaseResultVo<>();
-        baseResultVo.setItems(goodsList);
-        int total = (int) goodsMapper.countByExample(goodsExample);
-        baseResultVo.setTotal(total);
-        return new ResponseVo(0,baseResultVo,"成功");
+            GoodsExample goodsExample = new GoodsExample();
+            GoodsExample.Criteria criteria = goodsExample.createCriteria();
+            if (goodsSn != null && goodsSn != 0){
+                criteria.andGoodsSnEqualTo(goodsSn);
+            }else if (name != null && name!= ""){
+                criteria.andNameLike("%"+name+"%");
+            }else {
+                criteria.getAllCriteria();
+            }
+            PageHelper.startPage(requestVo.getPage(),requestVo.getLimit());
+            List<Goods> goodsList = goodsMapper.selectByExample(goodsExample);
+            BaseResultVo<Goods> baseResultVo = new BaseResultVo<>();
+            baseResultVo.setItems(goodsList);
+            int total = (int) goodsMapper.countByExample(goodsExample);
+            baseResultVo.setTotal(total);
+            return new ResponseVo(0,baseResultVo,"成功");
     }
 
     @Override
@@ -226,6 +227,48 @@ public class GoodsListServiceImpl implements GoodsListService {
         map.put("grouponList", grouponIndexList);
         return new ResponseVo(0, map, "成功");
 
+    }
+
+    //获取商品分类
+    @Override
+    public ResponseVo findGoodsCategory(String id) {
+        Category category = categoryMapper.selectCategoryById(Integer.parseInt(id));
+        HashMap<String, Object> map = new HashMap<>();
+        if(category.getPid() == 0){
+            List<Category> brotherCategory = categoryMapper.selectCategoryByPid(Integer.parseInt(id));
+            Category currentCategory = brotherCategory.get(0);
+            map.put("parentCategory", category);
+            map.put("brotherCategory", brotherCategory);
+            map.put("currentCategory", currentCategory);
+        }else {
+            Category parentCategory = categoryMapper.selectCategoryById(category.getPid());
+            List<Category> brotherCategory = categoryMapper.selectCategoryByPid(parentCategory.getId());
+            map.put("parentCategory", parentCategory);
+            map.put("brotherCategory", brotherCategory);
+            map.put("currentCategory", category);
+        }
+        return new ResponseVo(0, map, "成功");
+    }
+
+
+    //微信前台获取商品分类
+    @Override
+    public ResponseVo getGoodsList(String categoryId, String page, String size) {
+        PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(size));
+        List<Category> categoryList = categoryMapper.queryFilterCategoryList();
+        List<Goods> goodsList = goodsMapper.queryGoodsByCategoryId(categoryId);
+        HashMap<String, Object> map = new HashMap<>();
+        PageInfo<Goods> pageInfo = new PageInfo<>(goodsList);
+        map.put("count", pageInfo.getTotal());
+        map.put("filterCategoryList", categoryList);
+        map.put("goodsList", pageInfo.getList());
+        return new ResponseVo(0, map, "成功");
+    }
+
+    //查询前台商品详情
+    @Override
+    public ResponseVo getWxGoodsDetail(int id) {
+        return null;
     }
 
 

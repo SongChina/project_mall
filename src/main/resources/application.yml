@@ -1,7 +1,7 @@
 server:
 
   servlet:
-    context-path: /wx
+    context-path: /
   port: 8081
 
 
@@ -11,6 +11,10 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/project3?characterEncoding=utf8
+    #json日期格式处理
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 admin:
   login:
     errmsg: "成功"
@@ -30,10 +34,7 @@ pagehelper:
 
 
 
-  #json日期格式处理
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
+
 myoss:
   bucket: wpm
   endpoint: oss-cn-shenzhen.aliyuncs.com

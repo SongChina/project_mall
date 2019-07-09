@@ -15,47 +15,47 @@ public class CategoryController {
     CategoryService categoryService;
 
     //查询一级类目
-    @RequestMapping("category/l1")
+    @RequestMapping("admin/category/l1")
     public ResponseVo categoryLevelOneList(){
         ResponseVo responseVo = categoryService.categoryLableOneList();
         return responseVo;
     }
     //查询二级类目
-    @RequestMapping("category/list")
+    @RequestMapping("admin/category/list")
     public ResponseVo categoryList(){
         ResponseVo responseVo = categoryService.categoryList();
         return responseVo;
     }
 
     //增加类目
-    @RequestMapping("category/create")
+    @RequestMapping("admin/category/create")
     public ResponseVo categoryCreate(@RequestBody Category category){
         ResponseVo responseVo = categoryService.categoryCreate(category);
         return responseVo;
     }
 
     //修改条目
-    @RequestMapping("category/update")
+    @RequestMapping("admin/category/update")
     public ResponseVo categoryUpdate(@RequestBody Category category){
         ResponseVo responseVo = categoryService.categoryUpdate(category);
         return responseVo;
     }
 
     //删除
-    @RequestMapping("category/delete")
+    @RequestMapping("admin/category/delete")
     public ResponseVo categoryDelete(@RequestBody Category category){
         ResponseVo responseVo = categoryService.categoryDelete(category);
         return responseVo;
     }
 
     //查询前台首页
-    @RequestMapping("catalog/index")
+    @RequestMapping("wx/catalog/index")
     public ResponseVo findAllCategory(){
         ResponseVo responseVo = categoryService.findAllCategory();
         return responseVo;
     }
     //查询前台一级类目及其二级类目
-    @RequestMapping("catalog/current")
+    @RequestMapping("wx/catalog/current")
     public ResponseVo findCategory(String id){
         ResponseVo responseVo = categoryService.findCategory(id);
         return responseVo;

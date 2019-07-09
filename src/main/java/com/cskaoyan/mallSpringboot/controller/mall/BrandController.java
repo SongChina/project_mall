@@ -21,31 +21,33 @@ public class BrandController {
     BrandService brandService;
 
     //查找
-    @RequestMapping("brand/list")
+    @RequestMapping("admin/brand/list")
     public ResponseVo brand(QueryIn queryIn, String id, String name){
         ResponseVo responseVo = brandService.queryBrandList(queryIn, id, name);
         return responseVo;
     }
     //新增
-    @RequestMapping("brand/create")
+    @RequestMapping("admin/brand/create")
     public ResponseVo brandCreate(@RequestBody Brand brand){
         ResponseVo responseVo = brandService.brandCreate(brand);
         return responseVo;
     }
     //修改
-    @RequestMapping("brand/update")
+    @RequestMapping("admin/brand/update")
     public ResponseVo brandUpdate(@RequestBody Brand brand){
         ResponseVo responseVo = brandService.brandUpdate(brand);
         return responseVo;
     }
     //删除
-    @RequestMapping("brand/delete")
+    @RequestMapping("admin/brand/delete")
     public Map brandDelete(@RequestBody Brand brand){
         return brandService.brandDelete(brand);
     }
 
+
+    //以下属于微信前端内容
     //品牌详情
-    @RequestMapping("brand/detail")
+    @RequestMapping("wx/brand/detail")
     public ResponseVo brandDetail(String id){
         return brandService.brandDetail(id);
     }

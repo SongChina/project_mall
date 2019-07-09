@@ -18,41 +18,41 @@ public class KeywordController {
     KeywordService keywordService;
 
     //查找
-    @RequestMapping("keyword/list")
+    @RequestMapping("admin/keyword/list")
     public ResponseVo keyword(QueryIn queryIn, String keyword, String url){
         ResponseVo responseVo = keywordService.queryKeywordList(queryIn, keyword, url);
         return responseVo;
     }
 
     //新增
-    @RequestMapping("keyword/create")
+    @RequestMapping("admin/keyword/create")
     public ResponseVo keywordCreate(@RequestBody Keyword keyword){
         ResponseVo responseVo = keywordService.keywordCreate(keyword);
         return responseVo;
     }
 
     //修改
-    @RequestMapping("keyword/update")
+    @RequestMapping("admin/keyword/update")
     public ResponseVo keywordUpdate(@RequestBody Keyword keyword){
         ResponseVo responseVo = keywordService.keywordUpdate(keyword);
         return responseVo;
     }
 
     //删除
-    @RequestMapping("keyword/delete")
+    @RequestMapping("admin/keyword/delete")
     public ResponseVo keywordDelete(@RequestBody Keyword keyword){
         ResponseVo responseVo = keywordService.keywordDelete(keyword);
         return responseVo;
     }
 
     //前台首页搜索
-    @RequestMapping("search/index")
+    @RequestMapping("wx/search/index")
     public ResponseVo findIndexSearchMessage(){
         ResponseVo responseVo = keywordService.findIndexSearchMessage();
         return responseVo;
     }
     //前台首页模糊搜索显示下拉框
-    @RequestMapping("search/helper")
+    @RequestMapping("wx/search/helper")
     public ResponseVo searchHelper(String keyword){
         ResponseVo responseVo = keywordService.searchHelper(keyword);
         return responseVo;

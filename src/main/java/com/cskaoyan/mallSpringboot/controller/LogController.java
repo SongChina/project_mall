@@ -9,12 +9,8 @@ import java.util.HashMap;
 @RestController
 public class LogController {
 
-    @RequestMapping("test")
-    public String test(){
-        return "This is test";
-    }
 
-    @RequestMapping("auth/login")
+    @RequestMapping("admin/auth/login")
     public ResponseVo login(){
         ResponseVo responseVo = new ResponseVo();
         responseVo.setErrno(0);
@@ -22,7 +18,7 @@ public class LogController {
         responseVo.setErrmsg("成功");
         return responseVo;
     }
-    @RequestMapping("auth/info")
+    @RequestMapping("admin/auth/info")
     public ResponseVo dashboard(){
         ResponseVo responseVo = new ResponseVo();
         responseVo.setErrno(0);
