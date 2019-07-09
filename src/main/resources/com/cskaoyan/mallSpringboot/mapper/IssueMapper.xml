@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.IssueMapper">
+  <!--查询-->
+  <select id="queryIssueList" resultMap="BaseResultMap">
+    select
+    id,
+    question,
+    answer,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_issue
+    where deleted = false
+    <if test="question != null">
+      and question like #{question}
+    </if>
+  </select>
+
+  <!--新增-->
+  <insert id="issueInsert" parameterType="com.cskaoyan.mallSpringboot.bean.Issue">
+    insert into cskaoyan_mall_issue
+    (question, answer, add_time, update_time, deleted)
+    value (#{question}, #{answer}, #{addTime}, #{updateTime}, false )
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT  LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+
+  <!--修改-->
+  <update id="issueUpdate">
+    update cskaoyan_mall_issue
+    set question = #{question}, answer = #{answer} , update_time = #{updateTime}
+    where id = #{id}
+  </update>
+
+  <!--删除-->
+  <update id="issueDelete">
+    update cskaoyan_mall_issue
+    set deleted = true, update_time = #{updateTime}
+    where id = #{id}
+  </update>
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Issue">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="question" jdbcType="VARCHAR" property="question" />

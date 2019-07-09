@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.OrderMapper">
+  <!--查找-->
+  <select id="queryOrderList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    <where>
+      <if test="orderStatusArray != null">
+        order_status in
+        <foreach collection="orderStatusArray" item="orderStatus" open="(" close=")" separator=",">
+          #{orderStatus}
+        </foreach>
+      </if>
+      <if test="orderSn != null">
+        and order_sn like #{orderSn}
+      </if>
+      <if test="userId != null">
+        and user_id like #{userId}
+      </if>
+        and deleted = false
+    </where>
+  </select>
+
+  <!--查询订单详情-->
+  <resultMap id="orderDetailMap" type="com.cskaoyan.mallSpringboot.bean.Order">
+    <id column="oid" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+    <result column="order_status" jdbcType="SMALLINT" property="orderStatus" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="freight_price" jdbcType="DECIMAL" property="freightPrice" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
+    <result column="integral_price" jdbcType="DECIMAL" property="integralPrice" />
+    <result column="groupon_price" jdbcType="DECIMAL" property="grouponPrice" />
+    <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
+    <result column="actual_price" jdbcType="DECIMAL" property="actualPrice" />
+    <result column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="ship_sn" jdbcType="VARCHAR" property="shipSn" />
+    <result column="ship_channel" jdbcType="VARCHAR" property="shipChannel" />
+    <result column="ship_time" jdbcType="TIMESTAMP" property="shipTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="comments" jdbcType="SMALLINT" property="comments" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="orderAddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="orderUpdateTime" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="orderDeleted" jdbcType="BIT" property="deleted" />
+    <association property="user" javaType="com.cskaoyan.mallSpringboot.bean.User">
+      <result column="nickname" property="nickname"/>
+      <result column="avatar" property="avatar"/>
+    </association>
+    <collection property="ordergoodsList" ofType="com.cskaoyan.mallSpringboot.bean.Ordergoods">
+      <result column="gid" jdbcType="INTEGER" property="id" />
+      <result column="order_id" jdbcType="INTEGER" property="orderId" />
+      <result column="ggoodsid" jdbcType="INTEGER" property="goodsId" />
+      <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+      <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />
+      <result column="product_id" jdbcType="INTEGER" property="productId" />
+      <result column="gnumber" jdbcType="SMALLINT" property="number" />
+      <result column="gprice" jdbcType="DECIMAL" property="price" />
+      <result column="gspecifications" jdbcType="VARCHAR" property="specifications" />
+      <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+      <result column="comment" jdbcType="INTEGER" property="comment" />
+      <result column="goodsAddTime" jdbcType="TIMESTAMP" property="addTime" />
+      <result column="goodsUpdateTime" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="goodsDeleted" jdbcType="BIT" property="deleted" />
+    </collection>
+    <collection property="goodsproductList" ofType="com.cskaoyan.mallSpringboot.bean.Goodsproduct">
+      <result column="pid" jdbcType="INTEGER" property="id" />
+      <result column="pgoodsid" jdbcType="INTEGER" property="goodsId" />
+      <result column="pspecifications" jdbcType="VARCHAR" property="specifications" />
+      <result column="ppirce" jdbcType="DECIMAL" property="price" />
+      <result column="pnumber" jdbcType="INTEGER" property="number" />
+      <result column="url" jdbcType="VARCHAR" property="url" />
+      <result column="pAddTime" jdbcType="TIMESTAMP" property="addTime" />
+      <result column="pUpdateTime" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="pDeleted" jdbcType="BIT" property="deleted" />
+    </collection>
+  </resultMap>
+
+  <select id="queryOrderDetail" resultMap="orderDetailMap">
+   select
+    o.id as oid, user_id, order_sn, order_status, consignee, o.mobile, address, message, goods_price,
+    freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price,
+    pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time,
+    o.add_time as orderAddTime, o.update_time as orderUpdateTime, o.deleted as orderDeleted,
+
+    nickname,avatar,
+
+    g.id as gid, order_id, g.goods_id as ggoodsid, goods_name, goods_sn, product_id, g.`number` as gnumber, g.price as gprice, g.specifications as gspecifications,
+    pic_url,`comment`, g.add_time as goodsAddTime, g.update_time as goodsUpdateTime, g.deleted as goodsDeleted,
+
+    p.id as pid, p.goods_id as pgoodsid, p.specifications as pspecifications, p.price as ppirce, p.`number` as pnumber, url, p.add_time as pAddTime, p.update_time as pUpdateTime, p.deleted as pDeleted
+    from cskaoyan_mall_order o
+    left join cskaoyan_mall_user u on o.user_id = u.id
+    left join cskaoyan_mall_order_goods g on o.id = g.order_id
+    left join cskaoyan_mall_goods_product p on g.product_id = p.id
+    where o.id = #{id}
+  </select>
+
+<!--底下为逆向工程所生成-->
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Order">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />

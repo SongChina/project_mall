@@ -1,18 +1,29 @@
 server:
+  port: 8080
   servlet:
     context-path: /admin
-  port: 8080
-
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/j14_project_mall?characterEncoding=utf8
     username: root
     password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/j14_project_mall?characterEncoding=utf8
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
   #json日期格式处理
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+myoss:
+  bucket: wpm
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  access-key: LTAIZZ8enay6EMyn
+  secret: 1sC6XmkJdusTmhNyox5pgDYrAd9aIM
 
 #debug: true
 #pageHelper配置，分页工具
@@ -22,3 +33,4 @@ spring:
 #            reasonable: true
 #            supportMethodsArguments: true
 #            params: count=countSql
+

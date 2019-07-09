@@ -8,17 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StringArrayTypeHandler extends BaseTypeHandler<String[]> {
+public class StringArrayTypeHandler  extends BaseTypeHandler<String[]> {
     //将String[]转化成String
     @Override
     public void setNonNullParameter(PreparedStatement preparedStatement, int i, String[] strings, JdbcType jdbcType) throws SQLException {
        // strings.toString()
         StringBuffer stringBuffer = new StringBuffer();
-
+        stringBuffer.append("[");
         for (String string : strings) {
             stringBuffer.append(string).append(",");
         }
         String substring = stringBuffer.substring(0, stringBuffer.length() - 1);
+        substring += "]";
         preparedStatement.setString(i, substring);
 
     }
@@ -43,6 +44,7 @@ public class StringArrayTypeHandler extends BaseTypeHandler<String[]> {
 
     private String[] transferString2StringArray(String string)
     {
+        string = string.substring(1, string.length() - 1);
         String[] split = string.split(",");
         return split;
     }

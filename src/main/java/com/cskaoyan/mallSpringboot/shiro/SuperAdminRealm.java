@@ -6,6 +6,7 @@ import com.cskaoyan.mallSpringboot.bean.Role;
 import com.cskaoyan.mallSpringboot.bean.RoleExample;
 import com.cskaoyan.mallSpringboot.mapper.AdminMapper;
 import com.cskaoyan.mallSpringboot.mapper.RoleMapper;
+import com.cskaoyan.mallSpringboot.service.shiro.ShiroService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -58,6 +59,8 @@ public class SuperAdminRealm extends AuthorizingRealm {
 		return info;
 	}
 
+	@Autowired
+	ShiroService shiroService;
 	//授权
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -65,14 +68,11 @@ public class SuperAdminRealm extends AuthorizingRealm {
 		Admin admin= (Admin) principalCollection.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		//从数据库中取出 当前用户的授权信息（可以查询role，也可以查询permission）
-
-		String roleIds = admin.getRoleIds();
-		String temp = roleIds.substring(1, roleIds.length() - 1);
-		String[] ids = temp.split(",");
-		List<Integer> intIds = new ArrayList<>();
+		/*List<Integer> intIds = new ArrayList<>();
 		int i = 0;
-		for (String id : ids) {
-			intIds.set(i, Integer.parseInt(id));
+		int[] roleIds = admin.getRoleIds();
+		for (int roleId : roleIds) {
+			intIds.set(i, roleId);
 			i ++;
 		}
 		RoleExample roleExample = new RoleExample();
@@ -85,7 +85,20 @@ public class SuperAdminRealm extends AuthorizingRealm {
 		for (Role role : roles) {
 			roleSet.add(role.getName());
 		}
+		info.addRoles(roleSet);*/
+
+		List<String> allPermission = shiroService.getAllPermission(admin.getRoleIds());
+		for (String s : allPermission) {
+			info.addStringPermission(s);
+		}
+
+		HashSet<String> roleSet = new HashSet<>();
+		List<String> allRolesInChinese = shiroService.getAllRolesInChinese(admin.getRoleIds());
+		for (String s : allRolesInChinese) {
+			roleSet.add(s);
+		}
 		info.addRoles(roleSet);
+
 		//info.addStringPermission("user:query");
 
 		return info;

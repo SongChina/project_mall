@@ -6,10 +6,9 @@ import com.cskaoyan.mallSpringboot.gss_vo.dashboard.DashboardData;
 import com.cskaoyan.mallSpringboot.gss_vo.dashboard.DashboardVo;
 import com.cskaoyan.mallSpringboot.gss_vo.data.DashBoardData;
 import com.cskaoyan.mallSpringboot.gss_vo.generalvo.GeneralVo;
-import com.cskaoyan.mallSpringboot.mapper.GoodsMapper;
-import com.cskaoyan.mallSpringboot.mapper.GoodsproductMapper;
-import com.cskaoyan.mallSpringboot.mapper.OrderMapper;
-import com.cskaoyan.mallSpringboot.mapper.UserMapper;
+import com.cskaoyan.mallSpringboot.mapper.*;
+import com.cskaoyan.mallSpringboot.service.shiro.ShiroService;
+import com.cskaoyan.mallSpringboot.service.shiro.impl.ShiroServiceImpl;
 import com.cskaoyan.mallSpringboot.utils.MD5Util;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.apache.shiro.SecurityUtils;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,7 +53,7 @@ public class LogController {
             responseVo.setErrno(0);
             responseVo.setData(subject.getSession().getId());
 
-            responseVo.setErrmas("成功");
+            responseVo.setErrmsg("成功");
             loginUser2 = loginUser;
             return responseVo;
         }catch (Exception e){
@@ -61,9 +61,12 @@ public class LogController {
         }
 
     }
+    @Autowired
+    ShiroService shiroService;
+
     @RequestMapping("auth/info")
     @ResponseBody
-    public GeneralVo dashboard(){
+    public ResponseVo dashboard(){
         //然后再根据loginUser2去拿到数据库中对应的管理员的信息，并且填入到ResponseVo中
 
         GeneralVo<DashBoardData> operatorInfo = new GeneralVo<>();
@@ -71,18 +74,25 @@ public class LogController {
         DashBoardData dashBoardData = new DashBoardData();
         dashBoardData.setName(loginUser2.getUsername());
 
-        //需要将该管理用户的具体权限从相应的表中取出，
+        //需要将该管理用户对应的角色名从数据库中取出
 
-     /*   ResponseVo responseVo = new ResponseVo();
+        Admin admin = shiroService.getSingleAdminByUserName(loginUser2.getUsername());
+        List<String> perms = shiroService.getAllPermission(admin.getRoleIds());
+        List<String> rolesInName = shiroService.getAllRolesInChinese(admin.getRoleIds());
+
+        ResponseVo responseVo = new ResponseVo();
         responseVo.setErrno(0);
         HashMap<String, Object> para = new HashMap<>();
-        para.put("perms", "*");
-        para.put("roles", "商场管理员");
-        para.put("name", "admin123");
-        para.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+
+        para.put("perms", perms);
+
+
+        para.put("roles", rolesInName);
+        para.put("name", admin.getUsername());
+        para.put("avatar", admin.getAvatar());
         responseVo.setData(para);
-        responseVo.setErrmas("成功");*/
-        return null;
+        responseVo.setErrmsg("成功");
+        return responseVo;
     }
 
     @Autowired
@@ -125,7 +135,4 @@ public class LogController {
         dashboardVo.setData(dashboardData);
         return dashboardVo;
     }
-
-
-
 }

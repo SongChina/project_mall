@@ -1,9 +1,15 @@
 package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Brand;
+import com.cskaoyan.mallSpringboot.bean.BrandData;
 import com.cskaoyan.mallSpringboot.bean.BrandExample;
 import java.util.List;
+import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import java.util.List;
+@Component
+
 
 public interface BrandMapper {
 
@@ -34,6 +40,19 @@ public interface BrandMapper {
     int updateByPrimaryKey(Brand record);
 
 
+    //商品管理
+    List<BrandData> brandList();
 
 
+
+
+    int brandInsert(Brand brand);
+
+    int brandDelete(Brand brand);
+
+
+
+    Brand selectBrandById(Integer id);
+
+    int brandUpdate(Brand brand);
 }

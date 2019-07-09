@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.FeedbackMapper">
+
+  <!--查询用户总数,``英文模式下Esc下面那个键-->
+  <select id="queryFeedBackCount" resultType="Integer">
+    select count(*) from cskaoyan_mall_feedback where deleted = false
+    <if test="id != null">
+      and id like #{id}
+
+    </if>
+    <if test="username != null">
+      and username like #{username}
+
+    </if>
+  </select>
+
+  <!--查询所有意见反馈信息 tinyint，date，int，datetime不需要用``-->
+  <select id="queryFeedBackList" resultMap="BaseResultMap">
+    select
+    id,
+    user_id,
+    `username`,
+    `mobile`,
+    feed_type,
+    `content`,
+    status,
+    has_picture,
+    pic_urls,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_feedback
+    where deleted = false
+    <if test="id != null">
+      and id like #{id}
+
+    </if>
+    <if test="username != null">
+      and username like #{username}
+
+    </if>
+  </select>
+
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Feedback">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
