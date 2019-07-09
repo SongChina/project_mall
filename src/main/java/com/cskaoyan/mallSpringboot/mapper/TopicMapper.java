@@ -3,10 +3,11 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Topic;
 import com.cskaoyan.mallSpringboot.bean.TopicExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-
+@Repository
 public interface TopicMapper {
     long countByExample(TopicExample example);
 

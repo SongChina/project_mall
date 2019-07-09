@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.GrouponActivityMapper">
-    <!--<resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.GrouponActivity">-->
+   <!-- <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.GrouponActivity">
 
-        <!--<association property="groupon" javaType="com.cskaoyan.mallSpringboot.bean.Groupon">-->
-            <!--<id column="id" jdbcType="INTEGER" property="id" />-->
-            <!--<result column="order_id" jdbcType="INTEGER" property="orderId" />-->
-            <!--&lt;!&ndash;<result column="groupon_id" jdbcType="INTEGER" property="grouponId" />&ndash;&gt;-->
-            <!--<result column="rules_id" jdbcType="INTEGER" property="rulesId" />-->
-            <!--<result column="user_id" jdbcType="INTEGER" property="userId" />-->
-            <!--&lt;!&ndash;<result column="creator_user_id" jdbcType="INTEGER" property="creatorUserId" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="add_time" jdbcType="TIMESTAMP" property="addTime" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />&ndash;&gt;-->
-            <!--<result column="share_url" jdbcType="VARCHAR" property="shareUrl" />-->
-            <!--<result column="payed" jdbcType="BIT" property="payed" />-->
-            <!--<result column="deleted" jdbcType="BIT" property="deleted" />-->
-        <!--</association>-->
-        <!--&lt;!&ndash;<collection  property="goods" javaType="com.cskaoyan.mallSpringboot.bean.Goods">&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="goods_id" jdbcType="INTEGER" property="id" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="name" jdbcType="VARCHAR" property="name" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="category_id" jdbcType="INTEGER" property="categoryId" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="brand_id" jdbcType="INTEGER" property="brandId" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="gallery" jdbcType="VARCHAR" property="gallery" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="keywords" jdbcType="VARCHAR" property="keywords" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="brief" jdbcType="VARCHAR" property="brief" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="is_on_sale" jdbcType="BIT" property="isOnSale" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="sort_order" jdbcType="SMALLINT" property="sortOrder" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="pic_url" jdbcType="VARCHAR" property="picUrl" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="share_url" jdbcType="VARCHAR" property="shareUrl" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="is_new" jdbcType="BIT" property="isNew" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="is_hot" jdbcType="BIT" property="isHot" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="unit" jdbcType="VARCHAR" property="unit" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="counter_price" jdbcType="DECIMAL" property="counterPrice" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="retail_price" jdbcType="DECIMAL" property="retailPrice" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="add_time" jdbcType="TIMESTAMP" property="addTime" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="deleted" jdbcType="BIT" property="deleted" />&ndash;&gt;-->
-        <!--&lt;!&ndash;</collection>&ndash;&gt;-->
-        <!--<collection property="grouponrules" javaType="com.cskaoyan.mallSpringboot.bean.Grouponrules">-->
-            <!--<result column="grouponrules_id" jdbcType="INTEGER" property="id"/>-->
-            <!--<result column="goods_id" jdbcType="INTEGER" property="goodsId"/>-->
-            <!--&lt;!&ndash;<result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>&ndash;&gt;-->
-            <!--<result column="discount" jdbcType="DECIMAL" property="discount"/>-->
-            <!--<result column="discount_member" jdbcType="INTEGER" property="discountMember"/>-->
-            <!--<result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>-->
-            <!--&lt;!&ndash;<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>&ndash;&gt;-->
-            <!--<result column="expire_time" jdbcType="TIMESTAMP" property="expireTime"/>-->
-            <!--&lt;!&ndash;<result column="deleted" jdbcType="BIT" property="deleted"/>&ndash;&gt;-->
-        <!--</collection>-->
-    <!--</resultMap>-->
-    <!--&lt;!&ndash;按条件查询，结果总数&ndash;&gt;-->
-    <!--<select id="queryCount" resultType="Integer">-->
-        <!--select count(*) from cskaoyan_mall_groupon where deleted = 0-->
-        <!--<if test="goodsId != ''and goodsId !=null">-->
-            <!--and goods_id = #{goodsId}-->
-        <!--</if>-->
-    <!--</select>-->
-    <!--&lt;!&ndash;查询信息&ndash;&gt;-->
-    <!--<select id="queryList" resultMap="BaseResultMap">-->
-        <!--select g.id,-->
-       <!--/* id,goods_id,discount,discount_member,-->
-                <!--add_time,update_time,expire_time*/-->
-        <!--from cskaoyan_mall_groupon g-->
-        <!--left join cskaoyan_mall_groupon_rules rules on g.rules_id=rules.grouponrules_id-->
-        <!--where deleted = 0-->
-        <!--<if test="goodsId !=''and goodsId !=null ">-->
-            <!--and goods_id = #{goodsId}-->
-        <!--</if>-->
-        <!--order by  ${sort} ${order}-->
-    <!--</select>-->
+        <association property="groupon" javaType="com.cskaoyan.mallSpringboot.bean.Groupon">
+            <id column="id" jdbcType="INTEGER" property="id" />
+            <result column="order_id" jdbcType="INTEGER" property="orderId" />
+            <result column="groupon_id" jdbcType="INTEGER" property="grouponId" />
+            <result column="rules_id" jdbcType="INTEGER" property="rulesId" />
+            <result column="user_id" jdbcType="INTEGER" property="userId" />
+            <result column="creator_user_id" jdbcType="INTEGER" property="creatorUserId" />
+            <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+            <result column="share_url" jdbcType="VARCHAR" property="shareUrl" />
+            <result column="payed" jdbcType="BIT" property="payed" />
+            <result column="deleted" jdbcType="BIT" property="deleted" />
+        </association>
+        <collection  property="goods" javaType="com.cskaoyan.mallSpringboot.bean.Goods">
+            <result column="goods_id" jdbcType="INTEGER" property="id" />
+            <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />
+            <result column="name" jdbcType="VARCHAR" property="name" />
+            <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+            <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+            <result column="gallery" jdbcType="VARCHAR" property="gallery" />
+            <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+            <result column="brief" jdbcType="VARCHAR" property="brief" />
+            <result column="is_on_sale" jdbcType="BIT" property="isOnSale" />
+            <result column="sort_order" jdbcType="SMALLINT" property="sortOrder" />
+            <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+            <result column="share_url" jdbcType="VARCHAR" property="shareUrl" />
+            <result column="is_new" jdbcType="BIT" property="isNew" />
+            <result column="is_hot" jdbcType="BIT" property="isHot" />
+            <result column="unit" jdbcType="VARCHAR" property="unit" />
+            <result column="counter_price" jdbcType="DECIMAL" property="counterPrice" />
+            <result column="retail_price" jdbcType="DECIMAL" property="retailPrice" />
+            <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+            <result column="deleted" jdbcType="BIT" property="deleted" />
+        </collection>
+        <collection property="grouponrules" javaType="com.cskaoyan.mallSpringboot.bean.Grouponrules">
+            <result column="grouponrules_id" jdbcType="INTEGER" property="id"/>
+            <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+            <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+            <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>
+            <result column="discount" jdbcType="DECIMAL" property="discount"/>
+            <result column="discount_member" jdbcType="INTEGER" property="discountMember"/>
+            <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+            <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime"/>
+            <result column="deleted" jdbcType="BIT" property="deleted"/>
+        </collection>
+    </resultMap>
+    &lt;!&ndash;按条件查询，结果总数&ndash;&gt;
+    <select id="queryCount" resultType="Integer">
+        select count(*) from cskaoyan_mall_groupon where deleted = 0
+        <if test="goodsId != ''and goodsId !=null">
+            and goods_id = #{goodsId}
+        </if>
+    </select>
+    &lt;!&ndash;查询信息&ndash;&gt;
+    <select id="queryList" resultMap="BaseResultMap">
+        select g.id,
+       /* id,goods_id,discount,discount_member,
+                add_time,update_time,expire_time*/
+        from cskaoyan_mall_groupon g
+        left join cskaoyan_mall_groupon_rules rules on g.rules_id=rules.grouponrules_id
+        where deleted = 0
+        <if test="goodsId !=''and goodsId !=null ">
+            and goods_id = #{goodsId}
+        </if>
+        order by  ${sort} ${order}
+    </select>
 
-
+-->
 </mapper>

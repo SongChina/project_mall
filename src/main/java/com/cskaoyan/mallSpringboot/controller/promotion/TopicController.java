@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@RequestMapping("topic")
+//@RequestMapping("admin/topic/")
 @RestController
 public class TopicController {
     @Autowired
     TopicService topicService;
     //查
-    @RequestMapping("list")
+    @RequestMapping("admin/topic/list")
     public ResponseVo queryTopicList(QueryIn queryIn,String title,String subtitle){
         ResponseVo responseVo = topicService.queryList(queryIn, title, subtitle);
         return responseVo;
     }
-    @RequestMapping("create")
+    @RequestMapping("admin/topic/create")
     public Object createTopic(@RequestBody Topic topic){
         try {
             Topic data = topicService.createTopic(topic);
@@ -34,7 +34,7 @@ public class TopicController {
         }
     }
     //update
-    @RequestMapping("update")
+    @RequestMapping("admin/topic/update")
     public Object update(@RequestBody Topic topic) {
         topic.setUpdateTime(new Date());
         topic.setDeleted(false);
@@ -47,7 +47,7 @@ public class TopicController {
         }
     }
     //delete
-    @RequestMapping("delete")
+    @RequestMapping("admin/topic/delete")
     public ErrorVo delete(@RequestBody Topic topic) {
         Integer id = topic.getId();
         Date updateTime = topic.getUpdateTime();

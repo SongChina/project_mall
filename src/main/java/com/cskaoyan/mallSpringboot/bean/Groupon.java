@@ -1,5 +1,7 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Groupon {
@@ -15,8 +17,10 @@ public class Groupon {
 
     private Integer creatorUserId;
 
+    //特殊的日期格式
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date addTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     private String shareUrl;

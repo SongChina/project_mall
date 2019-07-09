@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 
 @RestController
+@RequestMapping("admin")
 public class LogController {
 
     @RequestMapping("test")

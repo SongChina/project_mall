@@ -15,16 +15,16 @@ import java.util.Date;
 ;
 
 @RestController
-@RequestMapping("ad")
+//@RequestMapping("admin/ad/")
 public class AdvertisementController {
     @Autowired
     AdService adService;
 
-    @RequestMapping("list")
+    @RequestMapping("admin/ad/list")
     public ResponseVo adList(QueryIn queryIn, String name, String content) {
         return adService.queryList(queryIn,name,content);
     }
-    @RequestMapping("create")
+    @RequestMapping("admin/ad/create")
     public Object createAd(@RequestBody Ad ad){
         try {
             Ad data = adService.createAd(ad);
@@ -35,7 +35,7 @@ public class AdvertisementController {
         }
     }
 
-    @RequestMapping("update")
+    @RequestMapping("admin/ad/update")
     public Object update(@RequestBody Ad ad){
         ad.setUpdateTime(new Date());
         ad.setDeleted(false);
@@ -48,7 +48,7 @@ public class AdvertisementController {
         }
     }
 
-    @RequestMapping("delete")
+    @RequestMapping("admin/ad/delete")
     public ErrorVo delete(@RequestBody Ad ad) {
         Integer id = ad.getId();
         Date updateTime = ad.getUpdateTime();

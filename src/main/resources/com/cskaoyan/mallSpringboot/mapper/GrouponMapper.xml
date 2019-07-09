@@ -14,6 +14,32 @@
     <result column="payed" jdbcType="BIT" property="payed" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+  <!--按条件查询，结果总数-->
+  <select id="queryCount" resultType="_int">
+    select count(*) from cskaoyan_mall_groupon g
+    left join cskaoyan_mall_groupon_rules rules
+    on g.rules_id = rules.id
+    where g.deleted = 0 and rules.deleted = 0
+    <if test="goodsId != '' and goodsId !=null">
+      and rules.goods_id = #{goodsId}
+    </if>
+  </select>
+  <!--查询列表-->
+  <select id="queryList" resultMap="BaseResultMap">
+    select g.* from cskaoyan_mall_groupon g
+    left join cskaoyan_mall_groupon_rules rules
+    on g.rules_id = rules.id
+    where g.deleted = 0 and rules.deleted = 0
+    <if test="goodsId != '' and goodsId !=null">
+      and rules.goods_id = #{goodsId}
+    </if>
+    order by ${sort} ${order}
+  </select>
+
+
+
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

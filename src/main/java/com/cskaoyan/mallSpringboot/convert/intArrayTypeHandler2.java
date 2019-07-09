@@ -8,17 +8,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class intArrayTypeHandler implements TypeHandler<int[]> {
+public class intArrayTypeHandler2 implements TypeHandler<int[]> {
 
     @Override
     public void setParameter(PreparedStatement preparedStatement, int i, int[] ints1, JdbcType jdbcType) throws SQLException {
         StringBuffer sb = new StringBuffer();
-        for (int ints : ints1) {
-            sb.append(ints).append(",");
-
+        if (ints1.length == 0){
+            preparedStatement.setString(i, "[]");
         }
-        String substring = sb.substring(0, sb.length() - 1);
-        preparedStatement.setString(i, substring);
+        else {
+            for (int ints : ints1) {
+                sb.append(ints).append(",");
+
+            }
+            String substring = sb.substring(0, sb.length() - 1);
+            preparedStatement.setString(i, substring);
+        }
 
     }
 
@@ -41,13 +46,19 @@ public class intArrayTypeHandler implements TypeHandler<int[]> {
     }
 
     private int[] transString2IntArray(String string) {
-        String s = string.toString().replace("[", "");
-        String replace = s.toString().replace("]", "");
-        String[] ints1 = replace.split(",");
+        if ("[]".equals(string)){
+            return new int[0];
+        }
+        else{
+        //String s = string.toString().replace("[", "");
+        //String replace = s.toString().replace("]", "");
+        //String[] ints1 = replace.split(",");
+        String[] ints1 = string.split(",");
+
         int[] ints = new int[ints1.length];
         for (int i = 0; i < ints1.length; i++) {
             ints[i] = Integer.parseInt(ints1[i]);
         }
-        return ints;
+        return ints;}
     }
 }

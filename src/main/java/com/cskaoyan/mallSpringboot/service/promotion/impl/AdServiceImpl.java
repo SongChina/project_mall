@@ -23,6 +23,10 @@ public class AdServiceImpl implements AdService {
     public Ad createAd(Ad ad) {
         ad.setAddTime(new Date());
         ad.setUpdateTime(new Date());
+        //
+//        ad.setStartTime(new Date());//不符合逻辑，暂时这样测试
+//        ad.setEndTime(new Date());
+        //
         ad.setDeleted(false);
 
         int insert = adMapper.insert(ad);
@@ -44,7 +48,7 @@ public class AdServiceImpl implements AdService {
         int total = adMapper.queryCount(name,content);
         PageHelper.startPage(queryIn.getPage(),queryIn.getLimit());
         List<Ad> list = adMapper.queryList(name, content, queryIn.getSort(), queryIn.getOrder());
-        PageInfo<Ad> pageInfo = new PageInfo<>(list);
+        PageInfo<Ad> pageInfo = new PageInfo<>(list);//这句是否多余，是否只在查询语句前使用startPage就足够
         data.put("total",total);
         data.put("items",pageInfo.getList());
 
