@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("wx")
 public class HomeController {
 
     @Autowired
     GoodsListService goodsListService;
 
     //获取微信首页所有信息
-    @RequestMapping("home/index")
+    @RequestMapping("wx/home/index")
     public ResponseVo getHomeIndexMessage(){
         ResponseVo responseVo = goodsListService.getHomeIndexMessage();
         return responseVo;

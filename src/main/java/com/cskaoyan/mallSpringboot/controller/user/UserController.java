@@ -20,7 +20,7 @@ public class UserController {
     UserService userService;
 
     //会员管理分类查询
-    @RequestMapping("user/list")
+    @RequestMapping("admin/user/list")
     @RequiresRoles(value = {"超级管理员"})
     public ResponseVo userList(QueryIn queryIn, String username, String mobile) {
         ResponseVo responseVo = userService.queryUserList(queryIn, username, mobile);

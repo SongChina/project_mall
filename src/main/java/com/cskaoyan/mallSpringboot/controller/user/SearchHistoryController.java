@@ -17,7 +17,7 @@ public class SearchHistoryController {
     SearchHistoryService searchHistoryService;
 
     //搜索历史分类查询
-    @RequestMapping("history/list")
+    @RequestMapping("admin/history/list")
     public ResponseVo SearchHistoryList(QueryIn queryIn,String userId,String keyword) {
         ResponseVo responseVo = searchHistoryService.querySearchHistoryList(queryIn,userId,keyword);
         return responseVo;

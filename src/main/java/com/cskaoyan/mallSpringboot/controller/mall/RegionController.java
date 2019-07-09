@@ -12,7 +12,7 @@ public class RegionController {
     @Autowired
     RegionService regionService;
 
-    @RequestMapping("region/list")
+    @RequestMapping("admin/region/list")
     public ResponseVo region(String pid){
         ResponseVo responseVo = regionService.getAllRegion(pid);
         return responseVo;

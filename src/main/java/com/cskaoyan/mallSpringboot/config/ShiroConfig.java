@@ -15,7 +15,7 @@ import java.util.HashMap;
  * Created by little Stone
  * Date 2019/7/6 Time 11:28
  */
-/*@Configuration*/
+@Configuration
 public class ShiroConfig {
 
 	@Bean
@@ -38,12 +38,12 @@ public class ShiroConfig {
 		//		/login = anon
 		//		/logout = logout
 		///** = authc
-		filterMap.put("/auth/login","anon");
-		filterMap.put("/auth/logout","logout");
+		filterMap.put("admin/auth/login","anon");
+		filterMap.put("admin/auth/logout","logout");
 		//filterMap.put("/user/query","perms[user:query]");
 		//filterMap.put("/user/query2","perms[user:query2]");
 
-		filterMap.put("/**","authc");
+		filterMap.put("admin/**","authc");
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 

@@ -26,12 +26,13 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin")
 public class LogController {
+
+    ResponseVo responseVo;
 
     private static LoginUser loginUser2 = new LoginUser();
 
-    @RequestMapping("auth/login")
+    @RequestMapping("admin/auth/login")
     @ResponseBody
     public ResponseVo login(@RequestBody LoginUser loginUser){
 
@@ -59,7 +60,7 @@ public class LogController {
     @Autowired
     ShiroService shiroService;
 
-    @RequestMapping("auth/info")
+    @RequestMapping("admin/auth/info")
     @ResponseBody
     public ResponseVo dashboard(){
         //然后再根据loginUser2去拿到数据库中对应的管理员的信息，并且填入到ResponseVo中
@@ -99,9 +100,9 @@ public class LogController {
     @Autowired
     UserMapper userMapper;
 
-    @RequestMapping("/dashboard")
+    @RequestMapping("admin/dashboard")
     @ResponseBody
-    public DashboardVo getBaseInfo(){
+    public DashboardVo getBaseInfo() {
         DashboardVo dashboardVo = new DashboardVo();
         DashboardData dashboardData = new DashboardData();
 
@@ -129,5 +130,13 @@ public class LogController {
         dashboardVo.setErrmsg("成功");
         dashboardVo.setData(dashboardData);
         return dashboardVo;
+/*=======
+    @RequestMapping("log/list")
+    public ResponseVo queryList(int page,int limit,String admin){
+        responseVo=new ResponseVo();
+        responseVo=logService.queryList(page,limit,admin);
+        return responseVo;
+>>>>>>> 0a364ec252052fb29577c8a264e5be7e1a389acd
+    }*/
     }
 }

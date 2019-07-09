@@ -28,6 +28,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public ResponseVo queryOption() {
+        responseVo = new ResponseVo();
         List<OptionVo> data=new ArrayList();
         List<Role> roles=roleMapper.queryAllRole();
         for(Role role:roles) {

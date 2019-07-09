@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("admin")
 public class RoleController {
     @Autowired
     RoleService roleService;
@@ -23,35 +22,35 @@ public class RoleController {
     public static final JsonObject jsonObject = new JsonObject();
 
 
-    @RequestMapping("role/options")
+    @RequestMapping("admin/role/options")
     public ResponseVo queryOption(){
         responseVo=new ResponseVo();
         responseVo=roleService.queryOption();
         return responseVo;
     }
 
-    @RequestMapping("role/list")
+    @RequestMapping("admin/role/list")
     public ResponseVo queryList(int page,int limit,String name, String sort, String order){
         responseVo=new ResponseVo();
         responseVo=roleService.queryList(page,limit,name,sort, order);
         return responseVo;
     }
 
-    @RequestMapping("role/create")
+    @RequestMapping("admin/role/create")
     public ResponseVo insertRole(@RequestBody Role role){
         responseVo=new ResponseVo();
         responseVo=roleService.insertRole(role);
         return  responseVo;
     }
 
-    @RequestMapping("role/update")
+    @RequestMapping("admin/role/update")
     public ResponseVo updateRole(@RequestBody Role role){
         responseVo=new ResponseVo();
         responseVo=roleService.updateRole(role);
         return responseVo;
     }
 
-    @RequestMapping("role/delete")
+    @RequestMapping("admin/role/delete")
     public ResponseVo deleteRole(@RequestBody Role role){
         responseVo=new ResponseVo();
         responseVo=roleService.deleteRole(role.getId());

@@ -24,7 +24,7 @@ public class StatisticController {
     @Autowired
     UserMapper usermapper;
 
-    @RequestMapping(value = "stat/user", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/stat/user", method = RequestMethod.GET)
     @ApiOperation(value = "getUserStatistics", notes = "这是获取用户统计数据的测试")
     public StatisticsVo getUserStatistics(){
         List<CustomerStatisticInfo> customerStatisticInfos = usermapper.queryUserByAddTimeInGroup();
@@ -55,7 +55,7 @@ public class StatisticController {
     @Autowired
     OrderMapper orderMapper;
 
-    @RequestMapping("stat/order")
+    @RequestMapping("admin/stat/order")
     public StatisticsVo getOrderStatistics() {
         List<OrderStatisticInfo> orderStatisticInfos = orderMapper.queryOrdersByAddTimeInGroup();
 
@@ -82,7 +82,7 @@ public class StatisticController {
         return statisticsVo;
     }
 
-    @RequestMapping("stat/goods")
+    @RequestMapping("admin/stat/goods")
     public StatisticsVo getGoodsStatistics() {
         List<GoodsStatisticInfo> goodsStatisticInfos = orderMapper.queryGoodsByAddTimeInGroup();
 

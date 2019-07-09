@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
-@RequestMapping("groupon")
 public class GrouponrulesController {
     @Autowired
     GrouponrulesService grouponrulesService;
@@ -22,13 +21,13 @@ public class GrouponrulesController {
     GrouponActivityService grouponActivityService;
 
 
-    @RequestMapping("list")
+    @RequestMapping("admin/groupon/list")
     public ResponseVo grouponrulesPage(QueryIn queryIn, String goodsId) {
         ResponseVo responseVo = grouponrulesService.queryGrouponrulesList(queryIn, goodsId);
         return responseVo;
     }
 
-    @RequestMapping("create")
+    @RequestMapping("admin/groupon/create")
     public Object createGrouponrule(@RequestBody Grouponrules grouponrules) {
         ResponseVo responseVo = new ResponseVo();
         try {
@@ -46,7 +45,7 @@ public class GrouponrulesController {
         }
     }
         //改
-    @RequestMapping("update")
+    @RequestMapping("admin/groupon/update")
     public ErrorVo update(@RequestBody Grouponrules grouponrules) {
         grouponrules.setUpdateTime(new Date());
         try {
@@ -58,7 +57,7 @@ public class GrouponrulesController {
         }
     }
     //删
-    @RequestMapping("delete")
+    @RequestMapping("admin/groupon/delete")
     public ErrorVo delete(@RequestBody Grouponrules grouponrules) {
         Integer id = grouponrules.getId();
         Date updateTime = grouponrules.getUpdateTime();
@@ -70,7 +69,7 @@ public class GrouponrulesController {
             return new ErrorVo(401,"删除失败，稍后重试");
         }
     }
-    @RequestMapping("listRecord")
+    @RequestMapping("admin/groupon/listRecord")
     public ResponseVo grouponActivityPage(QueryIn queryIn, String goodsId) {
         ResponseVo responseVo = grouponActivityService.queryList(queryIn, goodsId);
         return responseVo;

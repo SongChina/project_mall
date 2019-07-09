@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping("admin/")
 public class AdminController {
 
     @Autowired
