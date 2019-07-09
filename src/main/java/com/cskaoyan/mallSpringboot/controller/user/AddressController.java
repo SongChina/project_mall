@@ -17,7 +17,7 @@ public class AddressController {
     AddressService addressService;
 
     //收货地址分类查询
-    @RequestMapping("address/list")
+    @RequestMapping("admin/address/list")
     public ResponseVo addressList(QueryIn queryIn,String userId,String name) {
         ResponseVo responseVo = addressService.queryAddressList(queryIn,userId,name);
         return responseVo;

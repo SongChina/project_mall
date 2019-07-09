@@ -1,6 +1,6 @@
 package com.cskaoyan.mallSpringboot.controller.user;
 
-import com.cskaoyan.mallSpringboot.service.SearchHistoryService;
+import com.cskaoyan.mallSpringboot.service.admin.SearchHistoryService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class SearchHistoryController {
     SearchHistoryService searchHistoryService;
 
     //搜索历史分类查询
-    @RequestMapping("history/list")
+    @RequestMapping("admin/history/list")
     public ResponseVo SearchHistoryList(QueryIn queryIn,String userId,String keyword) {
         ResponseVo responseVo = searchHistoryService.querySearchHistoryList(queryIn,userId,keyword);
         return responseVo;

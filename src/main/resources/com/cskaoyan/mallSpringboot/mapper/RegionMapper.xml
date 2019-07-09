@@ -15,6 +15,13 @@
     SELECT id, `name`, `type`, `code` from cskaoyan_mall_region WHERE `type` = 3 and code like #{code}
   </select>
 
+  <!--通过pid查询-->
+  <select id="queryByPid" resultMap="BaseResultMap">
+    select id, pid, `name`, `type`, code
+    from cskaoyan_mall_region
+    where pid = #{pid}
+  </select>
+
 
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Region">
     <id column="id" jdbcType="INTEGER" property="id" />

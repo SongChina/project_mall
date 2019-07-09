@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
 @RestController
-//@RequestMapping("admin/groupon/")
+
 public class GrouponrulesController {
     @Autowired
     GrouponrulesService grouponrulesService;
@@ -57,7 +57,6 @@ public class GrouponrulesController {
         }
     }
 
-    //改
     @RequestMapping("admin/groupon/update")
     public ErrorVo update(@RequestBody Grouponrules grouponrules) {
         grouponrules.setUpdateTime(new Date());

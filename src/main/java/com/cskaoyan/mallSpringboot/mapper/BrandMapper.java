@@ -55,4 +55,7 @@ public interface BrandMapper {
     Brand selectBrandById(Integer id);
 
     int brandUpdate(Brand brand);
+
+    List<Brand> queryIndexBrand();
+
 }

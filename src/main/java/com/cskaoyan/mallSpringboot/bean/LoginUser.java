@@ -1,15 +1,8 @@
 package com.cskaoyan.mallSpringboot.bean;
 
-public class AdminInWeb {
+public class LoginUser {
     private String username;
     private String password;
-    private int[] roleIds;
-
-    public AdminInWeb(String username, String password, int[] roleIds) {
-        this.username = username;
-        this.password = password;
-        this.roleIds = roleIds;
-    }
 
     public String getUsername() {
         return username;
@@ -25,13 +18,5 @@ public class AdminInWeb {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int[] getRoleIds() {
-        return roleIds;
-    }
-
-    public void setRoleIds(int[] roleIds) {
-        this.roleIds = roleIds;
     }
 }

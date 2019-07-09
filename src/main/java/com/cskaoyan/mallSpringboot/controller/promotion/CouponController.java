@@ -17,7 +17,8 @@ import java.util.Date;
 
 
 @RestController
-//@RequestMapping("admin/coupon/")
+
+
 public class CouponController {
     @Autowired
     CouponService couponService;

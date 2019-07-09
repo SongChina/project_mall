@@ -20,6 +20,13 @@ public interface GoodsListService {
     //ResponseVo storageCreate(File file);
 
 
+    ResponseVo CountGoods();
 
+    ResponseVo getHomeIndexMessage();
 
+    ResponseVo findGoodsCategory(String id);
+
+    ResponseVo getGoodsList(String categoryId, String page, String size);
+
+    ResponseVo getWxGoodsDetail(int id);
 }

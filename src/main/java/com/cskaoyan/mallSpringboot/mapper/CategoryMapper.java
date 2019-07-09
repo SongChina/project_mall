@@ -32,7 +32,7 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     //by wpm
-    List<Category> selectCategory(int pid);
+    List<Category> selectCategoryByPid(int pid);
 
     int categoryDelete(Category category);
     //
@@ -42,7 +42,15 @@ public interface CategoryMapper {
 
     int categoryInsert(Category category);
 
-    Category selectCategoryById(Integer id);
+    Category selectCategoryById(@Param("id") Integer id);
 
     int categoryUpdate(Category category);
+
+    Category queryFirstCategory();
+
+    List<Category> selectIndexCategoryByPid(@Param("pid") int pid);
+
+    List<Category> queryIndexFloorCategory();
+
+    List<Category> queryFilterCategoryList();
 }

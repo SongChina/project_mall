@@ -17,7 +17,7 @@ public class CollectController {
     CollectService collectService;
 
     //会员收藏分类查询
-    @RequestMapping("collect/list")
+    @RequestMapping("admin/collect/list")
     public ResponseVo collectList(QueryIn queryIn,String userId,String valueId) {
         ResponseVo responseVo = collectService.queryCollectList(queryIn,userId,valueId);
         return responseVo;

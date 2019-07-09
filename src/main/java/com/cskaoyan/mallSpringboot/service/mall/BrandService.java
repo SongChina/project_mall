@@ -14,4 +14,6 @@ public interface BrandService {
     Map brandDelete(Brand brand);
 
     ResponseVo brandUpdate(Brand brand);
+
+    ResponseVo brandDetail(String id);
 }

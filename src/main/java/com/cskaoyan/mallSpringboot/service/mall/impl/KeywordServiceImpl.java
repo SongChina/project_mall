@@ -2,7 +2,9 @@ package com.cskaoyan.mallSpringboot.service.mall.impl;
 
 import com.cskaoyan.mallSpringboot.bean.Issue;
 import com.cskaoyan.mallSpringboot.bean.Keyword;
+import com.cskaoyan.mallSpringboot.bean.Searchhistory;
 import com.cskaoyan.mallSpringboot.mapper.KeywordMapper;
+import com.cskaoyan.mallSpringboot.mapper.SearchhistoryMapper;
 import com.cskaoyan.mallSpringboot.service.mall.KeywordService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
@@ -20,6 +22,9 @@ public class KeywordServiceImpl implements KeywordService {
 
     @Autowired
     KeywordMapper keywordMapper;
+
+    @Autowired
+    SearchhistoryMapper searchhistoryMapper;
 
     //查找
     @Override
@@ -93,5 +98,24 @@ public class KeywordServiceImpl implements KeywordService {
             responseVo.setErrmsg("失败");
         }
         return responseVo;
+    }
+    //查询前台首页搜索记录
+    @Override
+    public ResponseVo findIndexSearchMessage() {
+        Keyword defultKeyword = keywordMapper.queryDefultKeyword();
+        List<Keyword> hotKeywordList = keywordMapper.queryHotKeywordList();
+        List<Searchhistory> searchhistoryList = searchhistoryMapper.querySearchHistoryList(null, null);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("defaultKeyword", defultKeyword);
+        map.put("hotKeywordList", hotKeywordList);
+        map.put("historyKeywordList", searchhistoryList);
+        return new ResponseVo(0, map, "成功");
+    }
+
+    //前台首页模糊搜索显示下拉框
+    @Override
+    public ResponseVo searchHelper(String keyword) {
+        String[] keywords = keywordMapper.querySimpleKeyword(keyword);
+        return new ResponseVo(0, keywords, "成功");
     }
 }

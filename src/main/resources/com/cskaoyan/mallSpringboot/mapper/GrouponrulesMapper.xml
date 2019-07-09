@@ -31,6 +31,24 @@
         </if>
         order by  ${sort} ${order}
     </select>
+    
+    
+    <!--查询所有团购规则信息-->
+    <select id="selectAllGrouponRules" resultMap="GrouponRelesMap">
+        select
+        goods_id,
+        discount,
+        discount_member
+        from cskaoyan_mall_groupon_rules
+    </select>
+
+    <resultMap id="GrouponRelesMap" type="com.cskaoyan.mallSpringboot.bean.Grouponrules">
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="discount" jdbcType="DECIMAL" property="discount"/>
+        <result column="discount_member" jdbcType="INTEGER" property="discountMember"/>
+    </resultMap>
+
+
 
 
     <sql id="Example_Where_Clause">

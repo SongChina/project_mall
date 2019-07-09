@@ -32,4 +32,6 @@ public interface SearchhistoryMapper {
     int updateByPrimaryKeySelective(Searchhistory record);
 
     int updateByPrimaryKey(Searchhistory record);
+
+    List<Searchhistory> selectSearchHistory();
 }

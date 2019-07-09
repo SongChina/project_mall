@@ -1,4 +1,4 @@
-package com.cskaoyan.mallSpringboot.service;
+package com.cskaoyan.mallSpringboot.service.admin;
 
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;

@@ -51,6 +51,25 @@
         select LAST_INSERT_ID()
     </select>
 
+
+  <!--查询所有信息  by wpm-->
+  <select id="queryAllAd" resultMap="BaseResultMap">
+    select
+     id,
+     `name`,
+     link,
+     url,
+     `position`,
+    content,
+    start_time,
+    end_time,
+    enabled,
+    add_time,
+    update_time,
+    deleted
+    from cskaoyan_mall_ad
+  </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

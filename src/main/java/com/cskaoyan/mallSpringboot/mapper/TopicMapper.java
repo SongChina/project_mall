@@ -38,4 +38,6 @@ public interface TopicMapper {
     int deleteBydeleted(@Param("id") Integer id, @Param("updateTime") Date updateTime);//删
     int queryCount(@Param("title") String title, @Param("subtitle") String subtitle);//查
     List<Topic> queryList(@Param("title") String title, @Param("subtitle")  String subtitle,@Param("sort") String sort,@Param("order") String order);
+
+    List<Topic> queryIndexTopic();
 }

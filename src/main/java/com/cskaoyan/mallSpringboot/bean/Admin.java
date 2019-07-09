@@ -35,6 +35,13 @@ public class Admin {
         this.roleIds = roleIds;
     }
 
+    public Admin(String username, String password, String avatar,  int[] roleIds) {
+        this.username = username;
+        this.password = password;
+        this.avatar = avatar;
+        this.roleIds = roleIds;
+    }
+
     public Integer getId() {
         return id;
     }

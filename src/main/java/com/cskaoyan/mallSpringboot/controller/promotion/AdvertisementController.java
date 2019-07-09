@@ -15,7 +15,7 @@ import java.util.Date;
 ;
 
 @RestController
-//@RequestMapping("admin/ad/")
+
 public class AdvertisementController {
     @Autowired
     AdService adService;

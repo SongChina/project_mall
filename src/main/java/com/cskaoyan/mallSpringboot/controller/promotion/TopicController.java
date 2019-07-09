@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-//@RequestMapping("admin/topic/")
+
 @RestController
 public class TopicController {
     @Autowired

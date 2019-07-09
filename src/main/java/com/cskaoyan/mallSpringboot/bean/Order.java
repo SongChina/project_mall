@@ -5,6 +5,45 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
+
+    private String uncomment;
+    private String unpaid;
+    private String unrecv;
+    private String unship;
+
+    public String getUncomment() {
+        return uncomment;
+    }
+
+    public void setUncomment(String uncomment) {
+        this.uncomment = uncomment;
+    }
+
+    public String getUnpaid() {
+        return unpaid;
+    }
+
+    public void setUnpaid(String unpaid) {
+        this.unpaid = unpaid;
+    }
+
+    public String getUnrecv() {
+        return unrecv;
+    }
+
+    public void setUnrecv(String unrecv) {
+        this.unrecv = unrecv;
+    }
+
+    public String getUnship() {
+        return unship;
+    }
+
+    public void setUnship(String unship) {
+        this.unship = unship;
+    }
+
+    //以上是新增的订单状态
     private Integer id;
 
     private Integer userId;
