@@ -16,12 +16,12 @@ public class LogController {
 
     ResponseVo responseVo;
 
-    @RequestMapping("test")
+    @RequestMapping("admin/test")
     public String test(){
         return "This is test";
     }
 
-    @RequestMapping("auth/login")
+    @RequestMapping("admin/auth/login")
     public ResponseVo login(){
         responseVo = new ResponseVo();
         responseVo.setErrno(0);
@@ -29,7 +29,7 @@ public class LogController {
         responseVo.setErrmsg("成功");
         return responseVo;
     }
-    @RequestMapping("auth/info")
+    @RequestMapping("admin/auth/info")
     public ResponseVo dashboard(){
         responseVo = new ResponseVo();
         responseVo.setErrno(0);
@@ -43,7 +43,7 @@ public class LogController {
         return responseVo;
     }
 
-    @RequestMapping("log/list")
+    @RequestMapping("admin/log/list")
     public ResponseVo queryList(int page,int limit,String admin){
         responseVo=new ResponseVo();
         responseVo=logService.queryList(page,limit,admin);

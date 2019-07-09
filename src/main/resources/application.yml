@@ -1,15 +1,15 @@
 server:
+  port: 8081
   servlet:
-    context-path: /wx
-  port: 8080
-
+    context-path: /
 
 spring:
   datasource:
     username: root
-    password: root
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8&useSSL=false
+
 admin:
   login:
     errmsg: "成功"
