@@ -55,7 +55,8 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public int delete(Integer id,Date updateTime) {
         //true对应数据库列deleted的值1，此为假删除做法
-        int i = topicMapper.deleteBydeleted(id,updateTime);
+        //int i = topicMapper.deleteBydeleted(id,updateTime);
+        int i = topicMapper.deleteByPrimaryKey(id);
         return i;
     }
 

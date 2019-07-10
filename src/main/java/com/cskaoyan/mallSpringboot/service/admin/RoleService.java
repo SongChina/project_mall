@@ -3,8 +3,6 @@ package com.cskaoyan.mallSpringboot.service.admin;
 import com.cskaoyan.mallSpringboot.bean.Role;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
 
-import java.util.List;
-
 public interface RoleService {
     //处理option请求的返回
     ResponseVo queryOption();

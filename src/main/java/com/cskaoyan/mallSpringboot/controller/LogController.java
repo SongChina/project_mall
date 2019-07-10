@@ -1,12 +1,12 @@
 package com.cskaoyan.mallSpringboot.controller;
 
 import com.cskaoyan.mallSpringboot.bean.*;
-import com.cskaoyan.mallSpringboot.gss_vo.ErrorVo;
 import com.cskaoyan.mallSpringboot.gss_vo.dashboard.DashboardData;
 import com.cskaoyan.mallSpringboot.gss_vo.dashboard.DashboardVo;
 import com.cskaoyan.mallSpringboot.gss_vo.data.DashBoardData;
 import com.cskaoyan.mallSpringboot.gss_vo.generalvo.GeneralVo;
 import com.cskaoyan.mallSpringboot.mapper.*;
+import com.cskaoyan.mallSpringboot.service.LogService;
 import com.cskaoyan.mallSpringboot.service.shiro.ShiroService;
 import com.cskaoyan.mallSpringboot.service.shiro.impl.ShiroServiceImpl;
 import com.cskaoyan.mallSpringboot.utils.MD5Util;
@@ -19,9 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,8 +29,12 @@ import java.util.List;
 public class LogController {
 
     ResponseVo responseVo;
-
     private static LoginUser loginUser2 = new LoginUser();
+
+    @RequestMapping("admin/test")
+    public String test(){
+        return "This is test";
+    }
 
     @RequestMapping("admin/auth/login")
     @ResponseBody
@@ -64,6 +66,8 @@ public class LogController {
 
     @RequestMapping("admin/auth/info")
     @ResponseBody
+
+
     public ResponseVo dashboard(){
         //然后再根据loginUser2去拿到数据库中对应的管理员的信息，并且填入到ResponseVo中
 
@@ -132,13 +136,16 @@ public class LogController {
         dashboardVo.setErrmsg("成功");
         dashboardVo.setData(dashboardData);
         return dashboardVo;
-/*=======
+    }
+    @Autowired
+    LogService logService;
+
     @RequestMapping("log/list")
+    @ResponseBody
     public ResponseVo queryList(int page,int limit,String admin){
         responseVo=new ResponseVo();
         responseVo=logService.queryList(page,limit,admin);
         return responseVo;
->>>>>>> 0a364ec252052fb29577c8a264e5be7e1a389acd
-    }*/
+
     }
 }

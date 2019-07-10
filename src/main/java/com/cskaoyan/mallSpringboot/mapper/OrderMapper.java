@@ -7,14 +7,13 @@ import java.util.List;
 import com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo;
 import com.cskaoyan.mallSpringboot.gss_vo.GoodsStatisticInfo;
 import com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Mapper
+@Component("OrderMapper")
 public interface OrderMapper {
-
-    int queryOrderwxCount(@Param("uncomment") String uncomment, @Param("unpaid") String unpaid, @Param("unrecv") String unrecv, @Param("unship") String unship);
-    List<Order> queryOrderwxList(@Param("uncomment") String uncomment,@Param("unpaid") String unpaid,@Param("unrecv") String unrecv,@Param("unship")String unship);
-
-
 
     //以上是新增的
     long countByExample(OrderExample example);
@@ -48,5 +47,9 @@ public interface OrderMapper {
     List<OrderStatisticInfo> queryOrdersByAddTimeInGroup();
 
     List<GoodsStatisticInfo> queryGoodsByAddTimeInGroup();
+
+    List<Order> queryAllOrder();
+
+    List<Order> queryByStatus(Short orderStatus);
 
 }

@@ -67,7 +67,7 @@
     </resultMap>
     <!--按条件查询，结果总数-->
     <select id="queryCount" resultType="_int">
-        select count(*) from cskaoyan_mall_topic where deleted = 0
+        select count(*) from cskaoyan_mall_topic where 1 = 1
         <if test="title != '' and title !=null">
             and title like #{title}
         </if>
@@ -82,7 +82,7 @@
         sort_order, goods, add_time,
         update_time, deleted, content
         from cskaoyan_mall_topic
-        where deleted = 0
+        where 1 = 1
         <if test="title != ''and title !=null">
             and title like #{title}
         </if>

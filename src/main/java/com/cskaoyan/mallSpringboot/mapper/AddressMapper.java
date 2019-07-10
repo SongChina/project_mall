@@ -4,7 +4,9 @@ import com.cskaoyan.mallSpringboot.bean.Address;
 import com.cskaoyan.mallSpringboot.bean.AddressExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface AddressMapper {
     int queryAddressCount(@Param("userId") String userId, @Param("name") String name);
     List<Address> queryAddressList(@Param("userId") String userId, @Param("name") String name);
@@ -30,4 +32,7 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+    //地址管理
+
+    List<Address> selectAddress();
 }

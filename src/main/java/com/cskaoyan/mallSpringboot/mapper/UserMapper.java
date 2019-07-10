@@ -8,7 +8,7 @@ import com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
+@Component
 public interface UserMapper {
     //查询数量
     int queryUserCount(@Param("username") String username, @Param("mobile") String mobile);

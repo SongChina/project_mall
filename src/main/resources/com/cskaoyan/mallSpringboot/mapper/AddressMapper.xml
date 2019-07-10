@@ -43,7 +43,17 @@
     </if>
   </select>
 
-
+<!--地址管理-->
+  <resultMap id="addressMap" type="com.cskaoyan.mallSpringboot.bean.Address">
+    <result column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="address" property="address"/>
+    <result column="mobile" property="mobile"/>
+    <result column="is_default" property="isDefault"/>
+  </resultMap>
+<select id="selectAddress" resultMap="addressMap">
+select id,`name`,address,mobile,is_default from cskaoyan_mall_address
+</select>
 
 
 

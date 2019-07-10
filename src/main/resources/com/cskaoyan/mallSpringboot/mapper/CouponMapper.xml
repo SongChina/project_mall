@@ -26,7 +26,7 @@
 
   <!--按条件查询，结果总数-->
   <select id="queryCount" resultType="_int">
-    select count(*) from cskaoyan_mall_coupon where deleted = 0
+    select count(*) from cskaoyan_mall_coupon where 1 = 1
     <if test="name != '' and name != null">
       and `name` like #{name}
     </if>
@@ -47,7 +47,7 @@
     start_time, end_time, add_time,
     update_time, deleted
     from cskaoyan_mall_coupon
-    where deleted = 0
+    where 1 = 1
     <if test="name != '' and name != null">
       and `name` like #{name}
     </if>

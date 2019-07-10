@@ -1,10 +1,20 @@
 package com.cskaoyan.mallSpringboot.mapper;
 
+import com.cskaoyan.mallSpringboot.bean.Goods;
+import com.cskaoyan.mallSpringboot.bean.OrderGood;
 import com.cskaoyan.mallSpringboot.bean.Ordergoods;
 import com.cskaoyan.mallSpringboot.bean.OrdergoodsExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
+
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
+@Mapper
+@Component("Ordergoods")
 public interface OrdergoodsMapper {
     long countByExample(OrdergoodsExample example);
 
@@ -27,4 +37,7 @@ public interface OrdergoodsMapper {
     int updateByPrimaryKeySelective(Ordergoods record);
 
     int updateByPrimaryKey(Ordergoods record);
+
+    List<Ordergoods> queryByOid(Integer orderId);
+
 }

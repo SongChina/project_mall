@@ -3,9 +3,10 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Couponuser;
 import com.cskaoyan.mallSpringboot.bean.CouponuserExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface CouponuserMapper {
     long countByExample(CouponuserExample example);
 
