@@ -1,7 +1,7 @@
 server:
+  port: 8080
   servlet:
     context-path: /
-  port: 8080
 
 spring:
   datasource:
@@ -14,6 +14,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
 pagehelper:
   helperDialect: mysql
   reasonable: true

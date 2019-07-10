@@ -84,6 +84,8 @@ public class RoleController {
     @GetMapping("admin/role/permissions")
     public Data getPermissionInfo(int roleId){
         //将对应的角色的权限查出来
+       // List<String> assignedPermissions = roleService.queryRoleRightsInRoleId(roleId);
+
         List<String> assignedPermissions = roleService.queryRoleRightsInRoleId(roleId);
         Data_ data1 = RoleController.data.getData();
         data1.setAssignedPermissions(assignedPermissions);

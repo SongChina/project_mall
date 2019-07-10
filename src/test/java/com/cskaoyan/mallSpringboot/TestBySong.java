@@ -17,6 +17,12 @@ import com.mysql.fabric.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
+import com.cskaoyan.mallSpringboot.mapper.GoodsMapper;
+
+import com.cskaoyan.mallSpringboot.mapper.GoodsInWebMapper;
+import com.cskaoyan.mallSpringboot.mapper.OrderMapper;
+import com.cskaoyan.mallSpringboot.mapper.UserMapper;
+import com.cskaoyan.mallSpringboot.utils.MD5Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
@@ -24,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.System;
 import java.nio.charset.Charset;

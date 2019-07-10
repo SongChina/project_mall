@@ -1,7 +1,12 @@
 package com.cskaoyan.mallSpringboot;
 
 import com.cskaoyan.mallSpringboot.bean.Admin;
+import com.cskaoyan.mallSpringboot.bean.Order;
+import com.cskaoyan.mallSpringboot.bean.OrderExample;
+import com.cskaoyan.mallSpringboot.bean.Ordergoods;
 import com.cskaoyan.mallSpringboot.mapper.AdminMapper;
+import com.cskaoyan.mallSpringboot.mapper.OrderMapper;
+import com.cskaoyan.mallSpringboot.mapper.OrdergoodsMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
@@ -18,6 +23,10 @@ import java.util.List;
 public class AdminTest {
     @Autowired
     AdminMapper adminMapper;
+    @Autowired
+    OrderMapper orderMapper;
+    @Autowired
+    OrdergoodsMapper ordergoodsMapper;
 
     @Test
     public void mytest1() {
@@ -51,5 +60,14 @@ public class AdminTest {
         System.out.println(i);
 
     }
+    @Test
+    public void mytest10(){
+        OrderExample orderExample=new OrderExample();
+        OrderExample.Criteria criteria = orderExample.createCriteria();
+        criteria.getAllCriteria();
+        List<Order> orders=orderMapper.selectByExample(orderExample);
+        System.out.println(orders);
+    }
+
 
 }

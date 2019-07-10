@@ -2,8 +2,8 @@ package com.cskaoyan.mallSpringboot.service;
 
 import com.cskaoyan.mallSpringboot.bean.Log;
 import com.cskaoyan.mallSpringboot.mapper.LogMapper;
-import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResultVo;
+import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

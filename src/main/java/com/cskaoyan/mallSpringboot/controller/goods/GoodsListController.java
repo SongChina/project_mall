@@ -50,6 +50,7 @@ public class GoodsListController {
     //以下属于微信前台内容
     //微信小程序
 
+
     @RequestMapping("wx/goods/count")
     public ResponseVo WXCountGoods(){
 

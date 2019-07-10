@@ -88,14 +88,15 @@ public class WxAuthController {
 
 		Map<Object, Object> data = new HashMap<Object, Object>();
 
-		//***********************************
+
 		//根据userId查询订单信息
-//		OrderExample orderExample = new OrderExample();
-//		OrderExample.Criteria criteria = orderExample.createCriteria();
-//		criteria.andUserIdEqualTo(userId);
-//		List<Order> orders = orderMapper.selectByExample(orderExample);
+		OrderExample orderExample = new OrderExample();
+		OrderExample.Criteria criteria = orderExample.createCriteria();
+		criteria.andUserIdEqualTo(userId);
+		List<Order> orders = orderMapper.selectByExample(orderExample);
+
 		data.put("order", null);
-		//***********************************
+
 
 		return BaseRespVo.ok(data);
 	}

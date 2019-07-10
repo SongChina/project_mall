@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.OrderMapper">
   <!--查找-->
+
+
   <select id="queryOrderList" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -104,7 +106,9 @@
     where o.id = #{id}
   </select>
 
-<!--底下为逆向工程所生成-->
+
+
+  <!--底下为逆向工程所生成-->
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Order">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
