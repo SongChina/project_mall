@@ -136,6 +136,17 @@ public class GrouponrulesController {
         ResponseVo responseVo = grouponrulesService.getMyGroupon(userId, showType);
         return responseVo;
     }
+    /*@GetMapping("wx/groupon/detail")
+    public Object detail(HttpServletRequest request, Integer grouponId){
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
+
+        if (userId == null) {
+            return BaseRespVo.fail();
+        }
+        ResponseVo responseVo = grouponrulesService.detail(userId, grouponId);
+        return responseVo;
+    }*/
     //前台功能
     //查询
     @RequestMapping("wx/groupon/list")

@@ -182,4 +182,5 @@ public class GrouponrulesServiceImpl implements GrouponrulesService {
         map.put("data", grouponIndexList);
         return new ResponseVo(0, map, "成功");
     }
+
 }
