@@ -1,5 +1,7 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,10 +18,12 @@ public class Grouponrules {
 
     private Integer discountMember;//团购人数要求
 
+    //特殊的日期格式
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date addTime;//开始时间
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date expireTime;//结束时间
 
     private Boolean deleted;//数据库中的0 --对应-- 查询语句的false

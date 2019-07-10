@@ -1,14 +1,15 @@
 package com.cskaoyan.mallSpringboot.bean;
 
 public class OrderHandleOption {
-    boolean cancel;
-    boolean comment;
-    boolean confirm;
-    boolean delete;
-    boolean pay;
-    boolean rebuy;
-    boolean refund;
 
+
+    private boolean cancel = false;      // 取消操作
+    private boolean delete = false;      // 删除操作
+    private boolean pay = false;         // 支付操作
+    private boolean comment = false;    // 评论操作
+    private boolean confirm = false;    // 确认收货操作
+    private boolean refund = false;     // 取消订单并退款操作
+    private boolean rebuy = false;        // 再次购买
 
     public boolean isCancel() {
         return cancel;
@@ -16,22 +17,6 @@ public class OrderHandleOption {
 
     public void setCancel(boolean cancel) {
         this.cancel = cancel;
-    }
-
-    public boolean isComment() {
-        return comment;
-    }
-
-    public void setComment(boolean comment) {
-        this.comment = comment;
-    }
-
-    public boolean isConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(boolean confirm) {
-        this.confirm = confirm;
     }
 
     public boolean isDelete() {
@@ -50,12 +35,20 @@ public class OrderHandleOption {
         this.pay = pay;
     }
 
-    public boolean isRebuy() {
-        return rebuy;
+    public boolean isComment() {
+        return comment;
     }
 
-    public void setRebuy(boolean rebuy) {
-        this.rebuy = rebuy;
+    public void setComment(boolean comment) {
+        this.comment = comment;
+    }
+
+    public boolean isConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(boolean confirm) {
+        this.confirm = confirm;
     }
 
     public boolean isRefund() {
@@ -66,16 +59,24 @@ public class OrderHandleOption {
         this.refund = refund;
     }
 
+    public boolean isRebuy() {
+        return rebuy;
+    }
+
+    public void setRebuy(boolean rebuy) {
+        this.rebuy = rebuy;
+    }
+
     public OrderHandleOption() {
     }
 
-    public OrderHandleOption(boolean cancel, boolean comment, boolean confirm, boolean delete, boolean pay, boolean rebuy, boolean refund) {
+    public OrderHandleOption(boolean cancel, boolean delete, boolean pay, boolean comment, boolean confirm, boolean refund, boolean rebuy) {
         this.cancel = cancel;
-        this.comment = comment;
-        this.confirm = confirm;
         this.delete = delete;
         this.pay = pay;
-        this.rebuy = rebuy;
+        this.comment = comment;
+        this.confirm = confirm;
         this.refund = refund;
+        this.rebuy = rebuy;
     }
 }

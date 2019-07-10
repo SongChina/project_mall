@@ -1,7 +1,9 @@
 package com.cskaoyan.mallSpringboot.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -29,7 +31,7 @@ public class Coupon {
 
     private Short goodsType;
 
-    private String goodsValue;
+    private int[] goodsValue;
 
     private String code;
 
@@ -37,18 +39,24 @@ public class Coupon {
 
     private Short days;
 
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date startTime;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+
+
     private Date endTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date addTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     private Boolean deleted;
+
+    //
 
     public Integer getId() {
         return id;
@@ -63,7 +71,7 @@ public class Coupon {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getDesc() {
@@ -71,7 +79,7 @@ public class Coupon {
     }
 
     public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+        this.desc = desc;
     }
 
     public String getTag() {
@@ -79,7 +87,7 @@ public class Coupon {
     }
 
     public void setTag(String tag) {
-        this.tag = tag == null ? null : tag.trim();
+        this.tag = tag;
     }
 
     public Integer getTotal() {
@@ -138,12 +146,12 @@ public class Coupon {
         this.goodsType = goodsType;
     }
 
-    public String getGoodsValue() {
+    public int[] getGoodsValue() {
         return goodsValue;
     }
 
-    public void setGoodsValue(String goodsValue) {
-        this.goodsValue = goodsValue == null ? null : goodsValue.trim();
+    public void setGoodsValue(int[] goodsValue) {
+        this.goodsValue = goodsValue;
     }
 
     public String getCode() {
@@ -151,7 +159,7 @@ public class Coupon {
     }
 
     public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+        this.code = code;
     }
 
     public Short getTimeType() {

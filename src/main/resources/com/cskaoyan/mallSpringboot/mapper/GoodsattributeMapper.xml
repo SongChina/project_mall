@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.GoodsattributeMapper">
+  <select id="queryGoodsattributeByGoodId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from cskaoyan_mall_goods_attribute
+    <where>
+      goods_id = #{goodsId}
+    </where>
+  </select>
+
+
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Goodsattribute">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />

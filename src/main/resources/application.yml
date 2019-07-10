@@ -1,13 +1,14 @@
 server:
   servlet:
     context-path: /
-  port: 8080
+  port: 80
 
 spring:
   datasource:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+
     url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf8
 admin:
   login:
@@ -19,6 +20,13 @@ admin:
       perms: ["*"]
       roles: ["超级管理员"]
 
+
+
+    #json日期格式处理
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
 pagehelper:
   helperDialect: mysql
   reasonable: true
@@ -26,10 +34,7 @@ pagehelper:
   params: count=countSql
 
 
-  #json日期格式处理
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
+
 myoss:
   bucket: wpm
   endpoint: oss-cn-shenzhen.aliyuncs.com

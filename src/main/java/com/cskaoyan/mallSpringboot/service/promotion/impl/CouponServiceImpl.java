@@ -21,11 +21,12 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public Coupon createCoupon(Coupon coupon) {
+        coupon.setCode("DC6FF3SE");
         coupon.setAddTime(new Date());
         coupon.setUpdateTime(new Date());
         coupon.setDeleted(false);
 
-        int insert = couponMapper.insert(coupon);
+        int insert = couponMapper.insertSelective(coupon);
         Integer id = couponMapper.lastInsertId();
         coupon.setId(id);
         return coupon;
@@ -33,7 +34,8 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public int delete(Integer id, Date updateTime) {
-        int i = couponMapper.deleteBydeleted(id, updateTime);
+        //int i = couponMapper.deleteBydeleted(id, updateTime);
+        int i = couponMapper.deleteByPrimaryKey(id);
         return i;
     }
 

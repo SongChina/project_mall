@@ -68,9 +68,56 @@
     <include refid="Base_Column_List"/>
     from cskaoyan_mall_goods
     <where>
-      and category_id = #{categoryId}
+      <if test="categoryId != 0">
+        category_id = #{categoryId}
+      </if>
+      <if test="isNew != false">
+          and is_new = 1
+      </if>
+      <if test="isHot != false">
+          and is_hot = 1
+      </if>
+       <if test="order != null">
+          order by sort_order desc
+      </if>
+
     </where>
   </select>
+
+  <!--获取单个商品详情-->
+  <select id="queryGoodsById" resultMap="BaseResultMap2">
+    select
+    id, goods_sn, `name`, category_id, brand_id, gallery, keywords, brief, is_on_sale,
+    sort_order, pic_url, share_url, is_new, is_hot, unit, counter_price, retail_price,
+    add_time, update_time, deleted
+    from cskaoyan_mall_goods
+    <where>
+      and id = #{id}
+    </where>
+  </select>
+
+  <resultMap id="BaseResultMap2" type="com.cskaoyan.mallSpringboot.bean.Goods">
+    <id column="id"  property="id" />
+    <result column="goods_sn"  property="goodsSn" />
+    <result column="name"  property="name" />
+    <result column="category_id" property="categoryId" />
+    <result column="brand_id"  property="brandId" />
+    <result column="gallery" jdbcType="VARCHAR"  property="gallery" typeHandler="com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle"/>
+    <result column="keywords"  property="keywords" />
+    <result column="brief"  property="brief" />
+    <result column="is_on_sale"  property="isOnSale" />
+    <result column="sort_order"  property="sortOrder" />
+    <result column="pic_url"  property="picUrl" />
+    <result column="share_url"  property="shareUrl" />
+    <result column="is_new"  property="isNew" />
+    <result column="is_hot"  property="isHot" />
+    <result column="unit"  property="unit" />
+    <result column="counter_price"  property="counterPrice" />
+    <result column="retail_price"  property="retailPrice" />
+    <result column="add_time"  property="addTime" />
+    <result column="update_time"  property="updateTime" />
+    <result column="deleted"  property="deleted" />
+  </resultMap>
 
 
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Goods">
@@ -79,7 +126,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-    <result column="gallery" jdbcType="VARCHAR" property="gallery" />
+    <result column="gallery"  jdbcType="VARCHAR" property="gallery" typeHandler="com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle"/>
     <result column="keywords" jdbcType="VARCHAR" property="keywords" />
     <result column="brief" jdbcType="VARCHAR" property="brief" />
     <result column="is_on_sale" jdbcType="BIT" property="isOnSale" />
@@ -224,7 +271,7 @@
       retail_price, add_time, update_time, 
       deleted, detail)
     values (#{id,jdbcType=INTEGER}, #{goodsSn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{categoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{gallery,jdbcType=VARCHAR}, 
+      #{categoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{gallery,jdbcType=VARCHAR ,typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       #{keywords,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, #{isOnSale,jdbcType=BIT}, 
       #{sortOrder,jdbcType=SMALLINT}, #{picUrl,jdbcType=VARCHAR}, #{shareUrl,jdbcType=VARCHAR}, 
       #{isNew,jdbcType=BIT}, #{isHot,jdbcType=BIT}, #{unit,jdbcType=VARCHAR}, #{counterPrice,jdbcType=DECIMAL}, 
@@ -314,7 +361,7 @@
         #{brandId,jdbcType=INTEGER},
       </if>
       <if test="gallery != null">
-        #{gallery,jdbcType=VARCHAR},
+        #{gallery,jdbcType=VARCHAR ,typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       </if>
       <if test="keywords != null">
         #{keywords,jdbcType=VARCHAR},
@@ -388,7 +435,7 @@
         brand_id = #{record.brandId,jdbcType=INTEGER},
       </if>
       <if test="record.gallery != null">
-        gallery = #{record.gallery,jdbcType=VARCHAR},
+        gallery = #{record.gallery,jdbcType=VARCHAR, typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       </if>
       <if test="record.keywords != null">
         keywords = #{record.keywords,jdbcType=VARCHAR},
@@ -447,7 +494,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       brand_id = #{record.brandId,jdbcType=INTEGER},
-      gallery = #{record.gallery,jdbcType=VARCHAR},
+      gallery = #{record.gallery,jdbcType=VARCHAR, typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       brief = #{record.brief,jdbcType=VARCHAR},
       is_on_sale = #{record.isOnSale,jdbcType=BIT},
@@ -474,7 +521,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       brand_id = #{record.brandId,jdbcType=INTEGER},
-      gallery = #{record.gallery,jdbcType=VARCHAR},
+      gallery = #{record.gallery,jdbcType=VARCHAR, typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       brief = #{record.brief,jdbcType=VARCHAR},
       is_on_sale = #{record.isOnSale,jdbcType=BIT},
@@ -509,7 +556,7 @@
         brand_id = #{brandId,jdbcType=INTEGER},
       </if>
       <if test="gallery != null">
-        gallery = #{gallery,jdbcType=VARCHAR},
+        gallery = #{gallery,jdbcType=VARCHAR, typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       </if>
       <if test="keywords != null">
         keywords = #{keywords,jdbcType=VARCHAR},
@@ -565,7 +612,7 @@
       name = #{name,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       brand_id = #{brandId,jdbcType=INTEGER},
-      gallery = #{gallery,jdbcType=VARCHAR},
+      gallery = #{gallery,jdbcType=VARCHAR, typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       keywords = #{keywords,jdbcType=VARCHAR},
       brief = #{brief,jdbcType=VARCHAR},
       is_on_sale = #{isOnSale,jdbcType=BIT},
@@ -589,7 +636,7 @@
       name = #{name,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       brand_id = #{brandId,jdbcType=INTEGER},
-      gallery = #{gallery,jdbcType=VARCHAR},
+      gallery = #{gallery,jdbcType=VARCHAR, typeHandler=com.cskaoyan.mallSpringboot.convert.StringArrayTypeHandle},
       keywords = #{keywords,jdbcType=VARCHAR},
       brief = #{brief,jdbcType=VARCHAR},
       is_on_sale = #{isOnSale,jdbcType=BIT},

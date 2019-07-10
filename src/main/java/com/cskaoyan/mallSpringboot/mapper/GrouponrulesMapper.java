@@ -3,11 +3,12 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Grouponrules;
 import com.cskaoyan.mallSpringboot.bean.GrouponrulesExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
-
+@Repository
 public interface GrouponrulesMapper {
     long countByExample(GrouponrulesExample example);
 
@@ -38,4 +39,7 @@ public interface GrouponrulesMapper {
 
     List<Grouponrules> selectAllGrouponRules();
 
+    Grouponrules queryGrouponRulesByGoodsId(Integer goodsId);
+
+    List<Grouponrules> selectWxGrouponRules();
 }
