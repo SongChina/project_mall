@@ -42,11 +42,10 @@
     order by ${sort} ${order}
   </select>
 
-  <update id="deleteBydeleted">
-    update cskaoyan_mall_ad
-    set deleted = true ,update_time = #{updateTime}
+  <delete id="deleteBydeleted">
+    delete cskaoyan_mall_ad
     where id = #{id}
-  </update>
+  </delete>
   <select id="lastInsertId" resultType="java.lang.Integer">
         select LAST_INSERT_ID()
     </select>

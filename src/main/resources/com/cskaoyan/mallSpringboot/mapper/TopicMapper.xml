@@ -7,7 +7,7 @@
       id, title, subtitle, price, read_count, pic_url
       from cskaoyan_mall_topic
       <where>
-          deleted = false
+          1 = 1
         <if test="tier ==1">
             LIMIT 4
         </if>
@@ -21,7 +21,7 @@
         deleted
       from cskaoyan_mall_topic
       <where>
-          deleted = false
+          1 = 1
           and id = #{id}
       </where>
     </select>
@@ -33,7 +33,7 @@
         deleted
       from cskaoyan_mall_topic
       <where>
-          deleted = false
+          1 = 1
           and id > #{id}
       </where>
         limit 4

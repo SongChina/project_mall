@@ -63,8 +63,8 @@ public class GoodsListController {
     }
     //查询商品分类
     @RequestMapping("wx/goods/list")
-    public ResponseVo getGoodsList(String categoryId, String page, String size, boolean isNew, boolean isHot, String order) {
-        ResponseVo goodsList = goodsListService.getGoodsList(categoryId, page, size, isHot, isNew, order);
+    public ResponseVo getGoodsList(String categoryId, String page, String size, boolean isNew, boolean isHot, String order, String keyword) {
+        ResponseVo goodsList = goodsListService.getGoodsList(categoryId, page, size, isHot, isNew, order, keyword);
         return goodsList;
     }
     //查询前台商品详情
@@ -72,6 +72,7 @@ public class GoodsListController {
     public ResponseVo getWxGoodsDetail(int id) {
         ResponseVo responseVo = goodsListService.getWxGoodsDetail(id);
         return responseVo;
+
     }
 
     //查询商品评论

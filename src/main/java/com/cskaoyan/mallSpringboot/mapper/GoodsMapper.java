@@ -46,7 +46,7 @@ public interface GoodsMapper {
 
     List<Goods> queryIndexNewOrHotGoods(@Param("isNew") int isNew, @Param("isHot") int isHot, @Param("categoryId") String categoryId);
 
-    List<Goods> queryGoodsByCategoryId(@Param("categoryId") String categoryId, @Param("isNew") boolean isNew , @Param("isHot") boolean isHot, @Param("order") String order);
+    List<Goods> queryGoodsByCategoryId(@Param("categoryId") String categoryId, @Param("isNew") boolean isNew , @Param("isHot") boolean isHot, @Param("order") String order, @Param("keyword") String keyword);
 
     Goods queryGoodsById(@Param("id") int id);
 

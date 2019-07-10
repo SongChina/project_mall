@@ -16,7 +16,7 @@
    update_time,
    deleted
    from cskaoyan_mall_category
-   where deleted = false and pid = #{pid}
+   where 1 = 1 and pid = #{pid}
   </select>
 
   <!--查询第一个一级类目-->
@@ -61,7 +61,7 @@
    deleted
   from cskaoyan_mall_category
   <where>
-    deleted = false
+    1 = 1
     and id = #{id}
 
   </where>
@@ -82,8 +82,7 @@
 
   <!--删除-->
   <delete id="categoryDelete" parameterType="com.cskaoyan.mallSpringboot.bean.Category">
-    update cskaoyan_mall_category
-    set deleted = true, update_time = #{updateTime}
+    delete from cskaoyan_mall_category
     where id = #{id}
   </delete>
 
@@ -94,7 +93,7 @@
    `name`,
    icon_url
    from cskaoyan_mall_category
-   where deleted = false and pid = #{pid}
+   where 1 = 1 and pid = #{pid}
   </select>
 
 
@@ -111,7 +110,7 @@
     id,
    `name`
    from cskaoyan_mall_category
-   where deleted = false and pid = 0
+   where 1 = 1 and pid = 0
    limit 4
   </select>
 

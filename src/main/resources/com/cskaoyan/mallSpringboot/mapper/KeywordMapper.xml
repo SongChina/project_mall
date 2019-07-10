@@ -14,7 +14,7 @@
     update_time,
     deleted
     from cskaoyan_mall_keyword
-    where deleted = false
+    where 1 = 1
     <if test="keyword != null">
       and keyword like #{keyword}
     </if>
@@ -81,11 +81,10 @@
   </update>
 
   <!--删除-->
-  <update id="keywordDelete">
-    update cskaoyan_mall_keyword
-    set deleted = true, update_time = #{updateTime}
+  <delete id="keywordDelete">
+    delete from cskaoyan_mall_keyword
     where id = #{id}
-  </update>
+  </delete>
 
 
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Keyword">

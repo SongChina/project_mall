@@ -4,7 +4,7 @@
 
   <!--查询会员总数,``英文模式下Esc下面那个键-->
   <select id="queryUserCount" resultType="Integer">
-    select count(*) from cskaoyan_mall_user where deleted = false
+    select count(*) from cskaoyan_mall_user where 1 = 1
     <if test="username != null">
       and `username` like #{username}
 
@@ -37,7 +37,7 @@
     `update_time`
     deleted
     from cskaoyan_mall_user
-    where deleted = false
+    where 1 = 1
     <if test="username != null">
       and username like #{username}
 

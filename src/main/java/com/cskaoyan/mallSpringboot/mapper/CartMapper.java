@@ -27,4 +27,8 @@ public interface CartMapper {
     int updateByPrimaryKeySelective(Cart record);
 
     int updateByPrimaryKey(Cart record);
+
+    int insertCart(Cart cart);
+
+    List<Cart> queryCartCountByUserId(Integer userId);
 }

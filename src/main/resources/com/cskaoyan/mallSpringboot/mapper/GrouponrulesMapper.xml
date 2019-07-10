@@ -152,11 +152,10 @@
         from cskaoyan_mall_groupon_rules
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <update id="deleteBydeleted">
-    update cskaoyan_mall_groupon_rules
-    set deleted = true ,update_time = #{updateTime}
+    <delete id="deleteBydeleted">
+    delete cskaoyan_mall_groupon_rules
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  </delete>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_groupon_rules
     where id = #{id,jdbcType=INTEGER}

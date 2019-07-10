@@ -4,7 +4,7 @@
 
   <!--查询用户总数,``英文模式下Esc下面那个键-->
   <select id="queryAddressCount" resultType="Integer">
-    select count(*) from cskaoyan_mall_address where deleted = false
+    select count(*) from cskaoyan_mall_address where 1 = 1
     <if test="userId != null">
       and user_id like #{userId}
 
@@ -32,7 +32,7 @@
     update_time,
     deleted
     from cskaoyan_mall_address
-    where deleted = false
+    where 1 = 1
     <if test="userId != null">
       and user_id like #{userId}
 

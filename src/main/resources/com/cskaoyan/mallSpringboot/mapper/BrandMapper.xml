@@ -61,7 +61,7 @@
     deleted
     from cskaoyan_mall_brand
     <where>
-      deleted = false
+      1 = 1
       and id = #{id}
     </where>
   </select>
@@ -74,9 +74,9 @@
   </update>
 
 
-  <!--删除品牌(假删除)-->
+  <!--删除品牌-->
   <delete id="brandDelete" parameterType="com.cskaoyan.mallSpringboot.bean.Brand">
-    update cskaoyan_mall_brand set deleted = true, update_time = #{updateTime} where id = #{id}
+    delete from cskaoyan_mall_brand  where id = #{id}
   </delete>
 
 
@@ -89,7 +89,7 @@
     pic_url,
     floor_price
     from cskaoyan_mall_brand
-    where deleted = false
+    where 1 = 1
     order by RAND() LIMIT 4
   </select>
 

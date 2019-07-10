@@ -3,6 +3,7 @@ package com.cskaoyan.mallSpringboot.service.goods.impl;
 import com.cskaoyan.mallSpringboot.bean.*;
 import com.cskaoyan.mallSpringboot.mapper.*;
 import com.cskaoyan.mallSpringboot.service.goods.GoodsListService;
+import com.cskaoyan.mallSpringboot.util.UserTokenManager;
 import com.cskaoyan.mallSpringboot.vo.BaseResultVo;
 import com.cskaoyan.mallSpringboot.vo.RequestVo;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
@@ -12,6 +13,7 @@ import com.google.common.net.UrlEscapers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -267,10 +269,10 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     //微信前台获取商品分类
     @Override
-    public ResponseVo getGoodsList(String categoryId, String page, String size, boolean isNew, boolean isHot, String order) {
+    public ResponseVo getGoodsList(String categoryId, String page, String size, boolean isNew, boolean isHot, String order, String keyword) {
         PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(size));
         List<Category> categoryList = categoryMapper.queryFilterCategoryList();
-        List<Goods> goodsList = goodsMapper.queryGoodsByCategoryId(categoryId, isNew, isHot, order);
+        List<Goods> goodsList = goodsMapper.queryGoodsByCategoryId(categoryId, isNew, isHot, order, keyword);
         HashMap<String, Object> map = new HashMap<>();
         PageInfo<Goods> pageInfo = new PageInfo<>(goodsList);
         map.put("count", pageInfo.getTotal());
@@ -280,8 +282,6 @@ public class GoodsListServiceImpl implements GoodsListService {
     }
 
     //查询前台商品详情
-
-
     @Override
     public ResponseVo getWxGoodsDetail(int id) {
         HashMap<String, Object> map = new HashMap<>();
@@ -325,6 +325,10 @@ public class GoodsListServiceImpl implements GoodsListService {
         map.put("brand", brand);
         map.put("attribute", goodsattributeList);
         return new ResponseVo(0, map, "成功");
+
+        //添加足迹
+        //String tokenKey = request.getHeader("X-Litemall-Token");
+        //Integer userId = UserTokenManager.getUserId(tokenKey);
 
     }
 

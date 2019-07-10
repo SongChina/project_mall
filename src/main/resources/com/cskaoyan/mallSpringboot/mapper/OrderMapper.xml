@@ -19,7 +19,7 @@
       <if test="userId != null">
         and user_id like #{userId}
       </if>
-        and deleted = false
+        and 1 = 1
     </where>
   </select>
 

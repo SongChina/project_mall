@@ -8,7 +8,7 @@
     id, `key`, `name`, `type`, `size`, url, add_time, update_time, deleted
     from cskaoyan_mall_storage
     <where>
-      deleted = false
+      1 = 1
       <if test="key != null">
         and `key` like concat('%', #{key}, '%')
       </if>
@@ -47,11 +47,10 @@
   </update>
 
   <!--删除-->
-  <update id="storageDelete">
-    update cskaoyan_mall_storage
-    set deleted = true, update_time = #{updateTime}
+  <delete id="storageDelete">
+    delete from cskaoyan_mall_storage
     where id = #{id}
-  </update>
+  </delete>
 
 
 

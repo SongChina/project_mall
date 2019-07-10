@@ -77,9 +77,13 @@
       <if test="isHot != false">
           and is_hot = 1
       </if>
+      <if test="keyword != null">
+        and `name` like concat('%', #{keyword}, '%')
+      </if>
        <if test="order != null">
           order by sort_order desc
       </if>
+
 
     </where>
   </select>

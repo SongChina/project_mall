@@ -11,7 +11,7 @@
     update_time,
     deleted
     from cskaoyan_mall_issue
-    where deleted = false
+    where 1 = 1
     <if test="question != null">
       and question like #{question}
     </if>
@@ -35,11 +35,10 @@
   </update>
 
   <!--删除-->
-  <update id="issueDelete">
-    update cskaoyan_mall_issue
-    set deleted = true, update_time = #{updateTime}
+  <delete id="issueDelete">
+    delete from cskaoyan_mall_issue
     where id = #{id}
-  </update>
+  </delete>
 
 
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Issue">
