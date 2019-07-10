@@ -1,16 +1,26 @@
 package com.cskaoyan.mallSpringboot.renguopingVO;
 
 public class GoodsListInfo {
-    int id;//goods's id
+    Integer id;//goods's id
     String goodsName;
-    int number;
+    Short number;
     String picUrl;
+
+    public GoodsListInfo() {
+    }
+
+    public GoodsListInfo(Integer id, String goodsName, Short number, String picUrl) {
+        this.id = id;
+        this.goodsName = goodsName;
+        this.number = number;
+        this.picUrl = picUrl;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -26,7 +36,7 @@ public class GoodsListInfo {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Short number) {
         this.number = number;
     }
 

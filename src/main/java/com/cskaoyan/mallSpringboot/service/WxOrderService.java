@@ -1,4 +1,9 @@
 package com.cskaoyan.mallSpringboot.service;
 
-public class WxOrderService {
+import com.cskaoyan.mallSpringboot.vo.ResponseVo;
+
+import javax.servlet.http.HttpServletRequest;
+
+public interface WxOrderService {
+    ResponseVo queryList(HttpServletRequest request,int page, int size, int showType);
 }

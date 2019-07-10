@@ -35,15 +35,6 @@ public class LogController {
     }
 
     @RequestMapping("admin/auth/login")
-    public ResponseVo login(){
-        responseVo = new ResponseVo();
-        responseVo.setErrno(0);
-        responseVo.setData("02514c8b-4124-4a95-b513-e77ef43403ba");
-        responseVo.setErrmsg("成功");
-        return responseVo;
-    }
-
-    @RequestMapping("admin/auth/login")
     @ResponseBody
     public ResponseVo login(@RequestBody LoginUser loginUser){
 
@@ -148,6 +139,7 @@ public class LogController {
     LogService logService;
 
     @RequestMapping("log/list")
+    @ResponseBody
     public ResponseVo queryList(int page,int limit,String admin){
         responseVo=new ResponseVo();
         responseVo=logService.queryList(page,limit,admin);

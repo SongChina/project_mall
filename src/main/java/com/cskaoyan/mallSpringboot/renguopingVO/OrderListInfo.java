@@ -1,21 +1,24 @@
 package com.cskaoyan.mallSpringboot.renguopingVO;
 
+
+
+import java.math.BigDecimal;
 import java.util.List;
 
 public class OrderListInfo {
-    int id;//订单id
+    Integer id;//订单id
     String orderSn;
     String orderStatusText;
     Boolean isGroup;
-    List[] goodsList;
-    List handleOption;
-    Double actualPrice;
+    List goodsList;
+    HandleOption handleOption;
+    BigDecimal actualPrice;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,27 +46,27 @@ public class OrderListInfo {
         isGroup = group;
     }
 
-    public List[] getGoodsList() {
+    public List getGoodsList() {
         return goodsList;
     }
 
-    public void setGoodsList(List[] goodsList) {
+    public void setGoodsList(List goodsList) {
         this.goodsList = goodsList;
     }
 
-    public List getHandleOption() {
+    public HandleOption getHandleOption() {
         return handleOption;
     }
 
-    public void setHandleOption(List handleOption) {
+    public void setHandleOption(HandleOption handleOption) {
         this.handleOption = handleOption;
     }
 
-    public Double getActualPrice() {
+    public BigDecimal getActualPrice() {
         return actualPrice;
     }
 
-    public void setActualPrice(Double actualPrice) {
+    public void setActualPrice(BigDecimal actualPrice) {
         this.actualPrice = actualPrice;
     }
 }

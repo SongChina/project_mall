@@ -2,10 +2,10 @@ package com.cskaoyan.mallSpringboot.renguopingVO;
 
 import java.util.List;
 
-public class WxResultVo {
+public class WxResultVo<T> {
     int count;
-    List[] data;
-    int totalPage;
+    List<T> data;
+    int totalPages;
 
     public int getCount() {
         return count;
@@ -15,19 +15,19 @@ public class WxResultVo {
         this.count = count;
     }
 
-    public List[] getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List[] data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 
-    public int getTotalPage() {
-        return totalPage;
+    public int getTotalPages() {
+        return totalPages;
     }
 
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
+    public void setTotalPages(int totalPage) {
+        this.totalPages = totalPage;
     }
 }

@@ -9,6 +9,19 @@ public class HandleOption {
     Boolean rebuy;
     Boolean refund;
 
+    public HandleOption() {
+    }
+
+    public HandleOption(Boolean cancel, Boolean comment, Boolean confirm, Boolean delete, Boolean pay, Boolean rebuy, Boolean refund) {
+        this.cancel = cancel;
+        this.comment = comment;
+        this.confirm = confirm;
+        this.delete = delete;
+        this.pay = pay;
+        this.rebuy = rebuy;
+        this.refund = refund;
+    }
+
     public Boolean getCancel() {
         return cancel;
     }
