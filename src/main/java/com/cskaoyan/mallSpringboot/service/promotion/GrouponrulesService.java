@@ -15,4 +15,6 @@ public interface GrouponrulesService {
     int update(Grouponrules record);//改
 
     int delete(Integer id, Date updateTime);//删
+
+    ResponseVo getWxGrouponList(int page, int size);
 }

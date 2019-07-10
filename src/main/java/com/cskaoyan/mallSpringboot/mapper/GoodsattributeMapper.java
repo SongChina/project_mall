@@ -31,8 +31,5 @@ public interface GoodsattributeMapper {
     int updateByPrimaryKey(Goodsattribute record);
 
 
-
-
-
-
+    List<Goodsattribute> queryGoodsattributeByGoodId(int goodsId);
 }

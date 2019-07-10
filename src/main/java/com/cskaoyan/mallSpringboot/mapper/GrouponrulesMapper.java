@@ -38,4 +38,7 @@ public interface GrouponrulesMapper {
 
     List<Grouponrules> selectAllGrouponRules();
 
+    Grouponrules queryGrouponRulesByGoodsId(Integer goodsId);
+
+    List<Grouponrules> selectWxGrouponRules();
 }

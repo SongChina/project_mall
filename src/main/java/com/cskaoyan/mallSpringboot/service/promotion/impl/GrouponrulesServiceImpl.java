@@ -1,6 +1,7 @@
 package com.cskaoyan.mallSpringboot.service.promotion.impl;
 
 import com.cskaoyan.mallSpringboot.bean.Goods;
+import com.cskaoyan.mallSpringboot.bean.GrouponIndex;
 import com.cskaoyan.mallSpringboot.bean.Grouponrules;
 import com.cskaoyan.mallSpringboot.mapper.GoodsMapper;
 import com.cskaoyan.mallSpringboot.mapper.GrouponrulesMapper;
@@ -12,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -68,5 +70,31 @@ public class GrouponrulesServiceImpl implements GrouponrulesService {
         //true对应数据库列deleted的值1，此为假删除做法
         int i = grouponrulesMapper.deleteBydeleted(id,updateTime);
         return i;
+    }
+    //微信前台查询
+    @Override
+    public ResponseVo getWxGrouponList(int page, int size) {
+        PageHelper.startPage(page, size);
+        List<Grouponrules> grouponrulesList = grouponrulesMapper.selectAllGrouponRules();
+        List<GrouponIndex> grouponIndexList = new ArrayList<>();
+        for (Grouponrules grouponrules : grouponrulesList) {
+            //获取商品表中的团购商品
+            Goods goods = goodsMapper.selectIndexGoods(String.valueOf(grouponrules.getGoodsId()));
+            //创建团购对象
+            GrouponIndex grouponIndex = new GrouponIndex();
+            //封装团购商品
+            grouponIndex.setGoods(goods);
+            //封装团购数量
+            grouponIndex.setGroupon_member(grouponrules.getDiscountMember());
+            //封装团购价格（此价格是商品零售价减去团购折扣）
+            grouponIndex.setGroupon_price(goods.getRetailPrice().subtract(grouponrules.getDiscount()));
+            //添加进团购list
+            grouponIndexList.add(grouponIndex);
+        }
+        PageInfo<Grouponrules> pageInfo = new PageInfo<>(grouponrulesList);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("count", pageInfo.getTotal());
+        map.put("data", grouponIndexList);
+        return new ResponseVo(0, map, "成功");
     }
 }
