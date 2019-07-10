@@ -57,7 +57,9 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public int delete(Integer id, Date updateTime) {
-        int i = adMapper.deleteBydeleted(id, updateTime);
+        //int i = adMapper.deleteBydeleted(id, updateTime);
+        int i = adMapper.deleteByPrimaryKey(id);
+
         return i;
     }
 

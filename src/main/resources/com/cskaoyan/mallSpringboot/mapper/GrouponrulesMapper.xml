@@ -15,7 +15,7 @@
     </resultMap>
     <!--按条件查询，团购规则的结果总数-->
     <select id="queryCount" resultType="Integer">
-        select count(*) from cskaoyan_mall_groupon_rules where deleted = 0
+        select count(*) from cskaoyan_mall_groupon_rules where 1 = 1
         <if test="goodsId != ''and goodsId !=null">
             and goods_id = #{goodsId}
         </if>
@@ -25,7 +25,7 @@
         select id,goods_id,goods_name,pic_url,discount,discount_member,
                 add_time,update_time,expire_time,deleted
         from cskaoyan_mall_groupon_rules
-        where deleted = 0
+        where 1 = 1
         <if test="goodsId !=''and goodsId !=null ">
             and goods_id = #{goodsId}
         </if>

@@ -34,7 +34,8 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public int delete(Integer id, Date updateTime) {
-        int i = couponMapper.deleteBydeleted(id, updateTime);
+        //int i = couponMapper.deleteBydeleted(id, updateTime);
+        int i = couponMapper.deleteByPrimaryKey(id);
         return i;
     }
 

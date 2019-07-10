@@ -8,6 +8,8 @@ import com.cskaoyan.mallSpringboot.mapper.GrouponMapper;
 import com.cskaoyan.mallSpringboot.mapper.GrouponrulesMapper;
 import com.cskaoyan.mallSpringboot.service.promotion.GrouponService;
 import com.cskaoyan.mallSpringboot.service.promotion.GrouponrulesService;
+import com.cskaoyan.mallSpringboot.util.BaseRespVo;
+import com.cskaoyan.mallSpringboot.util.UserTokenManager;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.cskaoyan.mallSpringboot.vo.promotion.ErrorVo;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @RestController
@@ -112,5 +115,24 @@ public class GrouponrulesController {
         //
 
         return new ResponseVo(0, data, "成功");
+    }
+
+
+    //微信端-我的拼团
+    @RequestMapping("wx/groupon/my")
+    public Object myGroupon(HttpServletRequest request, Integer showType) {
+        //前端写了一个token放在请求头中
+        //*************************
+        //获得请求头
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
+        //通过请求头获得userId，进而可以获得一切关于user的信息
+        if (userId == null) {
+            return BaseRespVo.fail();
+        }
+
+        ResponseVo responseVo = grouponrulesService.getMyGroupon(userId, showType);
+
+        return responseVo;
     }
 }

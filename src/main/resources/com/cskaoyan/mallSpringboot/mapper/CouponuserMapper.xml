@@ -18,7 +18,7 @@
     select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_coupon_user
-    where deleted = 0
+    where 1 = 1
     <if test="couponId !='' and couponId != null">
       and coupon_id = #{couponId}
     </if>
@@ -32,7 +32,7 @@
   </select>
   <!--按条件查询，结果总数-->
   <select id="queryCount" resultType="_int">
-    select count(*) from cskaoyan_mall_coupon_user where deleted = 0
+    select count(*) from cskaoyan_mall_coupon_user where 1 = 1
     <if test="couponId !='' and couponId != null">
       and coupon_id = #{couponId}
     </if>
