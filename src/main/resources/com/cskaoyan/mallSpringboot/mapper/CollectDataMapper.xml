@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mallSpringboot.mapper.CollectDataMapper">
+    <resultMap id="collectDataMap" type="com.cskaoyan.mallSpringboot.bean.CollectData">
+        <result column="id" property="id"/>
+        <result column="value_id" property="valueId"/>
+        <result column="type" property="type"/>
+        <result column="name" property="name"/>
+        <result column="brief" property="brief"/>
+        <result column="pic_url" property="picUrl"/>
+        <result column="retail_price" property="retailPrice"/>
+    </resultMap>
+    <select id="selectByType" resultMap="collectDataMap">
+        select c1.id,c1.value_id,c1.type,c2.`name`,c2.brief,c2.pic_url,c2.retail_price from cskaoyan_mall_collect c1
+        left join
+        cskaoyan_mall_goods c2 on c1.value_id=c2.goods_sn where c1.type = #{type} and c1.user_id = #{userId}
+    </select>
+
+</mapper>

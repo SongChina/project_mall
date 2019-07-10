@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mallSpringboot.mapper.OrderListMapper">
+    <resultMap id="OrderListMap" type="com.cskaoyan.mallSpringboot.bean.OrderList">
+        <result property="actualPrice" column="actual_price"/>
+        <result property="id" column="id"/>
+        <result property="orderSn" column="order_sn"/>
+        <result property="orderStatusText" column="order_status"/>
+    </resultMap>
+    <select id="selectById" resultMap="OrderListMap">
+        select actual_price,id,order_sn,order_status from cskaoyan_mall_order where id = #{orderId}
+    </select>
+
+</mapper>

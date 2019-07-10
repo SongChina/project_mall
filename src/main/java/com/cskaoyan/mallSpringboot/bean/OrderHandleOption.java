@@ -1,6 +1,8 @@
 package com.cskaoyan.mallSpringboot.bean;
 
 public class OrderHandleOption {
+
+
     private boolean cancel = false;      // 取消操作
     private boolean delete = false;      // 删除操作
     private boolean pay = false;         // 支付操作
@@ -62,6 +64,19 @@ public class OrderHandleOption {
     }
 
     public void setRebuy(boolean rebuy) {
+        this.rebuy = rebuy;
+    }
+
+    public OrderHandleOption() {
+    }
+
+    public OrderHandleOption(boolean cancel, boolean delete, boolean pay, boolean comment, boolean confirm, boolean refund, boolean rebuy) {
+        this.cancel = cancel;
+        this.delete = delete;
+        this.pay = pay;
+        this.comment = comment;
+        this.confirm = confirm;
+        this.refund = refund;
         this.rebuy = rebuy;
     }
 }
