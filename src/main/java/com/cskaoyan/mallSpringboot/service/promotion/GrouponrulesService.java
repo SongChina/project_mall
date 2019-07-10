@@ -15,4 +15,11 @@ public interface GrouponrulesService {
     int update(Grouponrules record);//改
 
     int delete(Integer id, Date updateTime);//删
+
+
+    //微信前端
+    ResponseVo getMyGroupon(Integer userId,Integer showType);//我的拼团
+
+    ResponseVo getWxGrouponList(int page, int size);
+
 }

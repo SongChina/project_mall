@@ -13,7 +13,7 @@
     <result column="type" jdbcType="SMALLINT" property="type" />
     <result column="status" jdbcType="SMALLINT" property="status" />
     <result column="goods_type" jdbcType="SMALLINT" property="goodsType" />
-    <result column="goods_value" jdbcType="VARCHAR" property="goodsValue" />
+    <result column="goods_value" jdbcType="VARCHAR" property="goodsValue" typeHandler="com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2"/>
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="time_type" jdbcType="SMALLINT" property="timeType" />
     <result column="days" jdbcType="SMALLINT" property="days" />
@@ -26,7 +26,7 @@
 
   <!--按条件查询，结果总数-->
   <select id="queryCount" resultType="_int">
-    select count(*) from cskaoyan_mall_coupon where deleted = 0
+    select count(*) from cskaoyan_mall_coupon where 1 = 1
     <if test="name != '' and name != null">
       and `name` like #{name}
     </if>
@@ -47,7 +47,7 @@
     start_time, end_time, add_time,
     update_time, deleted
     from cskaoyan_mall_coupon
-    where deleted = 0
+    where 1 = 1
     <if test="name != '' and name != null">
       and `name` like #{name}
     </if>
@@ -174,23 +174,23 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
       #{tag,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, 
       #{min,jdbcType=DECIMAL}, #{limit,jdbcType=SMALLINT}, #{type,jdbcType=SMALLINT}, 
-      #{status,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, #{goodsValue,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, #{goodsValue,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
       #{code,jdbcType=VARCHAR}, #{timeType,jdbcType=SMALLINT}, #{days,jdbcType=SMALLINT}, 
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.mallSpringboot.bean.Coupon">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="com.cskaoyan.mallSpringboot.bean.Coupon" useGeneratedKeys="true" keyProperty="id">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into cskaoyan_mall_coupon
     <trim prefix="(" suffix=")" suffixOverrides=",">
       id,
       <if test="name != null">
-        name,
+        `name`,
       </if>
       <if test="desc != null">
-        desc,
+        `desc`,
       </if>
       <if test="tag != null">
         tag,
@@ -202,16 +202,16 @@
         discount,
       </if>
       <if test="min != null">
-        min,
+        `min`,
       </if>
       <if test="limit != null">
-        limit,
+        `limit`,
       </if>
       <if test="type != null">
-        type,
+        `type`,
       </if>
       <if test="status != null">
-        status,
+        `status`,
       </if>
       <if test="goodsType != null">
         goods_type,
@@ -220,7 +220,7 @@
         goods_value,
       </if>
       <if test="code != null">
-        code,
+        `code`,
       </if>
       <if test="timeType != null">
         time_type,
@@ -277,7 +277,7 @@
         #{goodsType,jdbcType=SMALLINT},
       </if>
       <if test="goodsValue != null">
-        #{goodsValue,jdbcType=VARCHAR},
+        #{goodsValue,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
       </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
@@ -439,7 +439,7 @@
         goods_type = #{goodsType,jdbcType=SMALLINT},
       </if>
       <if test="goodsValue != null">
-        goods_value = #{goodsValue,jdbcType=VARCHAR},
+        goods_value = #{goodsValue,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -480,7 +480,7 @@
       `type` = #{type,jdbcType=SMALLINT},
       `status` = #{status,jdbcType=SMALLINT},
       goods_type = #{goodsType,jdbcType=SMALLINT},
-      goods_value = #{goodsValue,jdbcType=VARCHAR},
+      goods_value =#{goodsValue,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
       `code` = #{code,jdbcType=VARCHAR},
       time_type = #{timeType,jdbcType=SMALLINT},
       days = #{days,jdbcType=SMALLINT},

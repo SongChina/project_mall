@@ -16,4 +16,6 @@ public interface BrandService {
     ResponseVo brandUpdate(Brand brand);
 
     ResponseVo brandDetail(String id);
+
+    ResponseVo queryWXBrandList(int page, int size);
 }

@@ -6,9 +6,40 @@
       select
       id, title, subtitle, price, read_count, pic_url
       from cskaoyan_mall_topic
-      where deleted = false
-      LIMIT 4
+      <where>
+          1 = 1
+        <if test="tier ==1">
+            LIMIT 4
+        </if>
+      </where>
     </select>
+
+    <!--查询微信首页精选商品详情-->
+    <select id="queryIndexTopicDetail" resultMap="BaseResultMap">
+      select
+        id, title, subtitle, content, price, read_count, pic_url, sort_order, goods, add_time, update_time,
+        deleted
+      from cskaoyan_mall_topic
+      <where>
+          1 = 1
+          and id = #{id}
+      </where>
+    </select>
+
+    <!--查询微信首页精选商品详情-->
+    <select id="queryTopicRelatedById" resultMap="BaseResultMap">
+      select
+        id, title, subtitle, content, price, read_count, pic_url, sort_order, goods, add_time, update_time,
+        deleted
+      from cskaoyan_mall_topic
+      <where>
+          deleted = false
+          and id > #{id}
+      </where>
+        limit 4
+    </select>
+
+
 
     <resultMap id="topicMap" type="com.cskaoyan.mallSpringboot.bean.Topic">
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -24,18 +55,19 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="subtitle" jdbcType="VARCHAR" property="subtitle"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="price" jdbcType="DECIMAL" property="price"/>
         <result column="read_count" jdbcType="VARCHAR" property="readCount"/>
         <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>
         <result column="sort_order" jdbcType="INTEGER" property="sortOrder"/>
-        <result column="goods" jdbcType="VARCHAR" property="goods"/>
+        <result column="goods" jdbcType="VARCHAR" property="goods" typeHandler="com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2"/>
         <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
     <!--按条件查询，结果总数-->
     <select id="queryCount" resultType="_int">
-        select count(*) from cskaoyan_mall_topic where deleted = 0
+        select count(*) from cskaoyan_mall_topic where 1 = 1
         <if test="title != '' and title !=null">
             and title like #{title}
         </if>
@@ -50,7 +82,7 @@
         sort_order, goods, add_time,
         update_time, deleted, content
         from cskaoyan_mall_topic
-        where deleted = 0
+        where 1 = 1
         <if test="title != ''and title !=null">
             and title like #{title}
         </if>
@@ -187,8 +219,24 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.cskaoyan.mallSpringboot.bean.Topic">
-        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+    <insert id="insert" parameterType="com.cskaoyan.mallSpringboot.bean.Topic" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into cskaoyan_mall_topic (id, title, subtitle,
+        price, read_count, pic_url,
+        sort_order, goods, add_time,
+        update_time, deleted, content
+        )
+        values (#{id}, #{title}, #{subtitle},
+        #{price}, #{readCount}, #{picUrl},
+        #{sortOrder}, #{goods,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
+        #{addTime},
+        #{updateTime}, #{deleted}, #{content}
+        )
+    </insert>
+    <!--<insert id="insert" parameterType="com.cskaoyan.mallSpringboot.bean.Topic" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into cskaoyan_mall_topic (id, title, subtitle,
@@ -198,10 +246,11 @@
         )
         values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
         #{price,jdbcType=DECIMAL}, #{readCount,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR},
-        #{sortOrder,jdbcType=INTEGER}, #{goods,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
+        #{sortOrder,jdbcType=INTEGER}, #{goods,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler},
+         #{addTime,jdbcType=TIMESTAMP},
         #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
         )
-    </insert>
+    </insert>-->
     <insert id="insertSelective" parameterType="com.cskaoyan.mallSpringboot.bean.Topic">
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
@@ -264,7 +313,7 @@
                 #{sortOrder,jdbcType=INTEGER},
             </if>
             <if test="goods != null">
-                #{goods,jdbcType=VARCHAR},
+                #{goods,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
             </if>
             <if test="addTime != null">
                 #{addTime,jdbcType=TIMESTAMP},
@@ -388,7 +437,7 @@
                 sort_order = #{sortOrder,jdbcType=INTEGER},
             </if>
             <if test="goods != null">
-                goods = #{goods,jdbcType=VARCHAR},
+                goods = #{goods,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
             </if>
             <if test="addTime != null">
                 add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -413,7 +462,7 @@
       read_count = #{readCount,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=INTEGER},
-      goods = #{goods,jdbcType=VARCHAR},
+      goods = #{goods,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
@@ -428,7 +477,7 @@
       read_count = #{readCount,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=INTEGER},
-      goods = #{goods,jdbcType=VARCHAR},
+      goods = #{goods,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.convert.intArrayTypeHandler2},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}

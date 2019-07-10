@@ -6,6 +6,7 @@ import com.cskaoyan.mallSpringboot.service.mall.BrandService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -99,6 +100,18 @@ public class BrandServiceImpl implements BrandService {
         Brand brand = brandMapper.selectBrandById(Integer.parseInt(id));
         HashMap<String, Object> map = new HashMap<>();
         map.put("brand", brand);
+        return new ResponseVo(0, map, "成功");
+    }
+
+    //前台查找
+    @Override
+    public ResponseVo queryWXBrandList(int page, int size) {
+        PageHelper.startPage(page, size);
+        List<Brand> brandList = brandMapper.queryBrandList(null, null);
+        HashMap<String, Object> map = new HashMap<>();
+        PageInfo<Brand> pageInfo = new PageInfo<>(brandList);
+        map.put("totalPages", pageInfo.getTotal());
+        map.put("brandList", pageInfo.getList());
         return new ResponseVo(0, map, "成功");
     }
 }
