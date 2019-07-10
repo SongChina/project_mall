@@ -51,4 +51,11 @@ public class BrandController {
     public ResponseVo brandDetail(String id){
         return brandService.brandDetail(id);
     }
+
+    //微信前台查找
+    @RequestMapping("wx/brand/list")
+    public ResponseVo getWxbrand(int page, int size){
+        ResponseVo responseVo = brandService.queryWXBrandList(page, size);
+        return responseVo;
+    }
 }

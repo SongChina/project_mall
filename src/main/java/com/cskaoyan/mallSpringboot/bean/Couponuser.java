@@ -1,5 +1,7 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Couponuser {
@@ -11,16 +13,18 @@ public class Couponuser {
 
     private Short status;
 
+    //特殊的日期格式
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date usedTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date startTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date endTime;
 
     private Integer orderId;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date addTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     private Boolean deleted;

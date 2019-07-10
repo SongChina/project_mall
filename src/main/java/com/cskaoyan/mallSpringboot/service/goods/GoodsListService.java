@@ -26,7 +26,9 @@ public interface GoodsListService {
 
     ResponseVo findGoodsCategory(String id);
 
-    ResponseVo getGoodsList(String categoryId, String page, String size);
+    ResponseVo getGoodsList(String categoryId, String page, String size, boolean idNew, boolean isHot, String order);
 
     ResponseVo getWxGoodsDetail(int id);
+
+    ResponseVo getGoodsComment(int valueId, String type, String showType, int page, int size);
 }

@@ -2,6 +2,7 @@ package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Ordergoods;
 import com.cskaoyan.mallSpringboot.bean.OrdergoodsExample;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -33,5 +34,5 @@ public interface OrdergoodsMapper {
 
     int updateByPrimaryKey(Ordergoods record);
 
-    List<Ordergoods> queryByOrderId(Integer id);
+    List<Ordergoods> queryByOid(Integer orderId);
 }

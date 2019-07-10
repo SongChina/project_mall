@@ -3,10 +3,11 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Topic;
 import com.cskaoyan.mallSpringboot.bean.TopicExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-
+@Repository
 public interface TopicMapper {
     long countByExample(TopicExample example);
 
@@ -38,5 +39,9 @@ public interface TopicMapper {
     int queryCount(@Param("title") String title, @Param("subtitle") String subtitle);//查
     List<Topic> queryList(@Param("title") String title, @Param("subtitle")  String subtitle,@Param("sort") String sort,@Param("order") String order);
 
-    List<Topic> queryIndexTopic();
+    List<Topic> queryIndexTopic(@Param("tier") int tier);
+
+    Topic queryIndexTopicDetail(int id);
+
+    List<Topic> queryTopicRelatedById(int id);
 }

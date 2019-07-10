@@ -222,6 +222,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <select id="queryByOid" resultMap="BaseResultMap">
+    select * from cskaoyan_mall_order_goods
+    where 1 = 1 and order_id = #{orderId}
+  </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update cskaoyan_mall_order_goods
     <set>

@@ -11,4 +11,10 @@ public interface TopicService {
     ResponseVo queryList(QueryIn queryIn, String title, String subtitle);//查
     int delete(Integer id, Date updateTime);//删
     int update(Topic topic);//改
+
+    ResponseVo queryWxList(int page, int size);
+
+    ResponseVo queryWxTopicDetail(int id);
+
+    ResponseVo queryTopicRelated(int id);
 }
