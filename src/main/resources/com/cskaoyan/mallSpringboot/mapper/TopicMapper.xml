@@ -6,9 +6,40 @@
       select
       id, title, subtitle, price, read_count, pic_url
       from cskaoyan_mall_topic
-      where 1 = 1
-      LIMIT 4
+      <where>
+          1 = 1
+        <if test="tier ==1">
+            LIMIT 4
+        </if>
+      </where>
     </select>
+
+    <!--查询微信首页精选商品详情-->
+    <select id="queryIndexTopicDetail" resultMap="BaseResultMap">
+      select
+        id, title, subtitle, content, price, read_count, pic_url, sort_order, goods, add_time, update_time,
+        deleted
+      from cskaoyan_mall_topic
+      <where>
+          1 = 1
+          and id = #{id}
+      </where>
+    </select>
+
+    <!--查询微信首页精选商品详情-->
+    <select id="queryTopicRelatedById" resultMap="BaseResultMap">
+      select
+        id, title, subtitle, content, price, read_count, pic_url, sort_order, goods, add_time, update_time,
+        deleted
+      from cskaoyan_mall_topic
+      <where>
+          deleted = false
+          and id > #{id}
+      </where>
+        limit 4
+    </select>
+
+
 
     <resultMap id="topicMap" type="com.cskaoyan.mallSpringboot.bean.Topic">
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -24,6 +55,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="subtitle" jdbcType="VARCHAR" property="subtitle"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="price" jdbcType="DECIMAL" property="price"/>
         <result column="read_count" jdbcType="VARCHAR" property="readCount"/>
         <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>

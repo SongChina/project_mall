@@ -8,9 +8,13 @@ import com.cskaoyan.mallSpringboot.vo.RequestVo;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.net.UrlEscapers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +41,21 @@ public class GoodsListServiceImpl implements GoodsListService {
     AttributeInWebMapper attributeInWebMapper;
     @Autowired
     SpecificationInWebMapper specificationInWebMapper;
+
+    @Autowired
+    AdMapper adMapper;
+
+    @Autowired
+    GrouponrulesMapper grouponrulesMapper;
+
+    @Autowired
+    TopicMapper topicMapper;
+
+    @Autowired
+    CommentMapper commentMapper;
+
+    @Autowired
+    IssueMapper issueMapper;
 
 
 
@@ -155,14 +174,7 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     //获取微信首页所有信息
 
-    @Autowired
-    AdMapper adMapper;
 
-    @Autowired
-    GrouponrulesMapper grouponrulesMapper;
-
-    @Autowired
-    TopicMapper topicMapper;
 
     @Override
     public ResponseVo getHomeIndexMessage() {
@@ -202,7 +214,9 @@ public class GoodsListServiceImpl implements GoodsListService {
         List<Goods> hotGoodsList = goodsMapper.queryIndexNewOrHotGoods(0,1, null);
 
         //获取精选商品
-        List<Topic> topicList = topicMapper.queryIndexTopic();
+        //tier表示层数，首页层，第二层等
+        int tier = 1;
+        List<Topic> topicList = topicMapper.queryIndexTopic(tier);
 
         //获取底部产品
         List<Category> categories = categoryMapper.queryIndexFloorCategory();
@@ -253,10 +267,10 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     //微信前台获取商品分类
     @Override
-    public ResponseVo getGoodsList(String categoryId, String page, String size) {
+    public ResponseVo getGoodsList(String categoryId, String page, String size, boolean isNew, boolean isHot, String order) {
         PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(size));
         List<Category> categoryList = categoryMapper.queryFilterCategoryList();
-        List<Goods> goodsList = goodsMapper.queryGoodsByCategoryId(categoryId);
+        List<Goods> goodsList = goodsMapper.queryGoodsByCategoryId(categoryId, isNew, isHot, order);
         HashMap<String, Object> map = new HashMap<>();
         PageInfo<Goods> pageInfo = new PageInfo<>(goodsList);
         map.put("count", pageInfo.getTotal());
@@ -266,9 +280,65 @@ public class GoodsListServiceImpl implements GoodsListService {
     }
 
     //查询前台商品详情
+
+
     @Override
     public ResponseVo getWxGoodsDetail(int id) {
-        return null;
+        HashMap<String, Object> map = new HashMap<>();
+        //获取该商品
+        Goods goods = goodsMapper.queryGoodsById(id);
+        String[] gallerys = goods.getGallery();
+        String[] gallerys2 = new String[gallerys.length];
+
+        for (int i = 0; i < gallerys.length; i++) {
+            if(i==0){
+                String g = gallerys[i].substring(1, gallerys[i].indexOf("g") + 1);
+                gallerys2[i] = g;
+            }else {
+                String g = gallerys[i].substring(2, gallerys[i].indexOf("g") + 1);
+                gallerys2[i] = g;
+            }
+        }
+        goods.setGallery(gallerys2);
+        List<Goodsattribute> goodsattributeList = goodsattributeMapper.queryGoodsattributeByGoodId(goods.getId());
+        Brand brand = brandMapper.selectBrandById(goods.getBrandId());
+        List<Comment> commentList = commentMapper.queryCommentByGoodsId(goods.getId(), 0, null);
+        Grouponrules grouponrules = grouponrulesMapper.queryGrouponRulesByGoodsId(goods.getId());
+        List<Issue> issueList = issueMapper.queryIssueList(null);
+        List<Goodsproduct> goodsproductList = goodsproductMapper.queryGoodsproductByGoodsId(goods.getId());
+        List<Goodsspecification> goodsspecificationList = goodsspecificationMapper.queryGoodsspecificationByGoodId(goods.getId());
+        List list = new ArrayList();
+        for (Goodsspecification goodsspecification : goodsspecificationList) {
+            HashMap<String, Object> map1 = new HashMap<>();
+            map1.put("name", goodsspecification.getSpecification());
+            map1.put("valueList", goodsspecificationList);
+            list.add(map1);
+        }
+        map.put("userHasCollect", 0);
+        map.put("specificationList", list);
+        map.put("shareImage", goods.getShareUrl());
+        map.put("productList", goodsproductList);
+        map.put("issue", issueList);
+        map.put("info", goods);
+        map.put("groupon", grouponrules);
+        map.put("comment", commentList);
+        map.put("brand", brand);
+        map.put("attribute", goodsattributeList);
+        return new ResponseVo(0, map, "成功");
+
+    }
+
+    //查找商品评论
+    @Override
+    public ResponseVo getGoodsComment(int valueId, String  type, String showType, int page, int size) {
+        PageHelper.startPage(page, size);
+        List<Comment> commentList = commentMapper.queryCommentByGoodsId(0,valueId, type);
+        PageInfo<Comment> pageInfo = new PageInfo<>(commentList);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("count", pageInfo.getTotal());
+        map.put("currentPage", page);
+        map.put("data", pageInfo.getList());
+        return new ResponseVo(0, map, "成功");
     }
 
 

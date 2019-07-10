@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mallSpringboot.mapper.GoodsspecificationMapper">
+  <!--通过商品号查询规格-->
+  <select id="queryGoodsspecificationByGoodId" resultMap="BaseResultMap">
+    select
+    id, goods_id, specification, `value`, pic_url, add_time, update_time, deleted
+    from cskaoyan_mall_goods_specification
+    where goods_id = #{goodsId}
+  </select>
+
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Goodsspecification">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />

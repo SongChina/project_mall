@@ -27,4 +27,6 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> queryCommentByGoodsId(@Param("GoodsId") Integer GoodsId, @Param("valueId") Integer valueId, @Param("type") String type);
 }

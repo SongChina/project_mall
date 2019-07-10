@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @RestController
-
 public class GrouponrulesController {
     @Autowired
     GrouponrulesService grouponrulesService;
@@ -36,11 +35,13 @@ public class GrouponrulesController {
     GoodsMapper goodsMapper;
 
 
+
     @RequestMapping("admin/groupon/list")
     public ResponseVo grouponrulesPage(QueryIn queryIn, String goodsId) {
         ResponseVo responseVo = grouponrulesService.queryGrouponrulesList(queryIn, goodsId);
         return responseVo;
     }
+
 
     @RequestMapping("admin/groupon/create")
     public Object createGrouponrule(@RequestBody Grouponrules grouponrules) {
@@ -60,6 +61,7 @@ public class GrouponrulesController {
         }
     }
 
+
     @RequestMapping("admin/groupon/update")
     public ErrorVo update(@RequestBody Grouponrules grouponrules) {
         grouponrules.setUpdateTime(new Date());
@@ -73,6 +75,7 @@ public class GrouponrulesController {
     }
 
     //删
+
     @RequestMapping("admin/groupon/delete")
     public ErrorVo delete(@RequestBody Grouponrules grouponrules) {
         Integer id = grouponrules.getId();
@@ -130,9 +133,14 @@ public class GrouponrulesController {
         if (userId == null) {
             return BaseRespVo.fail();
         }
-
         ResponseVo responseVo = grouponrulesService.getMyGroupon(userId, showType);
-
+        return responseVo;
+    }
+    //前台功能
+    //查询
+    @RequestMapping("wx/groupon/list")
+    public ResponseVo getWxGrouponList(int page, int size) {
+        ResponseVo responseVo = grouponrulesService.getWxGrouponList(page, size);
         return responseVo;
     }
 }

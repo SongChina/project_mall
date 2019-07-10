@@ -17,22 +17,27 @@ import java.util.Date;
 public class TopicController {
     @Autowired
     TopicService topicService;
+
     //查
     @RequestMapping("admin/topic/list")
-    public ResponseVo queryTopicList(QueryIn queryIn,String title,String subtitle){
+
+    public ResponseVo queryTopicList(QueryIn queryIn, String title, String subtitle) {
         ResponseVo responseVo = topicService.queryList(queryIn, title, subtitle);
         return responseVo;
     }
+
     @RequestMapping("admin/topic/create")
     public Object createTopic(@RequestBody Topic topic){
+
         try {
             Topic data = topicService.createTopic(topic);
-            return new ResponseVo(0,data,"成功");
+            return new ResponseVo(0, data, "成功");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ErrorVo(401,"参数不对");
+            return new ErrorVo(401, "参数不对");
         }
     }
+
     //update
     @RequestMapping("admin/topic/update")
     public Object update(@RequestBody Topic topic) {
@@ -40,23 +45,47 @@ public class TopicController {
         topic.setDeleted(false);
         try {
             topicService.update(topic);
-            return new ResponseVo(0, topic,"成功");
+            return new ResponseVo(0, topic, "成功");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ErrorVo(401,"参数不对");
+            return new ErrorVo(401, "参数不对");
         }
     }
+
     //delete
     @RequestMapping("admin/topic/delete")
     public ErrorVo delete(@RequestBody Topic topic) {
         Integer id = topic.getId();
         Date updateTime = topic.getUpdateTime();
         try {
-            topicService.delete(id,updateTime);
+            topicService.delete(id, updateTime);
             return new ErrorVo(0, "成功");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ErrorVo(401,"删除失败，稍后重试");
+            return new ErrorVo(401, "删除失败，稍后重试");
         }
     }
+
+    //微信前台查询
+    @RequestMapping("wx/topic/list")
+    public ResponseVo queryWxTopicList(int page, int size) {
+        ResponseVo responseVo = topicService.queryWxList(page, size);
+        return responseVo;
+    }
+
+    //微信前台查询精选详情
+    @RequestMapping("wx/topic/detail")
+    public ResponseVo queryWxTopicDetail(int id) {
+        ResponseVo responseVo = topicService.queryWxTopicDetail(id);
+        return responseVo;
+    }
+
+    //微信前台查询精选商品相关推荐
+    @RequestMapping("wx/topic/related")
+    public ResponseVo queryTopicRelated(int id) {
+        ResponseVo responseVo = topicService.queryTopicRelated(id);
+        return responseVo;
+    }
 }
+
+

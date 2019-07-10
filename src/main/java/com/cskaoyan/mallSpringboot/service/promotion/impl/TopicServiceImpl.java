@@ -65,4 +65,34 @@ public class TopicServiceImpl implements TopicService {
         int i = topicMapper.updateByPrimaryKey(topic);
         return i;
     }
+
+    //微信前台查询
+    @Override
+    public ResponseVo queryWxList(int page, int size) {
+        PageHelper.startPage(page, size);
+        int tier = 2;
+        List<Topic> topicList = topicMapper.queryIndexTopic(tier);
+        PageInfo<Topic> pageInfo = new PageInfo<>(topicList);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("count", pageInfo.getTotal());
+        map.put("data", pageInfo.getList());
+        return new ResponseVo(0, map, "成功");
+    }
+
+    //查询精选商品详情
+    @Override
+    public ResponseVo queryWxTopicDetail(int id) {
+        Topic topic = topicMapper.queryIndexTopicDetail(id);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("goods", topic.getGoods());
+        map.put("topic", topic);
+        return new ResponseVo(0, map, "成功");
+    }
+
+    //查询相关推荐
+    @Override
+    public ResponseVo queryTopicRelated(int id) {
+        List<Topic> topicList = topicMapper.queryTopicRelatedById(id);
+        return new ResponseVo(0, topicList, "成功");
+    }
 }
