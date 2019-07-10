@@ -2,9 +2,11 @@ package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Groupon;
 import com.cskaoyan.mallSpringboot.bean.GrouponExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface GrouponMapper {
     long countByExample(GrouponExample example);
 
@@ -27,4 +29,8 @@ public interface GrouponMapper {
     int updateByPrimaryKeySelective(Groupon record);
 
     int updateByPrimaryKey(Groupon record);
+
+    int queryCount(@Param("goodsId") String goodsId);//查团购活动
+    List<Groupon> queryList(@Param("sort") String sort, @Param("order") String order, @Param("goodsId") String goodsId);
+
 }

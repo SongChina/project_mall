@@ -10,19 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("comment")
 public class GoodsCommentController {
     @Autowired
     GoodsCommentService goodsCommentService;
 
 
-    @RequestMapping("list")
+    @RequestMapping("admin/comment/list")
     public ResponseVo search(RequestVo requestVo,Integer userId,Integer valueId){
         return goodsCommentService.getCommentList(requestVo,userId,valueId);
 
     }
 
-    @RequestMapping("delete")
+    @RequestMapping("admin/comment/delete")
     public ResponseVo delete(@RequestBody Comment comment){
         return goodsCommentService.deleteById(comment);
     }

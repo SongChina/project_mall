@@ -1,9 +1,8 @@
 package com.cskaoyan.mallSpringboot.service.user.impl;
 
-import com.cskaoyan.mallSpringboot.bean.Collect;
 import com.cskaoyan.mallSpringboot.bean.Searchhistory;
 import com.cskaoyan.mallSpringboot.mapper.SearchhistoryMapper;
-import com.cskaoyan.mallSpringboot.service.SearchHistoryService;
+import com.cskaoyan.mallSpringboot.service.admin.SearchHistoryService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.github.pagehelper.PageHelper;

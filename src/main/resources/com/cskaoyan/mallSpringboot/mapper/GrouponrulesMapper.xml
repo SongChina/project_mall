@@ -184,8 +184,8 @@
     <select id="lastInsertId" resultType="java.lang.Integer">
         select LAST_INSERT_ID()
     </select>
-    <insert id="insertSelective" parameterType="com.cskaoyan.mallSpringboot.bean.Grouponrules">
-        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+    <insert id="insertSelective" parameterType="com.cskaoyan.mallSpringboot.bean.Grouponrules" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into cskaoyan_mall_groupon_rules

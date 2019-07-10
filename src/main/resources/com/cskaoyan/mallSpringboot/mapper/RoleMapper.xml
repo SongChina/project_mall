@@ -125,7 +125,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, desc, enabled, add_time, update_time, deleted
+    id, name, `desc`, enabled, add_time, update_time, deleted
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.mallSpringboot.bean.RoleExample" resultMap="BaseResultMap">
     select

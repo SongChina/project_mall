@@ -20,13 +20,15 @@ public class TopicController {
 
     //查
     @RequestMapping("admin/topic/list")
+
     public ResponseVo queryTopicList(QueryIn queryIn, String title, String subtitle) {
         ResponseVo responseVo = topicService.queryList(queryIn, title, subtitle);
         return responseVo;
     }
 
     @RequestMapping("admin/topic/create")
-    public Object createTopic(@RequestBody Topic topic) {
+    public Object createTopic(@RequestBody Topic topic){
+
         try {
             Topic data = topicService.createTopic(topic);
             return new ResponseVo(0, data, "成功");

@@ -1,6 +1,9 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Topic {
@@ -18,10 +21,12 @@ public class Topic {
 
     private Integer sortOrder;
 
-    private String goods;
+    private int[] goods;
 
+    //特殊的日期格式
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date addTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     private Boolean deleted;
@@ -38,7 +43,7 @@ public class Topic {
                 ", readCount='" + readCount + '\'' +
                 ", picUrl='" + picUrl + '\'' +
                 ", sortOrder=" + sortOrder +
-                ", goods='" + goods + '\'' +
+                ", goods=" + Arrays.toString(goods) +
                 ", addTime=" + addTime +
                 ", updateTime=" + updateTime +
                 ", deleted=" + deleted +
@@ -59,7 +64,7 @@ public class Topic {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getSubtitle() {
@@ -67,7 +72,7 @@ public class Topic {
     }
 
     public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle == null ? null : subtitle.trim();
+        this.subtitle = subtitle;
     }
 
     public BigDecimal getPrice() {
@@ -83,7 +88,7 @@ public class Topic {
     }
 
     public void setReadCount(String readCount) {
-        this.readCount = readCount == null ? null : readCount.trim();
+        this.readCount = readCount;
     }
 
     public String getPicUrl() {
@@ -91,7 +96,7 @@ public class Topic {
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl == null ? null : picUrl.trim();
+        this.picUrl = picUrl;
     }
 
     public Integer getSortOrder() {
@@ -102,12 +107,12 @@ public class Topic {
         this.sortOrder = sortOrder;
     }
 
-    public String getGoods() {
+    public int[] getGoods() {
         return goods;
     }
 
-    public void setGoods(String goods) {
-        this.goods = goods == null ? null : goods.trim();
+    public void setGoods(int[] goods) {
+        this.goods = goods;
     }
 
     public Date getAddTime() {
@@ -139,7 +144,7 @@ public class Topic {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
     }
 
 }

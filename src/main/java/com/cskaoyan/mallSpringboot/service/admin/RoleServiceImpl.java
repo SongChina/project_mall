@@ -1,6 +1,7 @@
-package com.cskaoyan.mallSpringboot.service;
+package com.cskaoyan.mallSpringboot.service.admin;
 
 import com.cskaoyan.mallSpringboot.bean.Role;
+import com.cskaoyan.mallSpringboot.bean.RoleExample;
 import com.cskaoyan.mallSpringboot.mapper.RoleMapper;
 import com.cskaoyan.mallSpringboot.renguopingVO.OptionVo;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
@@ -27,6 +28,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public ResponseVo queryOption() {
+        responseVo = new ResponseVo();
         List<OptionVo> data=new ArrayList();
         List<Role> roles=roleMapper.queryAllRole();
         for(Role role:roles) {
@@ -42,19 +44,27 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public ResponseVo queryList(int page,int limit,String name) {
+    public ResponseVo queryList(int page,int limit,String name, String sort, String order) {
         responseVo = new ResponseVo();
         resultVo = new ResultVo();
+
+        PageHelper.startPage(page,limit);
+        RoleExample roleExample = new RoleExample();
+        roleExample.setOrderByClause(sort + " " + order);
+
         if(name==null) {
-            PageHelper.startPage(page,limit);
-            List<Role> roles = roleMapper.queryAllRole();
+            List<Role> roles = roleMapper.selectByExample(roleExample);
+
             PageInfo<Role> pageInfo=new PageInfo<>(roles);
             resultVo.setTotal((int)pageInfo.getTotal());
             resultVo.setItems(pageInfo.getList());
 
         }else{
-            PageHelper.startPage(page,limit);
-            List<Role> roles=roleMapper.queryByName(name);
+
+            RoleExample.Criteria criteria = roleExample.createCriteria();
+            criteria.andNameLike("%" +name + "%");
+            List<Role> roles = roleMapper.selectByExample(roleExample);
+
             PageInfo<Role> pageInfo=new PageInfo<>(roles);
             resultVo.setTotal((int)pageInfo.getTotal());
             resultVo.setItems(pageInfo.getList());

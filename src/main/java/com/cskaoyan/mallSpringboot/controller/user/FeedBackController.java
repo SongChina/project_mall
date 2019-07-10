@@ -17,7 +17,7 @@ public class FeedBackController {
     FeedBackService feedBackService;
 
     //意见反馈分类查询
-    @RequestMapping("feedback/list")
+    @RequestMapping("admin/feedback/list")
     public ResponseVo feedbackList(QueryIn queryIn,String id,String username){
         ResponseVo responseVo = feedBackService.queryFeedBackList(queryIn,id,username);
         return  responseVo;

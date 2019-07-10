@@ -9,54 +9,53 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("config")
 public class ConfigController {
 
     @Autowired
     ConfigService configService;
 
-    @GetMapping("/mall")
+    @GetMapping("admin/config/mall")
     public ResponseVo listMall(){
         ResponseVo responseVo=configService.listMall();
         return responseVo;
     }
-    @PostMapping("/mall")
+    @PostMapping("admin/config/mall")
     public ResponseVo updataMall(@RequestBody String body){
         Map<String,String> data= JacksonUtil.toMap(body);
         ResponseVo responseVo=configService.updateConfig(data);
         return responseVo;
     }
 
-    @GetMapping("/express")
+    @GetMapping("admin/config/express")
     public ResponseVo listExpress(){
         ResponseVo responseVo=configService.listExpress();
         return responseVo;
     }
-    @PostMapping("/express")
+    @PostMapping("admin/config/express")
     public ResponseVo updataExpress(@RequestBody String body){
         Map<String,String> data= JacksonUtil.toMap(body);
         ResponseVo responseVo=configService.updateConfig(data);
         return responseVo;
     }
 
-    @GetMapping("/order")
+    @GetMapping("admin/config/order")
     public ResponseVo listOrder(){
         ResponseVo responseVo=configService.listOrder();
         return responseVo;
     }
-    @PostMapping("/order")
+    @PostMapping("admin/config/order")
     public ResponseVo updataOrder(@RequestBody String body){
         Map<String,String> data= JacksonUtil.toMap(body);
         ResponseVo responseVo=configService.updateConfig(data);
         return responseVo;
     }
 
-    @GetMapping("/wx")
+    @GetMapping("admin/config/wx")
     public ResponseVo listWx(){
         ResponseVo responseVo=configService.listWx();
         return responseVo;
     }
-    @PostMapping("/wx")
+    @PostMapping("admin/config/wx")
     public ResponseVo updataWx(@RequestBody String body){
         Map<String,String> data= JacksonUtil.toMap(body);
         ResponseVo responseVo=configService.updateConfig(data);
