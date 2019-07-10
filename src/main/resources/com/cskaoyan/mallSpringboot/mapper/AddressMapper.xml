@@ -16,6 +16,7 @@
   </select>
 
 
+
   <!--查询所有会员信息 tinyint，date，int，datetime不需要用``-->
   <select id="queryAddressList" resultMap="BaseResultMap">
     select
@@ -68,6 +69,22 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="address" jdbcType="VARCHAR" property="detailedAddress"/>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.cskaoyan.mallSpringboot.bean.AddressDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="is_default" jdbcType="BIT" property="isDefault" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="address" jdbcType="VARCHAR" property="detailedAddress"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -147,6 +164,13 @@
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPrimaryKey2" parameterType="java.lang.Integer" resultMap="BaseResultMap2">
+    select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_address
     where id = #{id,jdbcType=INTEGER}

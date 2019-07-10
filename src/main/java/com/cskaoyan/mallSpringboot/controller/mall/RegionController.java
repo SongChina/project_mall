@@ -18,4 +18,10 @@ public class RegionController {
         return responseVo;
     }
 
+    @RequestMapping("wx/region/list")
+    public ResponseVo region2(String pid){
+        ResponseVo responseVo = regionService.getAllRegion(pid);
+        return responseVo;
+    }
+
 }

@@ -1,5 +1,5 @@
 
-package com.cskaoyan.mallSpringboot.bean;
+package com.cskaoyan.mallSpringboot.bean.systempermission;
 
 import java.util.ArrayList;
 import java.util.HashMap;

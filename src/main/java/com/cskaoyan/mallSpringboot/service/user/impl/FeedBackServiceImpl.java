@@ -2,7 +2,9 @@ package com.cskaoyan.mallSpringboot.service.user.impl;
 
 import com.cskaoyan.mallSpringboot.bean.Collect;
 import com.cskaoyan.mallSpringboot.bean.Feedback;
+import com.cskaoyan.mallSpringboot.bean.User;
 import com.cskaoyan.mallSpringboot.mapper.FeedbackMapper;
+import com.cskaoyan.mallSpringboot.mapper.UserMapper;
 import com.cskaoyan.mallSpringboot.service.user.FeedBackService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
@@ -10,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,5 +45,20 @@ public class FeedBackServiceImpl implements FeedBackService {
         List<Feedback> feedbackList = feedbackMapper.queryFeedBackList(id, username);
         map.put("items",feedbackList);
         return new ResponseVo(0,map,"成功");
+    }
+
+    @Autowired
+    UserMapper userMapper;
+    @Override
+    public boolean insertSingleFeedBack(Feedback feedback) {
+        User user = userMapper.selectByPrimaryKey(feedback.getUserId());
+        feedback.setUsername(user.getUsername());
+        feedback.setAddTime(new Date());
+        feedback.setStatus(0);
+        int insert = feedbackMapper.insert(feedback);
+        if (insert > 0){
+            return true;
+        }
+        return false;
     }
 }

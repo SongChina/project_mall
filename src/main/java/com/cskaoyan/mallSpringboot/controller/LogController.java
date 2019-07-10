@@ -91,6 +91,23 @@ public class LogController {
         return responseVo;
     }
 
+    @RequestMapping("admin/auth/logout")
+    @ResponseBody
+    public ResponseVo logout(){
+        ResponseVo responseVo = new ResponseVo();
+
+        try {
+            SecurityUtils.getSubject().logout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return responseVo;
+
+
+
+    }
+
     @Autowired
     GoodsMapper goodsMapper;
     @Autowired

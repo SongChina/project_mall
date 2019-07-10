@@ -1,6 +1,7 @@
 package com.cskaoyan.mallSpringboot.mapper;
 
 import com.cskaoyan.mallSpringboot.bean.Address;
+import com.cskaoyan.mallSpringboot.bean.AddressDetail;
 import com.cskaoyan.mallSpringboot.bean.AddressExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +31,8 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    List<Address> selectAddresslByUserId(Integer userId);
+
+    AddressDetail selectByPrimaryKey2(int id);
 }

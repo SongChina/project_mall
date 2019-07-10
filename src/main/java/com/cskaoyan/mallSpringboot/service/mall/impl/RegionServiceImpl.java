@@ -1,5 +1,6 @@
 package com.cskaoyan.mallSpringboot.service.mall.impl;
 
+import com.cskaoyan.mallSpringboot.bean.AddressDetail;
 import com.cskaoyan.mallSpringboot.bean.Region;
 import com.cskaoyan.mallSpringboot.bean.RegionExample;
 import com.cskaoyan.mallSpringboot.mapper.RegionMapper;
@@ -38,5 +39,30 @@ public class RegionServiceImpl implements RegionService {
             return new ResponseVo(0, regionList, "成功");
         }
 
+    }
+
+    @Override
+    public boolean setRegionName(AddressDetail addressDetail) {
+        //根据addressDetail中的地区id进行选择
+        RegionExample regionExample = new RegionExample();
+        RegionExample.Criteria criteria = regionExample.createCriteria();
+        criteria.andCodeEqualTo(addressDetail.getProvinceId());
+        List<Region> regions = regionMapper.selectByExample(regionExample);
+        addressDetail.setProvinceName(regions.get(0).getName());
+        regionExample.clear();
+
+        RegionExample.Criteria criteria2 = regionExample.createCriteria();
+        criteria2.andCodeEqualTo(addressDetail.getAreaId());
+        List<Region> regions2 = regionMapper.selectByExample(regionExample);
+        addressDetail.setAreaName(regions2.get(0).getName());
+        regionExample.clear();
+
+        RegionExample.Criteria criteria3 = regionExample.createCriteria();
+        criteria3.andCodeEqualTo(addressDetail.getCityId());
+        List<Region> regions3 = regionMapper.selectByExample(regionExample);
+        addressDetail.setCityName(regions3.get(0).getName());
+        regionExample.clear();
+
+        return true;
     }
 }

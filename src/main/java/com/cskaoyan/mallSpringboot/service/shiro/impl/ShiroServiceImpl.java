@@ -1,6 +1,7 @@
 package com.cskaoyan.mallSpringboot.service.shiro.impl;
 
 import com.cskaoyan.mallSpringboot.bean.*;
+import com.cskaoyan.mallSpringboot.bean.Permission;
 import com.cskaoyan.mallSpringboot.mapper.AdminMapper;
 import com.cskaoyan.mallSpringboot.mapper.PermissionMapper;
 import com.cskaoyan.mallSpringboot.mapper.RoleMapper;

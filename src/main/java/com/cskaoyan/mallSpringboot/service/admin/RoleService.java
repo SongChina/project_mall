@@ -16,4 +16,6 @@ public interface RoleService {
     ResponseVo updateRole(Role role);
     //删除角色
     ResponseVo deleteRole(Integer id);
+
+    List<String> queryRoleRightsInRoleId(int roleId);
 }

@@ -31,7 +31,7 @@
     update_time,
     deleted
     from cskaoyan_mall_feedback
-    where deleted = false
+    where 1 = 1
     <if test="id != null">
       and id like #{id}
 
@@ -53,7 +53,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="has_picture" jdbcType="BIT" property="hasPicture" />
-    <result column="pic_urls" jdbcType="VARCHAR" property="picUrls" />
+    <result column="pic_urls" jdbcType="VARCHAR" property="picUrls" typeHandler="com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler"/>
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
@@ -161,7 +161,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{mobile,jdbcType=VARCHAR}, #{feedType,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, #{picUrls,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, #{picUrls,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
@@ -230,7 +230,7 @@
         #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-        #{picUrls,jdbcType=VARCHAR},
+        #{picUrls,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -277,7 +277,7 @@
         has_picture = #{record.hasPicture,jdbcType=BIT},
       </if>
       <if test="record.picUrls != null">
-        pic_urls = #{record.picUrls,jdbcType=VARCHAR},
+        pic_urls = #{record.picUrls,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
@@ -303,7 +303,7 @@
       content = #{record.content,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       has_picture = #{record.hasPicture,jdbcType=BIT},
-      pic_urls = #{record.picUrls,jdbcType=VARCHAR},
+      pic_urls = #{record.picUrls,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT}
@@ -336,7 +336,7 @@
         has_picture = #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-        pic_urls = #{picUrls,jdbcType=VARCHAR},
+        pic_urls = #{picUrls,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -359,7 +359,7 @@
       content = #{content,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       has_picture = #{hasPicture,jdbcType=BIT},
-      pic_urls = #{picUrls,jdbcType=VARCHAR},
+      pic_urls = #{picUrls,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mallSpringboot.mybatis.StringArrayTypeHandler},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}

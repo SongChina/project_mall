@@ -1,19 +1,17 @@
 
-package com.cskaoyan.mallSpringboot.bean;
+package com.cskaoyan.mallSpringboot.bean.systempermission;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class SystemPermission {
+public class Child_ {
 
     private String id;
     private String label;
-    private List<Child> children = new ArrayList<Child>();
+    private String api;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public String getId() {
@@ -32,12 +30,12 @@ public class SystemPermission {
         this.label = label;
     }
 
-    public List<Child> getChildren() {
-        return children;
+    public String getApi() {
+        return api;
     }
 
-    public void setChildren(List<Child> children) {
-        this.children = children;
+    public void setApi(String api) {
+        this.api = api;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class SystemPermission {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(id).append(label).append(children).append(additionalProperties).toHashCode();
+        return new HashCodeBuilder().append(id).append(label).append(api).append(additionalProperties).toHashCode();
     }
 
     @Override
@@ -63,11 +61,11 @@ public class SystemPermission {
         if (other == this) {
             return true;
         }
-        if ((other instanceof SystemPermission) == false) {
+        if ((other instanceof Child_) == false) {
             return false;
         }
-        SystemPermission rhs = ((SystemPermission) other);
-        return new EqualsBuilder().append(id, rhs.id).append(label, rhs.label).append(children, rhs.children).append(additionalProperties, rhs.additionalProperties).isEquals();
+        Child_ rhs = ((Child_) other);
+        return new EqualsBuilder().append(id, rhs.id).append(label, rhs.label).append(api, rhs.api).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
 }
