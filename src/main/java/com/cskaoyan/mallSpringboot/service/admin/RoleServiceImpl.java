@@ -1,7 +1,10 @@
 package com.cskaoyan.mallSpringboot.service.admin;
 
+import com.cskaoyan.mallSpringboot.bean.Permission;
+import com.cskaoyan.mallSpringboot.bean.PermissionExample;
 import com.cskaoyan.mallSpringboot.bean.Role;
 import com.cskaoyan.mallSpringboot.bean.RoleExample;
+import com.cskaoyan.mallSpringboot.mapper.PermissionMapper;
 import com.cskaoyan.mallSpringboot.mapper.RoleMapper;
 import com.cskaoyan.mallSpringboot.renguopingVO.OptionVo;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
@@ -115,6 +118,29 @@ public class RoleServiceImpl implements RoleService {
             responseVo.setErrmsg("成功");
         }
         return responseVo;
+    }
+
+    @Autowired
+    PermissionMapper permissionMapper;
+
+    public static final String[] allPermissions = {"admin:order:list", "admin:admin:update", "admin:coupon:delete", "admin:topic:read", "admin:admin:delete", "admin:user:list", "admin:goods:update", "admin:role:permission:get", "admin:brand:update", "admin:category:create", "admin:coupon:list", "admin:ad:create", "admin:stat:order", "admin:config:wx:updateConfigs", "admin:topic:list", "admin:order:refund", "admin:order:read", "admin:topic:delete", "admin:brand:list", "admin:coupon:update", "admin:brand:delete", "admin:brand:read", "admin:config:wx:list", "admin:collect:list", "admin:storage:list", "admin:coupon:listuser", "admin:groupon:read", "admin:admin:read", "admin:storage:read", "admin:order:ship", "admin:keyword:update", "admin:comment:delete", "admin:groupon:create", "admin:comment:list", "admin:keyword:list", "admin:keyword:create", "admin:admin:list", "admin:history:list", "admin:category:delete", "admin:role:delete", "admin:storage:delete", "admin:keyword:read", "admin:order:reply", "admin:goods:delete", "admin:ad:delete", "admin:issue:update", "admin:address:list", "admin:topic:create", "admin:category:read", "admin:category:update", "admin:storage:create", "admin:config:express:updateConfigs", "admin:brand:create", "admin:issue:delete", "admin:config:express:list", "admin:goods:create", "admin:ad:list", "admin:role:permission:update", "admin:groupon:list", "admin:admin:create", "admin:groupon:update", "admin:footprint:list", "index:permission:write", "admin:groupon:delete", "admin:ad:read", "admin:config:order:list", "index:permission:read", "admin:keyword:delete", "admin:role:create", "admin:issue:list", "admin:log:list", "admin:config:order:updateConfigs", "admin:topic:update", "admin:config:mall:list", "admin:category:list", "admin:stat:goods", "admin:issue:create", "admin:role:update", "admin:config:mall:updateConfigs", "admin:stat:user", "admin:coupon:read", "admin:coupon:create", "admin:goods:list", "admin:ad:update", "admin:role:list", "admin:storage:update", "admin:role:read", "admin:feedback:list", "admin:goods:read"};
+    @Override
+    public List<String> queryRoleRightsInRoleId(int roleId) {
+        PermissionExample permissionExample = new PermissionExample();
+        PermissionExample.Criteria criteria = permissionExample.createCriteria();
+        criteria.andRoleIdEqualTo(roleId);
+        List<Permission> permissions = permissionMapper.selectByExample(permissionExample);
+        ArrayList<String> assignedPerms = new ArrayList<>();
+        for (Permission permission : permissions) {
+            if("*".equals(permission.getPermission())){
+                for(int i =0 ; i < allPermissions.length ; i ++){
+                    assignedPerms.add(allPermissions[i]);
+                }
+                break;
+            }
+            assignedPerms.add(permission.getPermission());
+        }
+        return assignedPerms;
     }
 
 }

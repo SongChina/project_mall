@@ -3,7 +3,6 @@ server:
   servlet:
     context-path: /
 
-
 spring:
   datasource:
     username: root
@@ -24,6 +23,7 @@ admin:
       name: "admin123"
       perms: ["*"]
       roles: ["超级管理员"]
+
 
 
 

@@ -1,6 +1,8 @@
 package com.cskaoyan.mallSpringboot.service.user.impl;
 
 import com.cskaoyan.mallSpringboot.bean.Address;
+import com.cskaoyan.mallSpringboot.bean.AddressDetail;
+import com.cskaoyan.mallSpringboot.bean.AddressExample;
 import com.cskaoyan.mallSpringboot.mapper.AddressMapper;
 import com.cskaoyan.mallSpringboot.service.user.AddressService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
@@ -41,5 +43,56 @@ public class AddressServiceImpl implements AddressService {
         List<Address> addressList = addressMapper.queryAddressList(userId, name);
         map.put("items",addressList);
         return new ResponseVo(0,map,"成功");
+    }
+
+    @Override
+    public List<Address> queryAddressByUserId(Integer userId) {
+        AddressExample addressExample = new AddressExample();
+        AddressExample.Criteria criteria = addressExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        List<Address> addresses = addressMapper.selectByExample(addressExample);
+
+        return addresses;
+    }
+
+
+    @Override
+    public boolean deleteAddressById(int parseInt) {
+        int i = addressMapper.deleteByPrimaryKey(parseInt);
+        if(i >0)
+            return true;
+        return false;
+    }
+
+    @Override
+    public boolean insertSingleAddress(Address address) {
+        int insert = -1;
+        if(address.getId() == 0) {
+            insert = addressMapper.insert(address);
+        }else{
+            AddressExample addressExample = new AddressExample();
+            AddressExample.Criteria criteria = addressExample.createCriteria();
+            criteria.andIdEqualTo(address.getId());
+            insert = addressMapper.updateByExample(address, addressExample);
+        }
+        if (insert > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    @Override
+    public Address queryAddressById(int id) {
+        Address address = addressMapper.selectByPrimaryKey(id);
+
+        return address;
+    }
+
+    @Override
+    public AddressDetail queryAddressById2(int id) {
+        AddressDetail addressDetail = addressMapper.selectByPrimaryKey2(id);
+        return addressDetail;
     }
 }

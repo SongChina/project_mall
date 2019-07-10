@@ -13,6 +13,7 @@ import com.cskaoyan.mallSpringboot.util.UserTokenManager;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.cskaoyan.mallSpringboot.vo.promotion.ErrorVo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;

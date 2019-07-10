@@ -27,6 +27,24 @@ public class Address {
 
     private Boolean deleted;
 
+    private String detailedAddress;
+
+    public Boolean getDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(Boolean aDefault) {
+        isDefault = aDefault;
+    }
+
+    public String getDetailedAddress() {
+        return detailedAddress;
+    }
+
+    public void setDetailedAddress(String detailedAddress) {
+        this.detailedAddress = detailedAddress;
+    }
+
     public Integer getId() {
         return id;
     }

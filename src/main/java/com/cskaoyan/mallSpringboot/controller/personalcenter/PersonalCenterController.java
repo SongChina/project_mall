@@ -40,11 +40,11 @@ public class PersonalCenterController {
         return responseVo;
     }
 
-    @RequestMapping("wx/address/list")
+/*    @RequestMapping("wx/address/list")
     public ResponseVo addressList(){
         ResponseVo responseVo = addressListService.addressList();
         return responseVo;
-    }
+    }*/
     @RequestMapping("wx/coupon/exchange")
     public ResponseVo exchange(){
         return new ResponseVo(742,"","优惠券不正确");

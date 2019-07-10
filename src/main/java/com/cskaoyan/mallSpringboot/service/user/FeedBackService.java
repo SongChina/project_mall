@@ -1,5 +1,6 @@
 package com.cskaoyan.mallSpringboot.service.user;
 
+import com.cskaoyan.mallSpringboot.bean.Feedback;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 
@@ -10,4 +11,6 @@ import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 public interface FeedBackService {
 
     ResponseVo queryFeedBackList(QueryIn queryIn, String id, String username);
+
+    boolean insertSingleFeedBack(Feedback feedback);
 }

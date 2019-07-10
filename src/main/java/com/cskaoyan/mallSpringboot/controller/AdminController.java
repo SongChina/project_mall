@@ -9,6 +9,7 @@ import com.cskaoyan.mallSpringboot.service.admin.AdminServcie;
 import com.cskaoyan.mallSpringboot.utils.MD5Util;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

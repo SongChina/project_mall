@@ -2,7 +2,6 @@ package com.cskaoyan.mallSpringboot.config;
 
 import com.cskaoyan.mallSpringboot.shiro.MallShiroSessionManager;
 import com.cskaoyan.mallSpringboot.shiro.SuperAdminRealm;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -46,7 +45,6 @@ public class ShiroConfig {
 		filterMap.put("admin/**","authc");
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
-
 		return shiroFilterFactoryBean;
 	}
 

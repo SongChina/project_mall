@@ -1,17 +1,20 @@
 
-package com.cskaoyan.mallSpringboot.bean;
+package com.cskaoyan.mallSpringboot.bean.systempermission;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class Child_ {
+public class SystemPermission {
 
     private String id;
     private String label;
-    private String api;
+    private List<Child> children = new ArrayList<Child>();
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public String getId() {
@@ -30,12 +33,12 @@ public class Child_ {
         this.label = label;
     }
 
-    public String getApi() {
-        return api;
+    public List<Child> getChildren() {
+        return children;
     }
 
-    public void setApi(String api) {
-        this.api = api;
+    public void setChildren(List<Child> children) {
+        this.children = children;
     }
 
     @Override
@@ -53,7 +56,7 @@ public class Child_ {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(id).append(label).append(api).append(additionalProperties).toHashCode();
+        return new HashCodeBuilder().append(id).append(label).append(children).append(additionalProperties).toHashCode();
     }
 
     @Override
@@ -61,11 +64,11 @@ public class Child_ {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Child_) == false) {
+        if ((other instanceof SystemPermission) == false) {
             return false;
         }
-        Child_ rhs = ((Child_) other);
-        return new EqualsBuilder().append(id, rhs.id).append(label, rhs.label).append(api, rhs.api).append(additionalProperties, rhs.additionalProperties).isEquals();
+        SystemPermission rhs = ((SystemPermission) other);
+        return new EqualsBuilder().append(id, rhs.id).append(label, rhs.label).append(children, rhs.children).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
 }

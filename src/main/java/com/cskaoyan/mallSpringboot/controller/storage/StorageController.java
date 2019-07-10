@@ -53,7 +53,7 @@ public class StorageController {
 
 
     //微信端上传图片
-    @RequestMapping("upload")
+    @RequestMapping("wx/storage/upload")
     public ResponseVo storageUpload(MultipartFile file) throws IOException {
         Storage storage = myOssClient.ossFileUpload(file);
         ResponseVo responseVo = storageService.storageUpload(storage);

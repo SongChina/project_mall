@@ -3,6 +3,8 @@ package com.cskaoyan.mallSpringboot.service.admin;
 import com.cskaoyan.mallSpringboot.bean.Role;
 import com.cskaoyan.mallSpringboot.renguopingVO.ResponseVo;
 
+import java.util.List;
+
 public interface RoleService {
     //处理option请求的返回
     ResponseVo queryOption();
@@ -14,4 +16,6 @@ public interface RoleService {
     ResponseVo updateRole(Role role);
     //删除角色
     ResponseVo deleteRole(Integer id);
+
+    List<String> queryRoleRightsInRoleId(int roleId);
 }

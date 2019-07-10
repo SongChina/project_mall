@@ -8,6 +8,7 @@ import com.cskaoyan.mallSpringboot.service.promotion.CouponuserService;
 import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.cskaoyan.mallSpringboot.vo.promotion.ErrorVo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,4 +82,15 @@ public class CouponController {
 
         return couponuserService.queryList(queryIn,couponId,userId,status);
     }
+
+
+   /* @RequestMapping("wx/coupon/mylist")
+    public ResponseVo listCoupon(int status, int page, int size){
+        if(status == 0){
+            //即根据user_id去查找对应的优惠券的信息，并且优惠券中的状态是0
+
+        }
+    }*/
+
+
 }

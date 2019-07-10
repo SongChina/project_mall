@@ -9,6 +9,13 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+
+  <insert id="insertInBatch" parameterType="java.util.List">
+      insert into cskaoyan_mall_permission (role_id, permission) values
+      <foreach collection="list" item="item" separator=",">
+        (#{item.roleId}, #{item.permission})
+      </foreach>
+  </insert>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
