@@ -19,6 +19,7 @@ public interface GrouponrulesService {
 
     //微信前端
     ResponseVo getMyGroupon(Integer userId,Integer showType);//我的拼团
+    ResponseVo detail(Integer userId,Integer grouponId);//我的拼团-团购详情
 
     ResponseVo getWxGrouponList(int page, int size);
 

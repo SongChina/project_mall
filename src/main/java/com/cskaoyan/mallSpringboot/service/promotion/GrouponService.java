@@ -12,5 +12,6 @@ public interface GrouponService {
     List<Groupon> queryMyGroupon( Integer userId);
     List<Groupon> queryMyJoinGroupon( Integer userId);
     int countGroupon(Integer linkGrouponId);
+    List<Groupon> queryJoinRecord(Integer id);
 
 }

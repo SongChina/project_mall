@@ -59,4 +59,12 @@ public class GrouponServiceImpl implements GrouponService {
         example.or().andGrouponIdEqualTo(grouponId).andPayedEqualTo(true);
         return (int) grouponMapper.countByExample(example);
     }
+
+    @Override
+    public List<Groupon> queryJoinRecord(Integer id) {
+        GrouponExample example = new GrouponExample();
+        example.or().andGrouponIdEqualTo(id).andPayedEqualTo(true);
+        example.setOrderByClause("add_time desc");
+        return grouponMapper.selectByExample(example);
+    }
 }

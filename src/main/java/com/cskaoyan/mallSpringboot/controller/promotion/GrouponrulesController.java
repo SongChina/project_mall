@@ -14,6 +14,7 @@ import com.cskaoyan.mallSpringboot.vo.QueryIn;
 import com.cskaoyan.mallSpringboot.vo.ResponseVo;
 import com.cskaoyan.mallSpringboot.vo.promotion.ErrorVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -136,7 +137,7 @@ public class GrouponrulesController {
         ResponseVo responseVo = grouponrulesService.getMyGroupon(userId, showType);
         return responseVo;
     }
-    /*@GetMapping("wx/groupon/detail")
+    @GetMapping("wx/groupon/detail")
     public Object detail(HttpServletRequest request, Integer grouponId){
         String tokenKey = request.getHeader("X-Litemall-Token");
         Integer userId = UserTokenManager.getUserId(tokenKey);
@@ -146,7 +147,7 @@ public class GrouponrulesController {
         }
         ResponseVo responseVo = grouponrulesService.detail(userId, grouponId);
         return responseVo;
-    }*/
+    }
     //前台功能
     //查询
     @RequestMapping("wx/groupon/list")
