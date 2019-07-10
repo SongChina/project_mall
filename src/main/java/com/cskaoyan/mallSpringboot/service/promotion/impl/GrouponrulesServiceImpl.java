@@ -42,6 +42,7 @@ public class GrouponrulesServiceImpl implements GrouponrulesService {
     OrdergoodsMapper ordergoodsMapper;
 
 
+
     @Override
     public ResponseVo queryGrouponrulesList(QueryIn queryIn, String goodsId) {
         HashMap<String, Object> data = new HashMap<>();
@@ -182,5 +183,72 @@ public class GrouponrulesServiceImpl implements GrouponrulesService {
         map.put("data", grouponIndexList);
         return new ResponseVo(0, map, "成功");
     }
+
+    @Override
+    public ResponseVo detail(Integer userId, Integer grouponId) {
+        Groupon groupon = grouponMapper.selectByPrimaryKey(grouponId);
+        Grouponrules rules = grouponrulesMapper.selectByPrimaryKey(groupon.getRulesId());
+        // 订单信息
+        Order order = orderMapper.selectByPrimaryKey(groupon.getOrderId());
+        Map<String, Object> orderVo = new HashMap<>();
+        orderVo.put("id", order.getId());
+        orderVo.put("orderSn", order.getOrderSn());
+        orderVo.put("addTime", order.getAddTime());
+        orderVo.put("consignee", order.getConsignee());
+        orderVo.put("mobile", order.getMobile());
+        orderVo.put("address", order.getAddress());
+        orderVo.put("goodsPrice", order.getGoodsPrice());
+        orderVo.put("freightPrice", order.getFreightPrice());
+        orderVo.put("actualPrice", order.getActualPrice());
+        orderVo.put("orderStatusText", OrderUtil.orderStatusText(order));
+        orderVo.put("handleOption", OrderUtil.build(order));
+        orderVo.put("expCode", order.getShipChannel());
+        orderVo.put("expNo", order.getShipSn());
+
+        List<Ordergoods> ordergoodsList = ordergoodsMapper.queryByOid(order.getId());
+        List<Map<String, Object>> ordergoodsVoList = new ArrayList<>(ordergoodsList.size());
+        for (Ordergoods ordergoods : ordergoodsList) {
+            Map<String, Object> orderGoodsVo = new HashMap<>();
+            orderGoodsVo.put("id", ordergoods.getId());
+            orderGoodsVo.put("orderId", ordergoods.getOrderId());
+            orderGoodsVo.put("goodsId", ordergoods.getGoodsId());
+            orderGoodsVo.put("goodsName", ordergoods.getGoodsName());
+            orderGoodsVo.put("number", ordergoods.getNumber());
+            orderGoodsVo.put("retailPrice", ordergoods.getPrice());
+            orderGoodsVo.put("picUrl", ordergoods.getPicUrl());
+            orderGoodsVo.put("goodsSpecificationValues", ordergoods.getSpecifications());
+            ordergoodsVoList.add(orderGoodsVo);
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("orderInfo", orderVo);
+        result.put("orderGoods", ordergoodsVoList);
+        User creator = userMapper.selectByPrimaryKey(groupon.getCreatorUserId());
+        List<User> joiners = new ArrayList<>();
+        joiners.add(creator);
+        int linkGrouponId;
+        // 这是一个团购发起记录
+        if (groupon.getGrouponId() == 0) {
+            linkGrouponId = groupon.getId();
+        } else {
+            linkGrouponId = groupon.getGrouponId();
+
+        }
+        List<Groupon> groupons = grouponService.queryJoinRecord(linkGrouponId);
+
+        User joiner;
+        for (Groupon grouponItem : groupons) {
+            joiner = userMapper.selectByPrimaryKey(grouponItem.getUserId());
+            joiners.add(joiner);
+        }
+
+        result.put("linkGrouponId", linkGrouponId);
+        result.put("creator", creator);
+        result.put("joiners", joiners);
+        result.put("groupon", groupon);
+        result.put("rules", rules);
+
+        return new ResponseVo(0, result, "成功");
+    }
+
 
 }
