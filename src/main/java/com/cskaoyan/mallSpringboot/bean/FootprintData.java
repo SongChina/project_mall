@@ -1,12 +1,17 @@
 package com.cskaoyan.mallSpringboot.bean;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
 public class FootprintData {
     int id;
     int goodsId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     Date addTime;
     String name;
     String brief;

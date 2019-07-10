@@ -60,7 +60,11 @@
    update_time,
    deleted
   from cskaoyan_mall_category
-   where deleted = false and id = #{id}
+  <where>
+    deleted = false
+    and id = #{id}
+
+  </where>
   </select>
   
   <!--修改-->
@@ -82,6 +86,54 @@
     set deleted = true, update_time = #{updateTime}
     where id = #{id}
   </delete>
+
+  <!--查询首页的分类-->
+  <select id="selectIndexCategoryByPid" resultMap="categoryMap">
+    select
+    id,
+   `name`,
+   icon_url
+   from cskaoyan_mall_category
+   where deleted = false and pid = #{pid}
+  </select>
+
+
+  <resultMap id="categoryMap" type="com.cskaoyan.mallSpringboot.bean.Category">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+  </resultMap>
+
+
+  <!--查询微信首页底部的分类-->
+  <select id="queryIndexFloorCategory" resultMap="floorCategoryMap">
+    select
+    id,
+   `name`
+   from cskaoyan_mall_category
+   where deleted = false and pid = 0
+   limit 4
+  </select>
+
+  <resultMap id="floorCategoryMap" type="com.cskaoyan.mallSpringboot.bean.Category">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+
+  <!--查询过滤分类-->
+  <select id="queryFilterCategoryList" resultMap="BaseResultMap">
+    select
+    id, `name`, keywords, `desc`, pid, icon_url, pic_url, `level`, sort_order, add_time, update_time,
+    deleted
+    from cskaoyan_mall_category
+    <where>
+      pid != 0
+    </where>
+  </select>
+
+
+
+
 
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -156,7 +208,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, keywords, desc, pid, icon_url, pic_url, level, sort_order, add_time, update_time, 
+    id, `name`, keywords, `desc`, pid, icon_url, pic_url, `level`, sort_order, add_time, update_time,
     deleted
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.mallSpringboot.bean.CategoryExample" resultMap="BaseResultMap">

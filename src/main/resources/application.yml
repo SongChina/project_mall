@@ -1,9 +1,7 @@
 server:
-
   servlet:
     context-path: /
   port: 8080
-
 
 spring:
   datasource:
@@ -20,14 +18,12 @@ admin:
       name: "admin123"
       perms: ["*"]
       roles: ["超级管理员"]
+
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
-
-
 
 
   #json日期格式处理

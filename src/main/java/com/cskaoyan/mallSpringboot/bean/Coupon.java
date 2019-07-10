@@ -1,5 +1,8 @@
 package com.cskaoyan.mallSpringboot.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -34,8 +37,11 @@ public class Coupon {
 
     private Short days;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date startTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date endTime;
 
     private Date addTime;

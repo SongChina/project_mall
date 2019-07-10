@@ -352,4 +352,17 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--我的订单-->
+  <resultMap id="orderGoodsMapper" type="com.cskaoyan.mallSpringboot.bean.OrderGood">
+    <result column="id" property="id"/>
+    <result column="goods_name" property="goodsName"/>
+    <result column="number" property="number"/>
+    <result column="pic_url" property="picUrl"/>
+  </resultMap>
+  <select id="selectGoodsByOrderId" resultMap="orderGoodsMapper">
+    select c1.id,c1.goods_name,c1.number,c2.pic_url from cskaoyan_mall_order_goods  c1 left join
+    cskaoyan_mall_goods c2
+    on c1.goods_sn=c2.goods_sn where c1.order_id = #{id}
+  </select>
 </mapper>

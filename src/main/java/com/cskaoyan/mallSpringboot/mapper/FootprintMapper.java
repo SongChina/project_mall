@@ -38,7 +38,7 @@ public interface FootprintMapper {
 
     //个人中心/我的足迹
 
-    List<FootprintData> footprintList();
+    List<FootprintData> footprintList(@Param("userId") int userId);
 
 
 }

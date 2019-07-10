@@ -3,8 +3,13 @@ package com.cskaoyan.mallSpringboot.mapper;
 import com.cskaoyan.mallSpringboot.bean.Log;
 import com.cskaoyan.mallSpringboot.bean.LogExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
+@Mapper
+@Component("LogMapper")
 public interface LogMapper {
     long countByExample(LogExample example);
 
@@ -27,4 +32,8 @@ public interface LogMapper {
     int updateByPrimaryKeySelective(Log record);
 
     int updateByPrimaryKey(Log record);
+
+    List<Log> queryAllLog();
+
+    List<Log> queryByName(String admin);
 }

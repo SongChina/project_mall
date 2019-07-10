@@ -8,5 +8,5 @@ import java.util.List;
 
 @Component
 public interface CollectDataMapper {
-   List<CollectData> selectByType(@Param("type") int type);
+   List<CollectData> selectByType(@Param("type") int type,@Param("userId") int userId);
 }

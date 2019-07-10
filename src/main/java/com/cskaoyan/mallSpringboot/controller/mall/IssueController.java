@@ -16,25 +16,25 @@ public class IssueController {
     IssueService issueService;
 
     //查询
-    @RequestMapping("issue/list")
+    @RequestMapping("admin/issue/list")
     public ResponseVo issueList(QueryIn queryIn, String question){
         ResponseVo responseVo = issueService.issueList(queryIn, question);
         return responseVo;
     }
     //新增
-    @RequestMapping("issue/create")
+    @RequestMapping("admin/issue/create")
     public ResponseVo issueCreate(@RequestBody Issue issue){
         ResponseVo responseVo = issueService.issueCreate(issue);
         return responseVo;
     }
     //修改
-    @RequestMapping("issue/update")
+    @RequestMapping("admin/issue/update")
     public ResponseVo issueUpdate(@RequestBody Issue issue){
         ResponseVo responseVo = issueService.issueUpdate(issue);
         return responseVo;
     }
     //删除
-    @RequestMapping("issue/delete")
+    @RequestMapping("admin/issue/delete")
     public ResponseVo issueDelete(@RequestBody Issue issue){
         ResponseVo responseVo = issueService.issueDelete(issue);
         return responseVo;

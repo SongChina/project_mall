@@ -12,4 +12,6 @@ public interface StorageService {
     ResponseVo storageUpdate(Storage storage);
 
     ResponseVo storageDelete(Storage storage);
+
+    ResponseVo storageUpload(Storage storage);
 }

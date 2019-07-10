@@ -80,6 +80,28 @@
   </delete>
 
 
+  <!--查询微信首页品牌商-->
+  <select id="queryIndexBrand" resultMap="BrandMap">
+    select
+    id,
+    `name`,
+    `desc`,
+    pic_url,
+    floor_price
+    from cskaoyan_mall_brand
+    where deleted = false
+    order by RAND() LIMIT 4
+  </select>
+
+  <resultMap id="BrandMap" type="com.cskaoyan.mallSpringboot.bean.Brand">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="floor_price" jdbcType="DECIMAL" property="floorPrice" />
+  </resultMap>
+
+
 
 
   <resultMap id="BaseResultMap" type="com.cskaoyan.mallSpringboot.bean.Brand">

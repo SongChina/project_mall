@@ -47,5 +47,32 @@ public class GoodsListController {
     }
 
 
+    //以下属于微信前台内容
+    //微信小程序
+
+
+    @RequestMapping("wx/goods/count")
+    public ResponseVo WXCountGoods(){
+
+        return goodsListService.CountGoods();
+    }
+
+    @RequestMapping("wx/goods/category")
+    public ResponseVo getGoodsCategory(String id){
+        ResponseVo responseVo = goodsListService.findGoodsCategory(id);
+        return responseVo;
+    }
+    //查询商品分类
+    @RequestMapping("wx/goods/list")
+    public ResponseVo getGoodsList(String categoryId, String page, String size) {
+        ResponseVo goodsList = goodsListService.getGoodsList(categoryId, page, size);
+        return goodsList;
+    }
+    //查询前台商品详情
+    @RequestMapping("wx/goods/detail")
+    public ResponseVo getWxGoodsDetail(int id) {
+        ResponseVo responseVo = goodsListService.getWxGoodsDetail(id);
+        return responseVo;
+    }
 
 }

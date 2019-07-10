@@ -14,13 +14,13 @@ public class OrderController {
     OrderService orderService;
 
     //查询订单
-    @RequestMapping("order/list")
+    @RequestMapping("admin/order/list")
     public ResponseVo OrderList(QueryIn queryIn, String[] orderStatusArray, String orderSn, String userId){
         ResponseVo responseVo = orderService.orderList(queryIn, orderStatusArray, orderSn, userId);
         return responseVo;
     }
     //查询订单详情
-    @RequestMapping("order/detail")
+    @RequestMapping("admin/order/detail")
     public ResponseVo OrderDetail(String id){
         ResponseVo responseVo = orderService.orderDetail(id);
         return responseVo;

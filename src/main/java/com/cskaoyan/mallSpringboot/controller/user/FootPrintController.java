@@ -17,7 +17,7 @@ public class FootPrintController {
     FootPrintService footPrintService;
 
     //会员足迹分类查询
-    @RequestMapping("footprint/list")
+    @RequestMapping("admin/footprint/list")
     public ResponseVo footprintList(QueryIn queryIn,String userId,String goodsId){
         ResponseVo responseVo = footPrintService.queryFootPrintList(queryIn,userId,goodsId);
         return responseVo;

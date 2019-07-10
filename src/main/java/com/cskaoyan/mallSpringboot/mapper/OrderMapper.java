@@ -8,7 +8,9 @@ import com.cskaoyan.mallSpringboot.gss_vo.CustomerStatisticInfo;
 import com.cskaoyan.mallSpringboot.gss_vo.GoodsStatisticInfo;
 import com.cskaoyan.mallSpringboot.gss_vo.OrderStatisticInfo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface OrderMapper {
 
     int queryOrderwxCount(@Param("uncomment") String uncomment, @Param("unpaid") String unpaid, @Param("unrecv") String unrecv, @Param("unship") String unship);

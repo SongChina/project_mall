@@ -14,6 +14,34 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+  <sql id="baseColumns">
+    id,
+    admin,
+    ip,
+    `type`,
+    `action`,
+    status,
+    result,
+    comment,
+    add_time,
+    update_time,
+    deleted
+  </sql>
+
+  <!--查询所有日志-->
+  <select id="queryAllLog" resultMap="BaseResultMap">
+    select
+    <include refid="baseColumns"/>
+    from cskaoyan_mall_log
+  </select>
+
+  <!--根据管理员模糊查询-->
+  <select id="queryByName" resultMap="BaseResultMap">
+    select
+    <include refid="baseColumns"/>
+    from cskaoyan_mall_log
+    where admin=#{admin}
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
