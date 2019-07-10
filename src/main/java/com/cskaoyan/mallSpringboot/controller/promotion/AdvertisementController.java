@@ -22,12 +22,10 @@ public class AdvertisementController {
     AdService adService;
 
     @RequestMapping("admin/ad/list")
-    @RequiresPermissions("admin:ad:list")
     public ResponseVo adList(QueryIn queryIn, String name, String content) {
         return adService.queryList(queryIn,name,content);
     }
     @RequestMapping("admin/ad/create")
-    @RequiresPermissions("admin:ad:create")
     public Object createAd(@RequestBody Ad ad){
         try {
             Ad data = adService.createAd(ad);
@@ -39,7 +37,6 @@ public class AdvertisementController {
     }
 
     @RequestMapping("admin/ad/update")
-    @RequiresPermissions("admin:ad:update")
     public Object update(@RequestBody Ad ad){
         ad.setUpdateTime(new Date());
         ad.setDeleted(false);
@@ -53,7 +50,6 @@ public class AdvertisementController {
     }
 
     @RequestMapping("admin/ad/delete")
-    @RequiresPermissions("admin:ad:delete")
     public ErrorVo delete(@RequestBody Ad ad) {
         Integer id = ad.getId();
         Date updateTime = ad.getUpdateTime();

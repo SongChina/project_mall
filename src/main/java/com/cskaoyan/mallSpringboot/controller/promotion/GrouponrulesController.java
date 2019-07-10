@@ -38,7 +38,6 @@ public class GrouponrulesController {
 
 
     @RequestMapping("admin/groupon/list")
-    @RequiresPermissions("admin:groupon:list")
     public ResponseVo grouponrulesPage(QueryIn queryIn, String goodsId) {
         ResponseVo responseVo = grouponrulesService.queryGrouponrulesList(queryIn, goodsId);
         return responseVo;
@@ -46,7 +45,6 @@ public class GrouponrulesController {
 
 
     @RequestMapping("admin/groupon/create")
-    @RequiresPermissions("admin:groupon:create")
     public Object createGrouponrule(@RequestBody Grouponrules grouponrules) {
         ResponseVo responseVo = new ResponseVo();
         try {
@@ -66,7 +64,6 @@ public class GrouponrulesController {
 
 
     @RequestMapping("admin/groupon/update")
-    @RequiresPermissions("admin:groupon:update")
     public ErrorVo update(@RequestBody Grouponrules grouponrules) {
         grouponrules.setUpdateTime(new Date());
         try {

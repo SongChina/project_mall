@@ -30,7 +30,6 @@ public class AdminController {
 
 
     @RequestMapping("admin/list")
-    @RequiresPermissions("admin:admin:list")
     public ResponseVo queryAdmins(int page,int limit,String username){
         resultVo = new ResultVo();
         responseVo = new ResponseVo();
@@ -58,7 +57,6 @@ public class AdminController {
 
     //添加管理员
     @RequestMapping("admin/create")
-    @RequiresPermissions("admin:admin:create")
     public ResponseVo insertAdmin(@RequestBody Admin admin){
         responseVo = new ResponseVo();
         String s= MD5Util.encode(admin.getPassword());
@@ -76,7 +74,6 @@ public class AdminController {
     }
     //更新管理员
     @RequestMapping("admin/update")
-    @RequiresPermissions("admin:admin:update")
     public ResponseVo updateAdmin(@RequestBody Admin admin){
         String s= MD5Util.encode(admin.getPassword());
         admin.setPassword(s);
@@ -92,7 +89,6 @@ public class AdminController {
     }
     //删除管理员
     @RequestMapping("admin/delete")
-    @RequiresPermissions("admin:admin:delete")
     public ResponseVo deleteAdmin(@RequestBody Admin admin){
         responseVo = new ResponseVo();
         int delete=adminServcie.deleteAdmin(admin.getId());

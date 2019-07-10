@@ -1,14 +1,14 @@
 server:
   servlet:
     context-path: /
-  port: 80
+  port: 8080
 
 spring:
   datasource:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/j14_project_mall?characterEncoding=utf8&useSSL=false
 
     #json日期格式处理
   jackson:

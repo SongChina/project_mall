@@ -29,14 +29,12 @@ public class CouponController {
     CouponuserService couponuserService;
 
     @RequestMapping("admin/coupon/list")
-    @RequiresPermissions("admin:coupon:list")
     public ResponseVo couponList(QueryIn queryIn, String name, String type, String status) {
         return couponService.queryList(queryIn, name, type, status);
 
     }
 
     @RequestMapping("admin/coupon/create")
-    @RequiresPermissions("admin:coupon:create")
     public Object createcoupon(@RequestBody Coupon coupon) {
         try {
             Coupon data = couponService.createCoupon(coupon);
@@ -48,7 +46,6 @@ public class CouponController {
     }
 
     @RequestMapping("admin/coupon/update")
-    @RequiresPermissions("admin:coupon:update")
     public Object update(@RequestBody Coupon coupon) {
         coupon.setUpdateTime(new Date());
         coupon.setDeleted(false);
@@ -62,7 +59,6 @@ public class CouponController {
     }
 
     @RequestMapping("admin/coupon/delete")
-    @RequiresPermissions("admin:coupon:delete")
     public ErrorVo delete(@RequestBody Coupon coupon) {
         Integer id = coupon.getId();
         Date updateTime = coupon.getUpdateTime();
@@ -76,14 +72,12 @@ public class CouponController {
     }
 
     @RequestMapping("admin/coupon/read")
-    @RequiresPermissions("admin:coupon:read")
     public ResponseVo read(Integer id) {
         Coupon coupon = couponMapper.selectByPrimaryKey(id);
         return new ResponseVo(0, coupon, "成功");
     }
 
     @RequestMapping("admin/coupon/listuser")
-    @RequiresPermissions("admin:coupon:listuser")
     public ResponseVo listUser(QueryIn queryIn, String couponId, String userId, String status) {
 
         return couponuserService.queryList(queryIn,couponId,userId,status);
