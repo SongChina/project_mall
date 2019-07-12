@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
   servlet:
     context-path: /
 
@@ -8,24 +8,11 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/project3?characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/j14_project_mall?characterEncoding=utf8
   #json日期格式处理
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-
-admin:
-  login:
-    errmsg: "成功"
-    errno: 0
-    info:
-      avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif"
-      name: "admin123"
-      perms: ["*"]
-      roles: ["超级管理员"]
-
-
-
 
 pagehelper:
   helperDialect: mysql
